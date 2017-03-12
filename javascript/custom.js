@@ -14,7 +14,8 @@ Vue.component('title-view-list',{
 new Vue({
     el: '#app',
     data:{
-        current_view: "home"
+        current_view: "home",
+        item_list : []
     },
     computed: {
         headerStyle: function(){
@@ -47,6 +48,7 @@ new Vue({
             template: "#anime-view"
         },
         videogames: {
+            props: ['item_list'],
             template: "#videogame-view",
             data: function(){
                 return {
@@ -54,7 +56,6 @@ new Vue({
                     description: "",
                     title: "",
                     url: "",
-                    item_list: [],
                     grid_view: true,
                     submitted: false,
                     removeable: false
@@ -62,43 +63,43 @@ new Vue({
             },
             methods: {
                 insertGameToList: function(){             
-                    var that = this;
-                    var http = new XMLHttpRequest();
-                    http.onreadystatechange = function(){
-                        if(this.readyState == 4 && this.status == 200){
-                            var json = this.responseText;
-                            var jsonObj = JSON.parse(json);
-                            jsonObj.list.push({title: that.title, description: that.description, url: that.url});
-                            var string_json = JSON.stringify(jsonObj);
-                            alert(string_json);
-                            this.open("POST","./php_scripts/update_json.php",true);
-                            this.send("json_object="+string_json);
-                            this.onreadystatechange = function(){
-                                if(this.readyState == 4 && this.status == 200){
-                                    that.item_list.push({title: that.title, description: that.description, url: that.url});
-                                    that.title = ""; that.description = ""; that.url = "";
-                                    that.submitted = !that.submitted;
-                                }
-                            };
-            //                    var http2 = new XMLHttpRequest();
-            //                    http2.onreadystatechange = function(){
-            //                        if(this.readyState == 4 && this.status == 200){
-            //                            that.item_list.push({title: that.title, description: that.description, url: that.url});
-            //                            that.title = ""; that.description = ""; that.url = "";
-            //                            that.submitted = !that.submitted;
-            //                        }
-            //                    };
-                            //http2.open("POST","./php_scripts/update_json.php",true);
-                            //http2.send("json_object="+string_json);
-                        }
-                    };
-                    http.open("GET","./json_item_list.json",true);
-                    http.send();
+//                    var that = this;
+//                    var http = new XMLHttpRequest();
+//                    http.onreadystatechange = function(){
+//                        if(this.readyState == 4 && this.status == 200){
+//                            var json = this.responseText;
+//                            var jsonObj = JSON.parse(json);
+//                            jsonObj.list.push({title: that.title, description: that.description, url: that.url});
+//                            var string_json = JSON.stringify(jsonObj);
+//                            alert(string_json);
+//                            this.open("POST","./php_scripts/update_json.php",true);
+//                            this.send("json_object="+string_json);
+//                            this.onreadystatechange = function(){
+//                                if(this.readyState == 4 && this.status == 200){
+//                                    that.item_list.push({title: that.title, description: that.description, url: that.url});
+//                                    that.title = ""; that.description = ""; that.url = "";
+//                                    that.submitted = !that.submitted;
+//                                }
+//                            };
+//            //                    var http2 = new XMLHttpRequest();
+//            //                    http2.onreadystatechange = function(){
+//            //                        if(this.readyState == 4 && this.status == 200){
+//            //                            that.item_list.push({title: that.title, description: that.description, url: that.url});
+//            //                            that.title = ""; that.description = ""; that.url = "";
+//            //                            that.submitted = !that.submitted;
+//            //                        }
+//            //                    };
+//                            //http2.open("POST","./php_scripts/update_json.php",true);
+//                            //http2.send("json_object="+string_json);
+//                        }
+//                    };
+//                    http.open("GET","./json_item_list.json",true);
+//                    http.send();
 
                     //En caso de que el codigo de arriba funcione, comentar lo de abajo
-                    //this.item_list.push({title: this.title, description: this.description, url: this.url});
-                    //this.title = ""; this.description = ""; this.url = "";
-                    //this.submitted = !this.submitted;
+                    this.item_list.push({title: this.title, description: this.description, url: this.url});
+                    this.title = ""; this.description = ""; this.url = "";
+                    this.submitted = !this.submitted;
                 }
             }
         },
@@ -117,8 +118,7 @@ new Vue({
                     var title = jsonObj.list[i].title;
                     var description = jsonObj.list[i].description;
                     var url = jsonObj.list[i].url;
-                    that.components.videogames.item_list.push({title: title, description: description, url: url});
-//                    that.item_list.push({title: title, description: description, url: url});
+                    that.item_list.push({title: title, description: description, url: url});
                 }
             }
         };

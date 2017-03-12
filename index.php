@@ -41,7 +41,7 @@
             </div>    
         </nav>
         <!---------------------------------->
-        <keep-alive><component v-bind:is="current_view"></component></keep-alive>
+        <keep-alive><component v-bind:is="current_view" v-bind:item_list="item_list"></component></keep-alive>
         </div>
 
         <template id="home-view">
