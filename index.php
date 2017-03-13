@@ -11,8 +11,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div id="app" v-cloak>
-        <!----------This is ok------------>    
+        <div id="app" v-cloak>  
         <div class="jumbotron text-center" v-bind:style="headerStyle">
             <div class="container-fluid">
                 <h1>Things that I consider good</h1>
@@ -36,11 +35,11 @@
                         <li id="video-games" v-bind:class="{active: (current_view == 'videogames')}" @click="current_view = 'videogames'"><a href="#"><span class="glyphicon glyphicon-cd"></span> Video Games</a></li>
                         <li id="programming" v-bind:class="{active: (current_view == 'programming')}" @click="current_view = 'programming'"><a href="#"><span class="glyphicon glyphicon-console"></span> Programming</a></li>
                     </ul>
-                    <span class="navbar-text">&nbsp;&nbsp;<em>"Some things have to be done"</em> - Andrew</span>
+                    <span class="navbar-text">&nbsp;&nbsp;<script>if(window.screen.width >= 768 && window.screen.width < 1200){document.write("");}else{document.write("<em>Some things have to be done</em> - Andrew");}</script></span>
                 </div>
             </div>    
         </nav>
-        <!---------------------------------->
+        
         <keep-alive><component v-bind:is="current_view" v-bind:item_list="item_list"></component></keep-alive>
         </div>
 
