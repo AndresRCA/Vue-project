@@ -129,7 +129,8 @@
             <div>I'm not empty</div>
         </template>
 
-<!--        <template id="anime-view">
+        <template id="anime-view">
+            <div>
             <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -160,16 +161,16 @@
                             <input class="form-control tiny-margin-bottom" placeholder="Image url" type="text" name="url" v-model="url"/>
                             <input class="form-control tiny-margin-bottom"  placeholder="Title" type="text" name="title" v-model="title"/>
                             <textarea class="form-control tiny-margin-bottom" placeholder="Enter what you think about the anime" name="description" v-model="description"></textarea>
-                            <input type="submit" value="Submit" class="form-control btn btn-default" v-on:click="insertGameToList"/>
+                            <input type="submit" value="Submit" class="form-control btn btn-default" v-on:click="insertAnimeToList"/>
                         </form>
                     </div>
                 </div>
             </div>
             <!------------------------Grid View-------------------------------------->      
-<!--            <div class="container grid-view-container" v-show="grid_view">
+            <div class="container grid-view-container" v-show="grid_view">
                 <div class="row">
-                    <ul v-if="item_list.length >= 1" class="list-unstyled list-group">
-                        <grid-list v-for="item in item_list" v-bind:grid_list="item" v-bind:removeable="removeable"></grid-list>
+                    <ul v-if="item_list.animes.length >= 1" class="list-unstyled list-group">
+                        <grid-list v-for="item in item_list.animes" v-bind:grid_list="item" v-bind:removeable="removeable"></grid-list>
                     </ul>
                     <div v-else class="col-md-12 text-center">            
                         <h1><small>There doesn't seem to be anything here...</small></h1>                   
@@ -178,17 +179,18 @@
             </div>
             <!----------------------------------------------------------------------->
             <!------------------------Title View------------------------------------->
-<!--            <div class="container title-view-container" v-show="!grid_view">
+            <div class="container title-view-container" v-show="!grid_view">
                 <div class="row">
-                    <div v-if="item_list.length >= 1">
-                        <title-view-list v-for="item in item_list" v-bind:title_view_list="item" v-bind:removeable="removeable"></title-view-list>
+                    <div v-if="item_list.animes.length >= 1">
+                        <title-view-list v-for="item in item_list.animes" v-bind:title_view_list="item" v-bind:removeable="removeable"></title-view-list>
                     </div>
                     <div v-else class="col-md-12 text-center">
                         <h1><small>There doesn't seem to be anything here...</small></h1>
                     </div>
                 </div>
             </div>
-        </template>-->
+            </div>
+        </template>
 
         <template id="videogame-view">
             <div>
@@ -230,8 +232,8 @@
             <!------------------------Grid View-------------------------------------->      
             <div class="container grid-view-container" v-show="grid_view">
                 <div class="row">
-                    <ul v-if="item_list.length >= 1" class="list-unstyled list-group">
-                        <grid-list v-for="item in item_list" v-bind:grid_list="item" v-bind:removeable="removeable"></grid-list>
+                    <ul v-if="item_list.games.length >= 1" class="list-unstyled list-group">
+                        <grid-list v-for="item in item_list.games" v-bind:grid_list="item" v-bind:removeable="removeable"></grid-list>
                     </ul>
                     <div v-else class="col-md-12 text-center">            
                         <h1><small>There doesn't seem to be anything here...</small></h1>                   
@@ -242,8 +244,8 @@
             <!------------------------Title View------------------------------------->
             <div class="container title-view-container" v-show="!grid_view">
                 <div class="row">
-                    <div v-if="item_list.length >= 1">
-                        <title-view-list v-for="item in item_list" v-bind:title_view_list="item" v-bind:removeable="removeable"></title-view-list>
+                    <div v-if="item_list.games.length >= 1">
+                        <title-view-list v-for="item in item_list.games" v-bind:title_view_list="item" v-bind:removeable="removeable"></title-view-list>
                     </div>
                     <div v-else class="col-md-12 text-center">
                         <h1><small>There doesn't seem to be anything here...</small></h1>

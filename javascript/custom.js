@@ -15,7 +15,10 @@ new Vue({
     el: '#app',
     data:{
         current_view: "home",
-        item_list : []
+        item_list : {
+            games: [],
+            animes: []
+        }
     },
     computed: {
         headerStyle: function(){
@@ -45,7 +48,27 @@ new Vue({
             template: "#cooking-view"
         },
         anime: {
-            template: "#anime-view"
+            props: ['item_list'],
+            template: "#anime-view",
+            data: function(){
+                return {
+                    admin_mode: "",
+                    description: "",
+                    title: "",
+                    url: "",
+                    grid_view: true,
+                    submitted: false,
+                    removeable: false,
+                    eye_open: true
+                };
+            },
+            methods: {
+                insertAnimeToList: function(){
+                    this.item_list.animes.push({title: this.title, description: this.description, url: this.url});
+                    this.title = ""; this.description = ""; this.url = "";
+                    this.submitted = !this.submitted;
+                }
+            }
         },
         videogames: {
             props: ['item_list'],
@@ -77,7 +100,7 @@ new Vue({
 //                            this.send("json_object="+string_json);
 //                            this.onreadystatechange = function(){
 //                                if(this.readyState == 4 && this.status == 200){
-//                                    that.item_list.push({title: that.title, description: that.description, url: that.url});
+//                                    that.item_list.games.push({title: that.title, description: that.description, url: that.url});
 //                                    that.title = ""; that.description = ""; that.url = "";
 //                                    that.submitted = !that.submitted;
 //                                }
@@ -85,7 +108,7 @@ new Vue({
 //            //                    var http2 = new XMLHttpRequest();
 //            //                    http2.onreadystatechange = function(){
 //            //                        if(this.readyState == 4 && this.status == 200){
-//            //                            that.item_list.push({title: that.title, description: that.description, url: that.url});
+//            //                            that.item_list.games.push({title: that.title, description: that.description, url: that.url});
 //            //                            that.title = ""; that.description = ""; that.url = "";
 //            //                            that.submitted = !that.submitted;
 //            //                        }
@@ -98,7 +121,7 @@ new Vue({
 //                    http.send();
 
                     //En caso de que el codigo de arriba funcione, comentar lo de abajo
-                    this.item_list.push({title: this.title, description: this.description, url: this.url});
+                    this.item_list.games.push({title: this.title, description: this.description, url: this.url});
                     this.title = ""; this.description = ""; this.url = "";
                     this.submitted = !this.submitted;
                 }
@@ -119,7 +142,7 @@ new Vue({
                     var title = jsonObj.list[i].title;
                     var description = jsonObj.list[i].description;
                     var url = jsonObj.list[i].url;
-                    that.item_list.push({title: title, description: description, url: url});
+                    that.item_list.games.push({title: title, description: description, url: url});
                 }
             }
         };
