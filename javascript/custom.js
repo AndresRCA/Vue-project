@@ -58,7 +58,8 @@ new Vue({
                     url: "",
                     grid_view: true,
                     submitted: false,
-                    removeable: false
+                    removeable: false,
+                    eye_open: true
                 };
             },
             methods: {

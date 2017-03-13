@@ -30,7 +30,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li v-bind:class="{active: (current_view == 'home' || current_view == '')}" @click="current_view = 'home'"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                        <li v-bind:class="{active: (current_view == 'home')}" @click="current_view = 'home'"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                         <li id="cooking" v-bind:class="{active: (current_view == 'cooking')}" @click="current_view = 'cooking'"><a href="#"><span class="glyphicon glyphicon-cutlery"></span> Cooking</a></li>
                         <li id="anime" v-bind:class="{active: (current_view == 'anime')}" @click="current_view = 'anime'"><a href="#"><span class="glyphicon glyphicon-play-circle"></span> Anime</a></li>
                         <li id="video-games" v-bind:class="{active: (current_view == 'videogames')}" @click="current_view = 'videogames'"><a href="#"><span class="glyphicon glyphicon-cd"></span> Video Games</a></li>
@@ -54,7 +54,7 @@
                         record things I may forget, like a storage room.</p>
                     </div>
                     <div class="col-md-6">
-                        <h1 class='text-center'>Why make this?</h1>
+                        <h1 class="text-center">Why make this?</h1>
                         <p>I made this because I was bored and wanted to create a multipage website... And because I think I'm depressed.</p>
                     </div>    
                 </div>
@@ -134,9 +134,8 @@
             <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar2">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
+                    <button type="button" class="navbar-toggle navbar-eye" data-toggle="collapse" data-target="#myNavbar2" @click="eye_open = !eye_open">
+                        <span class="glyphicon" v-bind:class="{'glyphicon-eye-open': eye_open, 'glyphicon-eye-close': !eye_open}"></span>                                    
                     </button>
                     <span class="navbar-brand">Viewing options:</span>
                 </div>        
@@ -197,9 +196,8 @@
             <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar2">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
+                    <button type="button" class="navbar-toggle navbar-eye" data-toggle="collapse" data-target="#myNavbar2" @click="eye_open = !eye_open">
+                        <span class="glyphicon" v-bind:class="{'glyphicon-eye-open': eye_open, 'glyphicon-eye-close': !eye_open}"></span>                                    
                     </button>
                     <span class="navbar-brand">Viewing options:</span>
                 </div>        
