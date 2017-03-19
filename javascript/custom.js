@@ -34,7 +34,7 @@ new Vue({
             switch(this.current_view){
                 case "home": return {};
                 case "cooking": return {marginBottom: 0, borderTop: "1px solid #e36f18"};
-                case "anime": return {marginBottom: 0, borderBottom: "none", borderTop: "1px solid #f63f3f"};
+                case "anime": return {marginBottom: 0, borderBottom: "none", borderTop: "1px solid #e53d3d"};
                 case "videogames": return {marginBottom: 0, borderBottom: "none", borderTop: "1px solid #6da7e2"};
                 case "programming": return{marginBottom: 0, borderTop: "1px solid #91f068"};
             }

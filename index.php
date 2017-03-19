@@ -12,11 +12,11 @@
     </head>
     <body>
         <div id="app" v-cloak>  
-        <div class="jumbotron text-center" v-bind:style="headerStyle">
+        <header class="jumbotron text-center" v-bind:style="headerStyle">
             <div class="container-fluid">
-                <h1>Things that I consider good</h1>
+                <h1>Informative App</h1>
             </div>
-        </div>
+        </header>
         <nav class="navbar navbar-default" v-bind:style="navStyle">
             <div class="container">
                 <div class="navbar-header">
@@ -35,31 +35,32 @@
                         <li id="video-games" v-bind:class="{active: (current_view == 'videogames')}" @click="current_view = 'videogames'"><a href="#"><span class="glyphicon glyphicon-cd"></span> Video Games</a></li>
                         <li id="programming" v-bind:class="{active: (current_view == 'programming')}" @click="current_view = 'programming'"><a href="#"><span class="glyphicon glyphicon-console"></span> Programming</a></li>
                     </ul>
-                    <span class="navbar-text">&nbsp;&nbsp;<script>if(window.screen.width >= 768 && window.screen.width < 1200){document.write("");}else{document.write("<em>Some things have to be done</em> - Andrew");}</script></span>
                 </div>
             </div>    
         </nav>
-        
-        <keep-alive><component v-bind:is="current_view" v-bind:item_list="item_list"></component></keep-alive>
+        <main>
+            <keep-alive><component v-bind:is="current_view" v-bind:item_list="item_list"></component></keep-alive>
+        </main>
+            <footer><h3 class="text-center"><small>Made by Andrew</small></h3></footer>
         </div>
 
         <template id="home-view">
             <div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-sm-6">
                         <h1 class="text-center">What is this?</h1>
                         <p>This is a website that contains things I probably like and things that are currently in my mind, this is also a way to 
                         record things I may forget, like a storage room.</p>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-6">
                         <h1 class="text-center">Why make this?</h1>
                         <p>I made this because I was bored and wanted to create a multipage website... And because I think I'm depressed.</p>
                     </div>    
                 </div>
             </div>
             <div class="container">
-                <div class="row">
+                <div class="row margin-bottom">
                     <div class="col-md-12">
                         <h2 class="text-center">What does this "storage room" contain?</h2>
                         <p>It contains mostly a bunch of lists, it could also contain some definitions or notes I prefer to save inside this website
@@ -68,10 +69,12 @@
                 </div>
             </div>
             <div class="container-fluid">
-                <div class="row text-center">
-                    <div class="col-md-3">
+                <article class="row" style="background-color: #f6a96e; border-top: 5px solid #e36f18; border-bottom: 5px solid #e36f18">
+                    <div class="col-sm-4 image-logo">
+                        <img class="center-block img-responsive img-rounded" src="./images/gastronomy.jpg" alt="food" style="max-height: 320px;">
+                    </div>
+                    <div class="col-sm-8">
                         <h2>Cooking</h2>
-                        <img class="center-block img-responsive img-rounded margin-bottom" src="./images/gastronomy.jpg" alt="food" style="max-height: 360px;">
                         <p>Cooking has been a passion for me since I was 12, don't forget that, but due to laziness and the situation 
                         of the country my ability to practice good gastronomy has been limited, still that has never stopped my 
                         curiosity for it, when I had free time I liked to investigate the science behind cooking and recipes I could 
@@ -79,11 +82,14 @@
 
                         <p>In this category I will post recipes I like (some of which I might have created) or images containing
                         information about spice combinations, herb data, etc.</p>
-                        <hr>
                     </div>
-                    <div class="col-md-3">
+                </article>
+                <article class="row" style="background-color: #ff8484; border-top: 5px solid #e53d3d; border-bottom: 5px solid #e53d3d">
+                    <div class="col-sm-4 image-logo visible-xs">
+                        <img class="center-block img-responsive img-rounded" src="./images/nichijou.jpg" alt="anime" style="max-height: 220px;">
+                    </div>
+                    <div class="col-sm-8">
                         <h2>Anime</h2>
-                        <img class="center-block img-responsive img-rounded margin-bottom" src="./images/nichijou.jpg" alt="anime" style="max-height: 220px;">
                         <p>I can't really pinpoint the time I started liking anime, but I do remember that the first anime I watched 
                         on my own was Nichijou, it was great and it still is, after that I kept watching series, mostly the popular ones 
                         that I encountered on forums and reddit. Nowadays I watch what is currently airing, but I wonder, has my mind or 
@@ -91,13 +97,17 @@
                         does that mean I'm no longer thinking?</p>
 
                         <p>In this category I will post anime titles I think are worth mentioning.</p>
-                        <hr>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-sm-4 image-logo hidden-xs">
+                        <img class="center-block img-responsive img-rounded" src="./images/nichijou.jpg" alt="anime" style="max-height: 220px;">
+                    </div>
+                </article>
+                <article class="row" style="background-color: #7aafe4; border-top: 5px solid #6da7e2; border-bottom: 5px solid #6da7e2">
+                    <div class="col-sm-4 image-logo inline-block text-center">
+                        <img class="img-responsive img-rounded" src="./images/ssbm.png" alt="ssbm" style="max-height: 170px;"><img class="img-responsive" src="./images/osu.png" alt="osu" style="max-height: 100px;">
+                    </div>
+                    <div class="col-sm-8">
                         <h2>Video Games</h2>
-                        <div class="center-block inline-block margin-bottom">
-                            <img class="img-responsive img-rounded" src="./images/ssbm.png" alt="ssbm" style="max-height: 170px;"><img class="img-responsive" src="./images/osu.png" alt="osu" style="max-height: 100px;">
-                        </div>
                         <p>This category doesn't need an explanation, video games have always been a big part of my life and it probably 
                         still will be, except that lately I've been playing just 2 games, Super Smash Bros Melee and OSU, both games 
                         require high skill for competitive play, which is probably the reason I play them. As a child I've always been 
@@ -105,11 +115,14 @@
                         I mostly play games with a good history or high difficulty.</p>
 
                         <p>In this category I will post video game titles I liked in the past, and probably my experience with them.</p>
-                        <hr>
                     </div>
-                    <div class="col-md-3">
+                </article>
+                <article class="row" style="background-color: #baf286; border-top: 5px solid #91f068; border-bottom: 5px solid #91f068">
+                    <div class="col-sm-4 image-logo visible-xs">
+                        <img class="center-block img-responsive img-rounded" src="./images/programming.jpg" alt="programming" style="max-height: 360px;">
+                    </div>
+                    <div class="col-sm-8">
                         <h2>Programming</h2>
-                        <img class="center-block img-responsive img-rounded margin-bottom" src="./images/programming.jpg" alt="programming" style="max-height: 360px;">
                         <p>Programming is something I wish I knew how to do at a very young age, I have loved programming since 
                         I started seeing it on my first semester of Telecomunications and lately I found that I'm constantly improving 
                         step by step whenever I have free time, however I usually spend my time programming inside my comfort zone, 
@@ -118,9 +131,11 @@
 
                         <p>This category will be about strict learning, it could contain books about progamming, little tips about things 
                         one could forget between programming languages, web-development, etc.</p>
-                        <hr>
                     </div>
-                </div>
+                    <div class="col-sm-4 image-logo hidden-xs">
+                        <img class="center-block img-responsive img-rounded" src="./images/programming.jpg" alt="programming" style="max-height: 360px;">
+                    </div>
+                </article>
             </div>
             </div>    
         </template>
@@ -156,7 +171,7 @@
                     <div class="col-md-12">
                         <h2 style="margin-top: -10px;" v-show="admin_mode == 'a'"><button class="btn btn-primary" v-show="!submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-pencil"></span> Insert Anime</button><button class="btn btn-warning" v-show="submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-chevron-left"></span> Never mind</button>&nbsp;<button class="btn btn-danger" v-show="!removeable && item_list.length >= 1" @click="removeable = true"><span class="glyphicon glyphicon-remove"></span> Remove</button><button class="btn btn-warning" v-show="removeable" @click="removeable = false"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button> <small v-show="removeable">Remove function not yet implemented...</small></h2>
 
-                        <form class="form-group-sm margin-bottom" v-show="submitted" v-on:submit.prevent>
+                        <form class="form-group-sm margin-bottom" v-show="submitted && admin_mode == 'a'" v-on:submit.prevent>
                             <label>Inside this you can enter everything:</label>
                             <input class="form-control tiny-margin-bottom" placeholder="Image url" type="text" name="url" v-model="url"/>
                             <input class="form-control tiny-margin-bottom"  placeholder="Title" type="text" name="title" v-model="title"/>
@@ -219,7 +234,7 @@
                     <div class="col-md-12">
                         <h2 style="margin-top: -10px;" v-show="admin_mode == 'a'"><button class="btn btn-primary" v-show="!submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-pencil"></span> Insert Game</button><button class="btn btn-warning" v-show="submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-chevron-left"></span> Never mind</button>&nbsp;<button class="btn btn-danger" v-show="!removeable && item_list.length >= 1" @click="removeable = true"><span class="glyphicon glyphicon-remove"></span> Remove</button><button class="btn btn-warning" v-show="removeable" @click="removeable = false"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button> <small v-show="removeable">Remove function not yet implemented...</small></h2>
 
-                        <form class="form-group-sm margin-bottom" v-show="submitted" v-on:submit.prevent>
+                        <form class="form-group-sm margin-bottom" v-show="submitted && admin_mode == 'a'" v-on:submit.prevent>
                             <label>Inside this you can enter everything:</label>
                             <input class="form-control tiny-margin-bottom" placeholder="Image url" type="text" name="url" v-model="url"/>
                             <input class="form-control tiny-margin-bottom"  placeholder="Title" type="text" name="title" v-model="title"/>
@@ -268,7 +283,7 @@
         </template>
 <!-------------------------------------------------------------------------------------------------------------------------------------------->
         <template id="grid-list">
-            <div class="col-md-4 col-xs-12 margin-bottom">
+            <div class="col-md-4 margin-bottom">
                 <li class="list-group-item" v-bind:class="{ 'removeable-item': removeable, 'item-container': !removeable }">
                     <div class="img-container-grid pull-left margin-right">
                         <img class="img-size-grid img-responsive" v-bind:src="grid_list.url" alt="Image url needed">                        
@@ -282,7 +297,7 @@
         </template>
 
         <template id="title-view-list">
-            <div class="col-md-12 col-xs-12 margin-bottom" v-bind:class="{ 'removeable-item': removeable, 'title-view-content': !removeable }">
+            <div class="col-xs-12 margin-bottom" v-bind:class="{ 'removeable-item': removeable, 'title-view-content': !removeable }">
                 <h3>{{ title_view_list.title }} <span class="glyphicon glyphicon-chevron-down pull-right" v-show="!removeable && !show_content" v-on:click="show_content = !show_content"></span><span class="glyphicon glyphicon-chevron-up pull-right" v-show="!removeable && show_content" v-on:click="show_content = !show_content"></span><span class="close-icon-title" v-bind:class="{'hidden': !removeable, 'glyphicon': removeable, 'glyphicon-remove-sign': removeable}"></span></h3>
                 <div v-show="show_content">
                     <img class="img-size-title img-thumbnail img-responsive margin-right pull-left margin-bottom" v-bind:src="title_view_list.url" alt="Image url needed">                        
