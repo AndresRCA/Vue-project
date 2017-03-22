@@ -87,6 +87,7 @@ p{font-size: 15px;}
 .tiny-margin-bottom{margin-bottom: 2px;}
 .margin-right{margin-right: 10px;}
 .inline-block img{display: inline-block; margin: 0 4px;}
+.grid-view-container,.title-view-container{margin-bottom: 20px;}
 .img-container-grid {
     background-color: #e5e5e5; 
     border-bottom-left-radius: 10px; 
@@ -108,7 +109,16 @@ p{font-size: 15px;}
 .close-icon-title{color: #c9302c; float: right;}
 .close-icon-grid{color: #c9302c; position: absolute; left: 325px; top: -8px;}
 .close-icon-title,.close-icon-grid:hover{cursor: pointer;}
+html,body{height: 100%;}
+#app{
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 40px;
+}
 footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
     background-color: lightgrey; 
     min-height: 40px; 
     padding: 10px 0;

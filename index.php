@@ -42,7 +42,7 @@
         <main>
             <keep-alive><component v-bind:is="current_view" v-bind:item_list="item_list"></component></keep-alive>
         </main>
-            <footer><h3 class="text-center"><small>Made by Andrew</small></h3></footer>
+        <footer><h3 class="text-center"><small>Made by Andrew</small></h3></footer>
         </div>
 
         <template id="home-view">
