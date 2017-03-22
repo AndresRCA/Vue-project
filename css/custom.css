@@ -1,9 +1,8 @@
 p{font-size: 15px;}
 #program{background: #abf169 url("./images/program.jpg") no-repeat center fixed;}
 .jumbotron{margin-bottom: 0;}
-/*Fuck this, .navbar-nav li a:hover won't even let me change the color'*/
-.navbar-nav li:hover{text-shadow: 0px 0px 8px white;}
-.navbar-nav li a:hover{color: white;}
+#myNavbar a:hover{color: white; text-shadow: 0px 0px 5px white;}
+#myNavbar li:first-child a:hover{color: black; text-shadow: 0px 0px 2px grey;}
 #cooking > a{background-color: #f6a96e; color: #e5e5e5}
 #cooking.active > a{background-color: #ea883d; color: white}
 #anime > a{background-color: #ff8484; color: #e5e5e5}

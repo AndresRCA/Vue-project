@@ -5,7 +5,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="./css/custom.css">
+        <!--<link rel="stylesheet" href="./css/custom.css">-->
+        <link rel="stylesheet" href="./css/myStyle.css">
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -68,8 +69,8 @@
                     </div>
                 </div>
             </div>
-            <div class="container-fluid">
-                <article class="row" style="background-color: #f6a96e; border-top: 5px solid #e36f18; border-bottom: 5px solid #e36f18">
+            <div class="container-fluid" id="main-page">
+                <article class="row" >
                     <div class="col-sm-4 image-logo">
                         <img class="center-block img-responsive img-rounded" src="./images/gastronomy.jpg" alt="food" style="max-height: 320px;">
                     </div>
@@ -84,7 +85,7 @@
                         information about spice combinations, herb data, etc.</p>
                     </div>
                 </article>
-                <article class="row" style="background-color: #ff8484; border-top: 5px solid #e53d3d; border-bottom: 5px solid #e53d3d">
+                <article class="row" >
                     <div class="col-sm-4 image-logo visible-xs">
                         <img class="center-block img-responsive img-rounded" src="./images/nichijou.jpg" alt="anime" style="max-height: 220px;">
                     </div>
@@ -102,7 +103,7 @@
                         <img class="center-block img-responsive img-rounded" src="./images/nichijou.jpg" alt="anime" style="max-height: 220px;">
                     </div>
                 </article>
-                <article class="row" style="background-color: #7aafe4; border-top: 5px solid #6da7e2; border-bottom: 5px solid #6da7e2">
+                <article class="row" >
                     <div class="col-sm-4 image-logo inline-block text-center">
                         <img class="img-responsive img-rounded" src="./images/ssbm.png" alt="ssbm" style="max-height: 170px;"><img class="img-responsive" src="./images/osu.png" alt="osu" style="max-height: 100px;">
                     </div>
@@ -117,7 +118,7 @@
                         <p>In this category I will post video game titles I liked in the past, and probably my experience with them.</p>
                     </div>
                 </article>
-                <article class="row" style="background-color: #baf286; border-top: 5px solid #91f068; border-bottom: 5px solid #91f068">
+                <article class="row">
                     <div class="col-sm-4 image-logo visible-xs">
                         <img class="center-block img-responsive img-rounded" src="./images/programming.jpg" alt="programming" style="max-height: 360px;">
                     </div>
@@ -169,7 +170,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 style="margin-top: -10px;" v-show="admin_mode == 'a'"><button class="btn btn-primary" v-show="!submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-pencil"></span> Insert Anime</button><button class="btn btn-warning" v-show="submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-chevron-left"></span> Never mind</button>&nbsp;<button class="btn btn-danger" v-show="!removeable && item_list.length >= 1" @click="removeable = true"><span class="glyphicon glyphicon-remove"></span> Remove</button><button class="btn btn-warning" v-show="removeable" @click="removeable = false"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button> <small v-show="removeable">Remove function not yet implemented...</small></h2>
+                        <h2 style="margin-top: -10px;" v-show="admin_mode == 'a'"><button class="btn btn-primary" v-show="!submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-pencil"></span> Insert Anime</button><button class="btn btn-warning" v-show="submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-chevron-left"></span> Never mind</button>&nbsp;<button class="btn btn-danger" v-show="!removeable && item_list.animes.length >= 1" @click="removeable = true"><span class="glyphicon glyphicon-remove"></span> Remove</button><button class="btn btn-warning" v-show="removeable" @click="removeable = false"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button> <small v-show="removeable">Remove function not yet implemented...</small></h2>
 
                         <form class="form-group-sm margin-bottom" v-show="submitted && admin_mode == 'a'" v-on:submit.prevent>
                             <label>Inside this you can enter everything:</label>
@@ -232,7 +233,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 style="margin-top: -10px;" v-show="admin_mode == 'a'"><button class="btn btn-primary" v-show="!submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-pencil"></span> Insert Game</button><button class="btn btn-warning" v-show="submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-chevron-left"></span> Never mind</button>&nbsp;<button class="btn btn-danger" v-show="!removeable && item_list.length >= 1" @click="removeable = true"><span class="glyphicon glyphicon-remove"></span> Remove</button><button class="btn btn-warning" v-show="removeable" @click="removeable = false"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button> <small v-show="removeable">Remove function not yet implemented...</small></h2>
+                        <h2 style="margin-top: -10px;" v-show="admin_mode == 'a'"><button class="btn btn-primary" v-show="!submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-pencil"></span> Insert Game</button><button class="btn btn-warning" v-show="submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-chevron-left"></span> Never mind</button>&nbsp;<button class="btn btn-danger" v-show="!removeable && item_list.games.length >= 1" @click="removeable = true"><span class="glyphicon glyphicon-remove"></span> Remove</button><button class="btn btn-warning" v-show="removeable" @click="removeable = false"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button> <small v-show="removeable">Remove function not yet implemented...</small></h2>
 
                         <form class="form-group-sm margin-bottom" v-show="submitted && admin_mode == 'a'" v-on:submit.prevent>
                             <label>Inside this you can enter everything:</label>

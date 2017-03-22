@@ -24,19 +24,19 @@ new Vue({
         headerStyle: function(){
             switch(this.current_view){
                 case "home": return {};
-                case "cooking": return {backgroundColor: "#ea883d"};
-                case "anime": return {backgroundColor: "#f74e4e"};
+                case "cooking": return {backgroundColor: "#f6a96e"};
+                case "anime": return {backgroundColor: "#ff8484"};
                 case "videogames": return {backgroundColor: "#7aafe4"};
-                case "programming": return{backgroundColor: "#abf169"};
+                case "programming": return{backgroundColor: "#baf286"};
             }
         },
         navStyle: function(){
             switch(this.current_view){
                 case "home": return {};
-                case "cooking": return {marginBottom: 0, borderTop: "1px solid #e36f18"};
-                case "anime": return {marginBottom: 0, borderBottom: "none", borderTop: "1px solid #e53d3d"};
-                case "videogames": return {marginBottom: 0, borderBottom: "none", borderTop: "1px solid #6da7e2"};
-                case "programming": return{marginBottom: 0, borderTop: "1px solid #91f068"};
+                case "cooking": return {marginBottom: 0, borderTop: "1px solid #f38d3e"};
+                case "anime": return {marginBottom: 0, borderBottom: "none", borderTop: "1px solid #ff5151"};
+                case "videogames": return {marginBottom: 0, borderBottom: "none", borderTop: "1px solid #5096db"};
+                case "programming": return{marginBottom: 0, borderTop: "1px solid #a0ed58"};
             }
         }
     },
