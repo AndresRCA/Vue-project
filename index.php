@@ -15,7 +15,8 @@
         <div id="app" v-cloak>  
         <header class="jumbotron text-center" v-bind:style="headerStyle">
             <div class="container-fluid">
-                <h1>Informative App</h1>
+                <h1 v-if="current_view == 'Home'">Informative App</h1>
+                <h1 v-else>{{ current_view }}</h1>
             </div>
         </header>
         <nav class="navbar navbar-default" v-bind:style="navStyle">
@@ -30,11 +31,11 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li v-bind:class="{active: (current_view == 'home')}" @click="current_view = 'home'"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                        <li id="cooking" v-bind:class="{active: (current_view == 'cooking')}" @click="current_view = 'cooking'"><a href="#"><span class="glyphicon glyphicon-cutlery"></span> Cooking</a></li>
-                        <li id="anime" v-bind:class="{active: (current_view == 'anime')}" @click="current_view = 'anime'"><a href="#"><span class="glyphicon glyphicon-play-circle"></span> Anime</a></li>
-                        <li id="video-games" v-bind:class="{active: (current_view == 'videogames')}" @click="current_view = 'videogames'"><a href="#"><span class="glyphicon glyphicon-cd"></span> Video Games</a></li>
-                        <li id="programming" v-bind:class="{active: (current_view == 'programming')}" @click="current_view = 'programming'"><a href="#"><span class="glyphicon glyphicon-console"></span> Programming</a></li>
+                        <li v-bind:class="{active: (current_view == 'Home')}" @click="current_view = 'Home'"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                        <li id="cooking" v-bind:class="{active: (current_view == 'Cooking')}" @click="current_view = 'Cooking'"><a href="#"><span class="glyphicon glyphicon-cutlery"></span> Cooking</a></li>
+                        <li id="anime" v-bind:class="{active: (current_view == 'Anime')}" @click="current_view = 'Anime'"><a href="#"><span class="glyphicon glyphicon-play-circle"></span> Anime</a></li>
+                        <li id="video-games" v-bind:class="{active: (current_view == 'Videogames')}" @click="current_view = 'Videogames'"><a href="#"><span class="glyphicon glyphicon-cd"></span> Video Games</a></li>
+                        <li id="programming" v-bind:class="{active: (current_view == 'Programming')}" @click="current_view = 'Programming'"><a href="#"><span class="glyphicon glyphicon-console"></span> Programming</a></li>
                     </ul>
                 </div>
             </div>    

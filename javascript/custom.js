@@ -14,7 +14,7 @@ Vue.component('title-view-list',{
 new Vue({
     el: '#app',
     data:{
-        current_view: "home",
+        current_view: "Home",
         item_list : {
             games: [],
             animes: []
@@ -23,31 +23,31 @@ new Vue({
     computed: {
         headerStyle: function(){
             switch(this.current_view){
-                case "home": return {};
-                case "cooking": return {backgroundColor: "#f6a96e"};
-                case "anime": return {backgroundColor: "#ff8484"};
-                case "videogames": return {backgroundColor: "#7aafe4"};
-                case "programming": return{backgroundColor: "#baf286"};
+                case "Home": return {};
+                case "Cooking": return {backgroundColor: "#f6a96e"};
+                case "Anime": return {backgroundColor: "#ff8484"};
+                case "Videogames": return {backgroundColor: "#7aafe4"};
+                case "Programming": return{backgroundColor: "#baf286"};
             }
         },
         navStyle: function(){
             switch(this.current_view){
-                case "home": return {};
-                case "cooking": return {marginBottom: 0, borderTop: "1px solid #f38d3e"};
-                case "anime": return {marginBottom: 0, borderBottom: "none", borderTop: "1px solid #ff5151"};
-                case "videogames": return {marginBottom: 0, borderBottom: "none", borderTop: "1px solid #5096db"};
-                case "programming": return{marginBottom: 0, borderTop: "1px solid #a0ed58"};
+                case "Home": return {};
+                case "Cooking": return {marginBottom: 0, borderTop: "1px solid #f38d3e"};
+                case "Anime": return {marginBottom: 0, borderBottom: "none", borderTop: "1px solid #ff5151"};
+                case "Videogames": return {marginBottom: 0, borderBottom: "none", borderTop: "1px solid #5096db"};
+                case "Programming": return{marginBottom: 0, borderTop: "1px solid #a0ed58"};
             }
         }
     },
     components: {
-        home: {
+        Home: {
             template: "#home-view"
         },
-        cooking: {
+        Cooking: {
             template: "#cooking-view"
         },
-        anime: {
+        Anime: {
             props: ['item_list'],
             template: "#anime-view",
             data: function(){
@@ -70,7 +70,7 @@ new Vue({
                 }
             }
         },
-        videogames: {
+        Videogames: {
             props: ['item_list'],
             template: "#videogame-view",
             data: function(){
@@ -127,7 +127,7 @@ new Vue({
                 }
             }
         },
-        programming: {
+        Programming: {
             template: "#programming-view"
         }
     },
