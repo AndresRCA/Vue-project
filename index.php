@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <!--<link rel="stylesheet" href="./css/custom.css">-->
         <link rel="stylesheet" href="./css/myStyle.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -39,7 +40,7 @@
                     </ul>
                 </div>
             </div>    
-        </nav>
+        </nav> 
         <main>
             <keep-alive><component v-bind:is="current_view" v-bind:item_list="item_list"></component></keep-alive>
         </main>
@@ -47,7 +48,7 @@
         </div>
 
         <template id="home-view">
-            <div>
+            <div class="animated fadeInUpBig">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
@@ -143,12 +144,12 @@
         </template>
 
         <template id="cooking-view">
-            <div>I'm not empty</div>
+            <div class="animated fadeInUpBig">I'm not empty</div>
         </template>
 
         <template id="anime-view">
             <div>
-            <nav class="navbar navbar-default">
+            <nav class="navbar navbar-default animated fadeInUp">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle navbar-eye" data-toggle="collapse" data-target="#myNavbar2" @click="eye_open = !eye_open">
@@ -190,7 +191,7 @@
                         <grid-list v-for="item in item_list.animes" v-bind:grid_list="item" v-bind:removeable="removeable"></grid-list>
                     </ul>
                     <div v-else class="col-md-12 text-center">            
-                        <h1><small>There doesn't seem to be anything here...</small></h1>                   
+                        <h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>                   
                     </div>
                 </div>
             </div>
@@ -202,7 +203,7 @@
                         <title-view-list v-for="item in item_list.animes" v-bind:title_view_list="item" v-bind:removeable="removeable"></title-view-list>
                     </div>
                     <div v-else class="col-md-12 text-center">
-                        <h1><small>There doesn't seem to be anything here...</small></h1>
+                        <h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>
                     </div>
                 </div>
             </div>
@@ -211,7 +212,7 @@
 
         <template id="videogame-view">
             <div>
-            <nav class="navbar navbar-default">
+            <nav class="navbar navbar-default animated fadeInUp">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle navbar-eye" data-toggle="collapse" data-target="#myNavbar2" @click="eye_open = !eye_open">
@@ -253,7 +254,7 @@
                         <grid-list v-for="item in item_list.games" v-bind:grid_list="item" v-bind:removeable="removeable"></grid-list>
                     </ul>
                     <div v-else class="col-md-12 text-center">            
-                        <h1><small>There doesn't seem to be anything here...</small></h1>                   
+                        <h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>                   
                     </div>
                 </div>
             </div>
@@ -265,7 +266,7 @@
                         <title-view-list v-for="item in item_list.games" v-bind:title_view_list="item" v-bind:removeable="removeable"></title-view-list>
                     </div>
                     <div v-else class="col-md-12 text-center">
-                        <h1><small>There doesn't seem to be anything here...</small></h1>
+                        <h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>
                     </div>
                 </div>
             </div>
@@ -273,7 +274,7 @@
         </template>
 
         <template id="programming-view">
-            <div class="container" id="program">
+            <div class="container animated fadeInUpBig" id="program">
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
@@ -285,7 +286,7 @@
         </template>
 <!-------------------------------------------------------------------------------------------------------------------------------------------->
         <template id="grid-list">
-            <div class="col-md-4 margin-bottom">
+            <div class="col-md-4 margin-bottom animated bounceInRight">
                 <li class="list-group-item" v-bind:class="{ 'removeable-item': removeable, 'item-container': !removeable }">
                     <div class="img-container-grid pull-left margin-right">
                         <img class="img-size-grid img-responsive" v-bind:src="grid_list.url" alt="Image url needed">                        
@@ -299,7 +300,7 @@
         </template>
 
         <template id="title-view-list">
-            <div class="col-xs-12 margin-bottom" v-bind:class="{ 'removeable-item': removeable, 'title-view-content': !removeable }">
+            <div class="col-xs-12 margin-bottom animated lightSpeedIn" v-bind:class="{ 'removeable-item': removeable, 'title-view-content': !removeable }">
                 <h3>{{ title_view_list.title }} <span class="glyphicon glyphicon-chevron-down pull-right" v-show="!removeable && !show_content" v-on:click="show_content = !show_content"></span><span class="glyphicon glyphicon-chevron-up pull-right" v-show="!removeable && show_content" v-on:click="show_content = !show_content"></span><span class="close-icon-title" v-bind:class="{'hidden': !removeable, 'glyphicon': removeable, 'glyphicon-remove-sign': removeable}"></span></h3>
                 <div v-show="show_content">
                     <img class="img-size-title img-thumbnail img-responsive margin-right pull-left margin-bottom" v-bind:src="title_view_list.url" alt="Image url needed">                        

@@ -1,0 +1,11 @@
+{
+	"articles":[
+		{"title": "test","description": "test","link": "http://test"}
+	],
+	"books":[
+		{"title": "test","description": "test"}
+	],
+	"snippets":[
+		{"link": "http://test"}
+	]
+}
