@@ -1,13 +1,51 @@
+/*Resumen en espanol, quiero implementar el remove function, solo necesito eliminar los props
+ hijos de los componentes grid-list y title-view-list, para eso debo utilizar un bus para que
+ ambos se enteren de que se utilizo el metodo deleteItem y eliminen el mismo elemento del arreglo
+ que ambos poseen. Problema: como indico el indice al momento de comunicarse? caso extremo: 
+ en vez de usar los componentes grid-list y title-view-list, incorporo puro html, de esa manera
+ ambos comparten el mismo prop dado del componente Videogames, en verdad suena mucho mas simple
+ pero la idea es tratar de aprender a utilizar componentes*/
 Vue.component('grid-list',{
-    props: ['grid_list','removeable'],
-    template: '#grid-list'
+    props: ['grid_item','removeable','index'],
+    template: '#grid-list',
+    data: function(){
+        return {
+            unique_id: "item-grid"+this.index
+        };
+    },
+    methods: {
+        deleteItem: function(){
+            $('#'+this.unique_id).addClass("fadeOutLeft");
+            var id = '#'+this.unique_id;
+            //this.unique_id is undefined inside setTimeout
+            setTimeout(function(){
+                $(id).remove();
+            }, 800);
+            //this emit should notify the parent to delete their item in the array
+            //no emit happens
+            this.$emit("game_deleted");//how do I pass a value...?
+        }
+    }
 });
 
 Vue.component('title-view-list',{
-    props: ['title_view_list','removeable'],
+    props: ['title_view_item','removeable','index'],
     template: '#title-view-list',
     data: function(){
-        return {show_content: false};
+        return {
+            show_content: false,
+            unique_id: "item-list"+this.index
+        };
+    },
+    methods: {
+        deleteItem: function(){
+            $('#'+this.unique_id).removeClass('lightSpeedIn').addClass("fadeOutRight");
+            var id = '#'+this.unique_id;
+            setTimeout(function(){
+                $(id).remove();
+            }, 900);
+            this.$emit("game_deleted");
+        }
     }
 });
 
@@ -18,10 +56,11 @@ new Vue({
         item_list : {
             games: [],
             animes: []
-        }
+        },
+        cooking_links: []
     },
     computed: {
-        headerStyle: function(){
+        headerStyle: function(){		      	      
             switch(this.current_view){
                 case "Home": return {};
                 case "Cooking": return {backgroundColor: "#f6a96e"};
@@ -45,7 +84,8 @@ new Vue({
             template: "#home-view"
         },
         Cooking: {
-            template: "#cooking-view"
+            template: "#cooking-view",
+            props: ['cooking_links']
         },
         Anime: {
             props: ['item_list'],
@@ -124,6 +164,15 @@ new Vue({
                     this.item_list.games.push({title: this.title, description: this.description, url: this.url});
                     this.title = ""; this.description = ""; this.url = "";
                     this.submitted = !this.submitted;
+                },
+                //This might actually solve my bus problem, if deleting an array item updates my
+                //DOM (my component list "grid-list" and "title-view-list"), I won't need to tell
+                //them to delete their item in parallel.
+                //But I still need to tell the parent what index it is
+                deleteGame: function(index){
+                    //emitter not working, fix later
+                    console.log("I'm working!"); //not happening
+                    this.item_list.games.splice(index,1);
                 }
             }
         },
@@ -138,11 +187,16 @@ new Vue({
             if(this.readyState == 4 && this.status == 200){
                 var json = this.responseText;
                 var jsonObj = JSON.parse(json);
-                for(var i = 0; i < jsonObj.list.length; i++){
-                    var title = jsonObj.list[i].title;
-                    var description = jsonObj.list[i].description;
-                    var url = jsonObj.list[i].url;
-                    that.item_list.games.push({title: title, description: description, url: url});
+                for(var i = 0; i < jsonObj.cooking.length; i++){
+                    var link = jsonObj.cooking[i].link;
+                    var cooking_description = jsonObj.cooking[i].description;
+                    that.cooking_links.push({link: link, description: cooking_description});
+                }
+                for(var j = 0; j < jsonObj.games.length; j++){
+                    var title = jsonObj.games[j].title;
+                    var game_description = jsonObj.games[j].description;
+                    var url = jsonObj.games[j].url;
+                    that.item_list.games.push({title: title, description: game_description, url: url});
                 }
             }
         };

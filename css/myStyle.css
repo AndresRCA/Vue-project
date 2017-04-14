@@ -1,6 +1,9 @@
 html, body {
   height: 100%; }
 
+.no-display {
+  display: none; }
+
 p {
   font-size: 15px; }
 
@@ -77,6 +80,17 @@ p {
 .margin-bottom {
   margin-bottom: 10px; }
 
+/*------------------------Cooking-------------------------------*/
+#cooking-sidebar {
+  background-color: #f6a96e; }
+  #cooking-sidebar ul > li {
+    padding: 5px 0px; }
+    #cooking-sidebar ul > li a {
+      color: #0d80d7; }
+      #cooking-sidebar ul > li a:hover {
+        color: #6ebbf6; }
+
+/*--------------------------------------------------------------*/
 .tiny-margin-bottom {
   margin-bottom: 2px; }
 
@@ -96,14 +110,17 @@ p {
   border-bottom-right-radius: 10px; }
   .img-container-grid .img-size-grid {
     max-height: 210px;
-    max-width: 150px; }
+    max-width: 170px; }
 
 /*dont touch below, nesting is a bad idea for dinamic classes*/
 .title-view-content {
   border-bottom: 2px solid #555; }
 
 .img-size-title {
-  max-height: 60px; }
+  height: 60px;
+  transition: height 1.2s ease-in-out; }
+  .img-size-title:hover {
+    height: 270px; }
 
 .glyphicon-chevron-down:hover, .glyphicon-chevron-up:hover {
   color: black;
@@ -139,6 +156,7 @@ p {
   padding-bottom: 40px; }
 
 footer {
+  font-family: monospace;
   width: 100%;
   position: absolute;
   bottom: 0;
