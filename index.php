@@ -191,7 +191,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 style="margin-top: -10px;" v-show="admin_mode == 'a'"><button class="btn btn-primary" v-show="!submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-pencil"></span> Insert Anime</button><button class="btn btn-warning" v-show="submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-chevron-left"></span> Never mind</button>&nbsp;<button class="btn btn-danger" v-show="!removeable && item_list.animes.length >= 1" @click="removeable = true"><span class="glyphicon glyphicon-remove"></span> Remove</button><button class="btn btn-warning" v-show="removeable" @click="removeable = false"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button> <small v-show="removeable">Remove function not yet implemented...</small></h2>
+                        <h2 style="margin-top: -10px;" v-show="admin_mode == 'a'"><button class="btn btn-primary" v-show="!submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-pencil"></span> Insert Anime</button><button class="btn btn-warning" v-show="submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-chevron-left"></span> Never mind</button>&nbsp;<button class="btn btn-danger" v-show="!removeable && item_list.animes.length >= 1" @click="removeable = true"><span class="glyphicon glyphicon-remove"></span> Remove</button><button class="btn btn-warning" v-show="removeable && item_list.animes.length >= 1" @click="removeable = false"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button> <small class="animated infinite tada" v-show="removeable && item_list.animes.length >= 1" style="display: inline-block;">&nbsp;&nbsp;&nbsp;Remove function implemented!!!</small></h2>
 
                         <form class="form-group-sm margin-bottom" v-show="submitted && admin_mode == 'a'" v-on:submit.prevent>
                             <label>Inside this you can enter everything:</label>
@@ -207,7 +207,7 @@
             <div class="container grid-view-container" v-show="grid_view">
                 <div class="row">
                     <ul v-if="item_list.animes.length >= 1" class="list-unstyled list-group">
-                        <grid-list v-for="item in item_list.animes" v-bind:grid_item="item" v-bind:removeable="removeable"></grid-list>
+                        <grid-list v-for="item in item_list.animes" v-bind:grid_item="item" v-bind:removeable="removeable" v-bind:key="item.title"></grid-list>
                     </ul>
                     <div v-else class="col-md-12 text-center">            
                         <h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>                   
@@ -219,7 +219,7 @@
             <div class="container title-view-container" v-show="!grid_view">
                 <div class="row">
                     <div v-if="item_list.animes.length >= 1">
-                        <title-view-list v-for="item in item_list.animes" v-bind:title_view_item="item" v-bind:removeable="removeable"></title-view-list>
+                        <title-view-list v-for="item in item_list.animes" v-bind:title_view_item="item" v-bind:removeable="removeable" v-bind:key="item.title"></title-view-list>
                     </div>
                     <div v-else class="col-md-12 text-center">
                         <h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>
@@ -255,7 +255,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 style="margin-top: -10px;" v-show="admin_mode == 'a'"><button class="btn btn-primary" v-show="!submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-pencil"></span> Insert Game</button><button class="btn btn-warning" v-show="submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-chevron-left"></span> Never mind</button>&nbsp;<button class="btn btn-danger" v-show="!removeable && item_list.games.length >= 1" @click="removeable = true"><span class="glyphicon glyphicon-remove"></span> Remove</button><button class="btn btn-warning" v-show="removeable" @click="removeable = false"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button> <small v-show="removeable">Remove function not yet implemented...</small></h2>
+                        <h2 style="margin-top: -10px;" v-show="admin_mode == 'a'"><button class="btn btn-primary" v-show="!submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-pencil"></span> Insert Game</button><button class="btn btn-warning" v-show="submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-chevron-left"></span> Never mind</button>&nbsp;<button class="btn btn-danger" v-show="!removeable && item_list.games.length >= 1" @click="removeable = true"><span class="glyphicon glyphicon-remove"></span> Remove</button><button class="btn btn-warning" v-show="removeable && item_list.games.length >= 1" @click="removeable = false"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button> <small class="animated infinite tada" v-show="removeable && item_list.games.length >= 1" style="display: inline-block;">&nbsp;&nbsp;&nbsp;Remove function implemented!!!</small></h2>
 
                         <form class="form-group-sm margin-bottom" v-show="submitted && admin_mode == 'a'" v-on:submit.prevent>
                             <label>Inside this you can enter everything:</label>
@@ -271,7 +271,7 @@
             <div class="container grid-view-container" v-show="grid_view">
                 <div class="row">
                     <ul v-if="item_list.games.length >= 1" class="list-unstyled list-group">
-                        <grid-list v-on:game_deleted="deleteGame(1)" v-for="(item, index) in item_list.games" v-bind:grid_item="item" v-bind:index="index" v-bind:removeable="removeable" v-bind:key="item.title"></grid-list>
+                        <grid-list v-on:game_deleted="deleteGame(index)" v-for="(item, index) in item_list.games" v-bind:grid_item="item" v-bind:index="index" v-bind:removeable="removeable" v-bind:key="item.title"></grid-list>
                     </ul>
                     <div v-else class="col-md-12 text-center">            
                         <h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>                   
@@ -283,7 +283,7 @@
             <div class="container title-view-container" v-show="!grid_view">
                 <div class="row">
                     <div v-if="item_list.games.length >= 1">
-                        <title-view-list v-on:game_deleted="deleteGame(1)" v-for="(item, index) in item_list.games" v-bind:title_view_item="item" v-bind:index="index" v-bind:removeable="removeable" v-bind:key="item.title"></title-view-list>
+                        <title-view-list v-on:game_deleted="deleteGame(index)" v-for="(item, index) in item_list.games" v-bind:title_view_item="item" v-bind:index="index" v-bind:removeable="removeable" v-bind:key="item.title"></title-view-list>
                     </div>
                     <div v-else class="col-md-12 text-center">
                         <h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>

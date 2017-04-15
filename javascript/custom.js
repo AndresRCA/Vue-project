@@ -177,7 +177,7 @@ new Vue({
                 //them to delete their item in parallel.
                 //But I still need to tell the parent what index it is
                 deleteGame: function(index){
-                    console.log("I'm working!");
+                    console.log("deleting index: "+index);
                     this.item_list.games.splice(index,1);
                 }
             }
