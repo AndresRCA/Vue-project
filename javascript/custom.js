@@ -5,6 +5,10 @@
  en vez de usar los componentes grid-list y title-view-list, incorporo puro html, de esa manera
  ambos comparten el mismo prop dado del componente Videogames, en verdad suena mucho mas simple
  pero la idea es tratar de aprender a utilizar componentes*/
+
+//You might feel like playing around with the idea of a global variable, as a way of storing the
+//indexes and reacting to the changes made... last resort 
+//var hmm = 0;
 Vue.component('grid-list',{
     props: ['grid_item','removeable','index'],
     template: '#grid-list',
@@ -15,15 +19,19 @@ Vue.component('grid-list',{
     },
     methods: {
         deleteItem: function(){
+            //why the fuck does the next element get this class?? 
+            //anyway, adding a v-bind:key to the component solved it
             $('#'+this.unique_id).addClass("fadeOutLeft");
-            var id = '#'+this.unique_id;
-            //this.unique_id is undefined inside setTimeout
+            //var id = '#'+this.unique_id;
+            var that = this;
             setTimeout(function(){
-                $(id).remove();
+                //this emit should notify the parent to delete their item in the array
+                that.$emit("game_deleted"); //how do I pass a value...?
+                //instead of doing this below
+                //$(id).remove();
+                //it's better to emit the index and remove the array item, that way there's
+                //no conflicts with the order of the list and id's              
             }, 800);
-            //this emit should notify the parent to delete their item in the array
-            //no emit happens
-            this.$emit("game_deleted");//how do I pass a value...?
         }
     }
 });
@@ -40,11 +48,10 @@ Vue.component('title-view-list',{
     methods: {
         deleteItem: function(){
             $('#'+this.unique_id).removeClass('lightSpeedIn').addClass("fadeOutRight");
-            var id = '#'+this.unique_id;
+            var that = this;
             setTimeout(function(){
-                $(id).remove();
+                that.$emit("game_deleted");
             }, 900);
-            this.$emit("game_deleted");
         }
     }
 });
@@ -170,8 +177,7 @@ new Vue({
                 //them to delete their item in parallel.
                 //But I still need to tell the parent what index it is
                 deleteGame: function(index){
-                    //emitter not working, fix later
-                    console.log("I'm working!"); //not happening
+                    console.log("I'm working!");
                     this.item_list.games.splice(index,1);
                 }
             }

@@ -231,7 +231,7 @@
         </template>
 
         <template id="videogame-view">
-            <div v-on:game_deleted="deleteGame(0)">
+            <div>
             <nav class="navbar navbar-default animated fadeInUp">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -271,7 +271,7 @@
             <div class="container grid-view-container" v-show="grid_view">
                 <div class="row">
                     <ul v-if="item_list.games.length >= 1" class="list-unstyled list-group">
-                        <grid-list v-for="(item, index) in item_list.games" v-bind:grid_item="item" v-bind:index="index" v-bind:removeable="removeable"></grid-list>
+                        <grid-list v-on:game_deleted="deleteGame(1)" v-for="(item, index) in item_list.games" v-bind:grid_item="item" v-bind:index="index" v-bind:removeable="removeable" v-bind:key="item.title"></grid-list>
                     </ul>
                     <div v-else class="col-md-12 text-center">            
                         <h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>                   
@@ -283,7 +283,7 @@
             <div class="container title-view-container" v-show="!grid_view">
                 <div class="row">
                     <div v-if="item_list.games.length >= 1">
-                        <title-view-list v-for="(item, index) in item_list.games" v-bind:title_view_item="item" v-bind:index="index" v-bind:removeable="removeable"></title-view-list>
+                        <title-view-list v-on:game_deleted="deleteGame(1)" v-for="(item, index) in item_list.games" v-bind:title_view_item="item" v-bind:index="index" v-bind:removeable="removeable" v-bind:key="item.title"></title-view-list>
                     </div>
                     <div v-else class="col-md-12 text-center">
                         <h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>
