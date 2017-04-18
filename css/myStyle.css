@@ -80,6 +80,9 @@ p {
 .margin-bottom {
   margin-bottom: 10px; }
 
+.large-margin-bottom {
+  margin-bottom: 20px; }
+
 /*------------------------Cooking-------------------------------*/
 #cooking-sidebar {
   background-color: #f6a96e; }
@@ -100,6 +103,9 @@ p {
 .inline-block img {
   display: inline-block;
   margin: 0 4px; }
+
+.list-group-item {
+  box-shadow: 0 2px 3px darkgrey; }
 
 .grid-view-container, .title-view-container {
   margin-bottom: 20px; }
@@ -144,8 +150,9 @@ p {
 .close-icon-grid {
   color: #c9302c;
   position: absolute;
-  left: 325px;
-  top: -8px; }
+  right: 0px;
+  top: -15px;
+  font-size: 30px; }
 
 .close-icon-title, .close-icon-grid:hover {
   cursor: pointer; }

@@ -87,6 +87,7 @@ p{font-size: 15px;}
 .image-logo{padding: 10px 0;}
 .form-control:focus {border-color: #c7ddef; box-shadow: inset 0 1px 1px #c7ddef, 0 0 8px #c7ddef;}
 .margin-bottom{margin-bottom: 10px;}
+.large-margin-bottom{margin-bottom: 20px;}
 /*------------------------Cooking-------------------------------*/
 #cooking-sidebar{
     background-color: $cooking;
@@ -102,6 +103,7 @@ p{font-size: 15px;}
 .tiny-margin-bottom{margin-bottom: 2px;}
 .margin-right{margin-right: 10px;}
 .inline-block img{display: inline-block; margin: 0 4px;}
+.list-group-item{box-shadow: 0 2px 3px darkgrey;}
 .grid-view-container,.title-view-container{margin-bottom: 20px;}
 .img-container-grid {
     background-color: #e5e5e5; 
@@ -128,7 +130,13 @@ p{font-size: 15px;}
 
 /*Aqui tengo un borrador de lo que podria ser un icono de cerrado, todavia me falta arreglar el posicionamiento y su adaptabilidad*/
 .close-icon-title{color: #c9302c; float: right;}
-.close-icon-grid{color: #c9302c; position: absolute; left: 325px; top: -8px;}
+.close-icon-grid{
+    color: #c9302c;
+    position: absolute;
+    right: 0px;
+    top: -15px;
+    font-size: 30px;
+}
 .close-icon-title,.close-icon-grid:hover{cursor: pointer;}
 #app{
     min-height: 100%;

@@ -26,7 +26,7 @@ Vue.component('grid-list',{
             var that = this;
             setTimeout(function(){
                 //this emit should notify the parent to delete their item in the array
-                that.$emit("game_deleted"); //how do I pass a value...?
+                that.$emit("item_deleted");
                 //instead of doing this below
                 //$(id).remove();
                 //it's better to emit the index and remove the array item, that way there's
@@ -50,7 +50,7 @@ Vue.component('title-view-list',{
             $('#'+this.unique_id).removeClass('lightSpeedIn').addClass("fadeOutRight");
             var that = this;
             setTimeout(function(){
-                that.$emit("game_deleted");
+                that.$emit("item_deleted");
             }, 900);
         }
     }
@@ -114,6 +114,10 @@ new Vue({
                     this.item_list.animes.push({title: this.title, description: this.description, url: this.url});
                     this.title = ""; this.description = ""; this.url = "";
                     this.submitted = !this.submitted;
+                },
+                deleteAnime: function(index){
+                    console.log("deleting index: "+index);
+                    this.item_list.animes.splice(index,1);
                 }
             }
         },
