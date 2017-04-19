@@ -16,8 +16,8 @@
         <div id="app" v-cloak>  
         <header class="jumbotron text-center" v-bind:style="headerStyle">
             <div class="container-fluid">
-                <h1 class="fucking_header" v-if="current_view == 'Home'">Informative App</h1>
-                <h1 class="fucking_header" v-else>{{ current_view }}</h1>
+                <h1 v-if="current_view == 'Home'">Informative App</h1>
+                <h1 v-else>{{ current_view }}</h1>
             </div>
         </header>
         <nav class="navbar navbar-default" v-bind:style="navStyle">
@@ -146,7 +146,7 @@
         <template id="cooking-view">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-2 hidden-xs hidden-sm" id="cooking-sidebar">
+                    <div class="col-md-2 hidden-xs hidden-sm animated fadeInLeft" id="cooking-sidebar">
                         <h4 class="text-center">Links of interest</h4>
                         <ul>
                             <li v-for="link in cooking_links">
@@ -154,12 +154,22 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-10 animated fadeInUpBig">
-                        <div class="row">
+                    <div class="col-md-10">
+                        <div class="row large-margin-bottom">
                             <div class="col-md-12">
                                 <h2>Cooking stuff</h2>
-                                <p>This is the part where I fill this</p>
+                                <p>Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! 
+                                    In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero.
+                                    And most times they're friends, like you and me! I should've known way back when... 
+                                    You know why, David? Because of the kids. They called me Mr Glass. </p>
+                                <p>Normally, both your asses would be dead as fucking fried chicken, but you happen to pull
+                                    this shit while I'm in a transitional period so I don't wanna kill you, I wanna help you. 
+                                    But I can't give you this case, it don't belong to me. Besides, I've already been through
+                                    too much shit this morning over this case to hand it over to your dumb ass.</p>
                             </div>
+                        </div>
+                        <div class="row recipe-list-background">
+                            <recipes v-for="recipe in item_list.recipes" v-bind:recipe="recipe" v-bind:key="recipe.name"></recipes>
                         </div>
                     </div>
                 </div>
@@ -271,19 +281,20 @@
             <div class="container grid-view-container" v-show="grid_view">
                 <div class="row">
                     <ul v-if="item_list.games.length >= 1" class="list-unstyled list-group">
-                        <grid-list v-on:item_deleted="deleteGame(index)" v-for="(item, index) in item_list.games" v-bind:grid_item="item" v-bind:index="index" v-bind:removeable="removeable" v-bind:key="item.title"></grid-list>
+                        <grid-list v-on:item_deleted="deleteGame(index)" v-for="(item, index) in item_list.games" v-bind:grid_item="item" v-bind:removeable="removeable" v-bind:key="item.title"></grid-list>
                     </ul>
                     <div v-else class="col-md-12 text-center">            
                         <h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>                   
                     </div>
                 </div>
+                <!--<notification-view v-bind:notification="notification"></notification-view>-->
             </div>
             <!----------------------------------------------------------------------->
             <!------------------------Title View------------------------------------->
             <div class="container title-view-container" v-show="!grid_view">
                 <div class="row">
                     <div v-if="item_list.games.length >= 1">
-                        <title-view-list v-on:item_deleted="deleteGame(index)" v-for="(item, index) in item_list.games" v-bind:title_view_item="item" v-bind:index="index" v-bind:removeable="removeable" v-bind:key="item.title"></title-view-list>
+                        <title-view-list v-on:item_deleted="deleteGame(index)" v-for="(item, index) in item_list.games" v-bind:title_view_item="item" v-bind:removeable="removeable" v-bind:key="item.title"></title-view-list>
                     </div>
                     <div v-else class="col-md-12 text-center">
                         <h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>
@@ -307,7 +318,7 @@
         </template>
 <!-------------------------------------------------------------------------------------------------------------------------------------------->
         <template id="grid-list">
-            <div class="col-md-4 large-margin-bottom animated bounceInRight" v-bind:id="unique_id">
+            <div class="col-md-4 large-margin-bottom animated bounceInRight">
                 <li class="list-group-item" v-bind:class="{ 'removeable-item': removeable, 'item-container': !removeable }">
                     <span class="close-icon-grid" v-show="removeable" v-bind:class="{'glyphicon': removeable, 'glyphicon-remove-sign': removeable}" @click="deleteItem"></span>
                     <div class="img-container-grid pull-left margin-right">
@@ -320,7 +331,7 @@
         </template>
 
         <template id="title-view-list">
-            <div class="col-xs-12 margin-bottom animated lightSpeedIn" v-bind:class="{ 'removeable-item': removeable, 'title-view-content': !removeable }" v-bind:id="unique_id">
+            <div class="col-xs-12 margin-bottom animated lightSpeedIn" v-bind:class="{ 'removeable-item': removeable, 'title-view-content': !removeable }">
                 <h3><!--<div class="upvotes pull-left"><span style="display: block;margin-bottom:2px;font-size: 14px" class="glyphicon glyphicon-arrow-up"></span><span style="font-size: 14px" class="glyphicon glyphicon-arrow-down"></span></div>&nbsp;-->{{ title_view_item.title }} <span class="glyphicon glyphicon-chevron-down pull-right" v-show="!removeable && !show_content" v-on:click="show_content = !show_content"></span><span class="glyphicon glyphicon-chevron-up pull-right" v-show="!removeable && show_content" v-on:click="show_content = !show_content"></span><span class="close-icon-title" v-bind:class="{'hidden': !removeable, 'glyphicon': removeable, 'glyphicon-remove-sign': removeable}" @click="deleteItem"></span></h3>
                 <div v-show="show_content">
                     <img class="img-size-title img-thumbnail img-responsive margin-right pull-left margin-bottom" v-bind:src="title_view_item.url" alt="Image url needed">                        

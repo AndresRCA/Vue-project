@@ -1,27 +1,11 @@
-/*Resumen en espanol, quiero implementar el remove function, solo necesito eliminar los props
- hijos de los componentes grid-list y title-view-list, para eso debo utilizar un bus para que
- ambos se enteren de que se utilizo el metodo deleteItem y eliminen el mismo elemento del arreglo
- que ambos poseen. Problema: como indico el indice al momento de comunicarse? caso extremo: 
- en vez de usar los componentes grid-list y title-view-list, incorporo puro html, de esa manera
- ambos comparten el mismo prop dado del componente Videogames, en verdad suena mucho mas simple
- pero la idea es tratar de aprender a utilizar componentes*/
-
-//You might feel like playing around with the idea of a global variable, as a way of storing the
-//indexes and reacting to the changes made... last resort 
-//var hmm = 0;
 Vue.component('grid-list',{
-    props: ['grid_item','removeable','index'],
+    props: ['grid_item','removeable'],
     template: '#grid-list',
-    data: function(){
-        return {
-            unique_id: "item-grid"+this.index
-        };
-    },
     methods: {
         deleteItem: function(){
             //why the fuck does the next element get this class?? 
             //anyway, adding a v-bind:key to the component solved it
-            $('#'+this.unique_id).addClass("fadeOutLeft");
+            $(this.$el).addClass("fadeOutLeft");
             //var id = '#'+this.unique_id;
             var that = this;
             setTimeout(function(){
@@ -37,17 +21,16 @@ Vue.component('grid-list',{
 });
 
 Vue.component('title-view-list',{
-    props: ['title_view_item','removeable','index'],
+    props: ['title_view_item','removeable'],
     template: '#title-view-list',
     data: function(){
         return {
-            show_content: false,
-            unique_id: "item-list"+this.index
+            show_content: false
         };
     },
     methods: {
         deleteItem: function(){
-            $('#'+this.unique_id).removeClass('lightSpeedIn').addClass("fadeOutRight");
+            $(this.$el).removeClass('lightSpeedIn').addClass("fadeOutRight");
             var that = this;
             setTimeout(function(){
                 that.$emit("item_deleted");
@@ -56,13 +39,73 @@ Vue.component('title-view-list',{
     }
 });
 
+Vue.component('recipes',{
+    props: ["recipe"],
+    template: `<div class="col-md-6 recipe-wrapper animated fadeInUpBig">
+                    <h1><a v-bind:href="recipe.link">{{ recipe.name }}</a></h1>
+                    <hr>
+                    <div class="recipe-image" style="background-image: url('./images/gastronomy.jpg')"></div>
+                    <div class="recipe-body">
+                        <p>{{ recipe.description }}</p>
+                    </div>
+                    <hr>
+                    <div class="recipe-footer"></div>
+               </div>`
+});
+
+//Vue.component('notification-view',{
+//    props: ['notification'],
+//    template:  `<div class="notification-wrapper col-sm-2">
+//                    <h3><span class="glyphicon glyphicon-phone"></span> Notifications</h3>
+//                    <hr>
+//                    <div id="notification-view">
+//                        <notification v-bind:comment="notification"></notification>
+//                    </div>
+//                </div>`
+//});
+//
+//Vue.component('notification',{
+//    props: ["comment"],
+//    template: `<div v-show="comment != ''" class="animated infinite" v-bind:class="{'create-space': isAStatement || isAQuestion, 'pulse': isAQuestion, 'tada': isAStatement}">
+//                    <div class="notification">
+//                        <span class="question animated infinite pulse" v-show="isAQuestion">?</span><span class="statement animated infinite tada" v-show="isAStatement">!</span>
+//                        <blockquote><p>{{ comment }}</p></blockquote>
+//                    </div>
+//               </div>`,
+//    data: function(){
+//        return {
+//            isAQuestion: (this.comment.indexOf("?") != -1 && this.comment.indexOf("!") == -1),
+//            isAStatement: (this.comment.indexOf("!") != -1 && this.comment.indexOf("?") == -1)
+//        };
+//    },
+//    mounted: function(){
+//        //A matter of preference
+//        //Stop animation when hovered
+////        $(this.$el).hover(function(){
+////            $(this).removeClass('infinite');
+////        },function(){
+////            $(this).addClass('infinite');
+////        });
+//        //Stop animation when clicked
+////        $(this.$el).click(function(){
+////            $(this).removeClass('infinite');
+////        });
+//        //Stop animation eventually
+//        var that = this;
+//        setTimeout(function(){
+//            $(that.$el).removeClass('infinite');
+//        },2000); 
+//    }
+//});
+
 new Vue({
     el: '#app',
     data:{
         current_view: "Home",
         item_list : {
             games: [],
-            animes: []
+            animes: [],
+            recipes: []
         },
         cooking_links: []
     },
@@ -92,7 +135,7 @@ new Vue({
         },
         Cooking: {
             template: "#cooking-view",
-            props: ['cooking_links']
+            props: ['item_list','cooking_links']
         },
         Anime: {
             props: ['item_list'],
@@ -197,15 +240,21 @@ new Vue({
             if(this.readyState == 4 && this.status == 200){
                 var json = this.responseText;
                 var jsonObj = JSON.parse(json);
-                for(var i = 0; i < jsonObj.cooking.length; i++){
-                    var link = jsonObj.cooking[i].link;
-                    var cooking_description = jsonObj.cooking[i].description;
+                for(var i = 0; i < jsonObj.cooking_websites.length; i++){
+                    var link = jsonObj.cooking_websites[i].link;
+                    var cooking_description = jsonObj.cooking_websites[i].description;
                     that.cooking_links.push({link: link, description: cooking_description});
                 }
-                for(var j = 0; j < jsonObj.games.length; j++){
-                    var title = jsonObj.games[j].title;
-                    var game_description = jsonObj.games[j].description;
-                    var url = jsonObj.games[j].url;
+                for(i = 0; i < jsonObj.recipes.length; i++){
+                    var name = jsonObj.recipes[i].name;
+                    var description = jsonObj.recipes[i].description;
+                    var link = jsonObj.recipes[i].link;
+                    that.item_list.recipes.push({name: name, description: description, link: link});
+                }
+                for(i = 0; i < jsonObj.games.length; i++){
+                    var title = jsonObj.games[i].title;
+                    var game_description = jsonObj.games[i].description;
+                    var url = jsonObj.games[i].url;
                     that.item_list.games.push({title: title, description: game_description, url: url});
                 }
             }
