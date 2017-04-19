@@ -146,13 +146,15 @@
         <template id="cooking-view">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-2 hidden-xs hidden-sm animated fadeInLeft" id="cooking-sidebar">
+                    <div class="col-md-2 hidden-xs hidden-sm">
+                        <div id="cooking-sidebar">
                         <h4 class="text-center">Links of interest</h4>
                         <ul>
                             <li v-for="link in cooking_links">
                                 <a v-bind:href="link.link">{{link.description}}</a>
                             </li>
                         </ul>
+                        </div>
                     </div>
                     <div class="col-md-10">
                         <div class="row large-margin-bottom">
@@ -178,7 +180,7 @@
 
         <template id="anime-view">
             <div>
-            <nav class="navbar navbar-default animated fadeInUp">
+            <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle navbar-eye" data-toggle="collapse" data-target="#myNavbar2" @click="eye_open = !eye_open">
@@ -241,8 +243,8 @@
         </template>
 
         <template id="videogame-view">
-            <div>
-            <nav class="navbar navbar-default animated fadeInUp">
+            <div class="video-game-background">
+            <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle navbar-eye" data-toggle="collapse" data-target="#myNavbar2" @click="eye_open = !eye_open">
@@ -261,7 +263,7 @@
                 </div>             
             </div>
             </nav>    
-
+   
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
