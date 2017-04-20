@@ -3,18 +3,11 @@ Vue.component('grid-list',{
     template: '#grid-list',
     methods: {
         deleteItem: function(){
-            //why the fuck does the next element get this class?? 
-            //anyway, adding a v-bind:key to the component solved it
             $(this.$el).addClass("fadeOutLeft");
-            //var id = '#'+this.unique_id;
             var that = this;
             setTimeout(function(){
                 //this emit should notify the parent to delete their item in the array
-                that.$emit("item_deleted");
-                //instead of doing this below
-                //$(id).remove();
-                //it's better to emit the index and remove the array item, that way there's
-                //no conflicts with the order of the list and id's              
+                that.$emit("item_deleted");         
             }, 800);
         }
     }
@@ -219,10 +212,6 @@ new Vue({
                     this.title = ""; this.description = ""; this.url = "";
                     this.submitted = !this.submitted;
                 },
-                //This might actually solve my bus problem, if deleting an array item updates my
-                //DOM (my component list "grid-list" and "title-view-list"), I won't need to tell
-                //them to delete their item in parallel.
-                //But I still need to tell the parent what index it is
                 deleteGame: function(index){
                     console.log("deleting index: "+index);
                     this.item_list.games.splice(index,1);

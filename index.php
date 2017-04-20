@@ -202,7 +202,7 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <h2 style="margin-top: -10px;" v-show="admin_mode == 'a'"><button class="btn btn-primary" v-show="!submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-pencil"></span> Insert Anime</button><button class="btn btn-warning" v-show="submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-chevron-left"></span> Never mind</button>&nbsp;<button class="btn btn-danger" v-show="!removeable && item_list.animes.length >= 1" @click="removeable = true"><span class="glyphicon glyphicon-remove"></span> Remove</button><button class="btn btn-warning" v-show="removeable && item_list.animes.length >= 1" @click="removeable = false"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button> <small class="animated infinite tada" v-show="removeable && item_list.animes.length >= 1" style="display: inline-block;">&nbsp;&nbsp;&nbsp;Remove function implemented!!!</small></h2>
 
                         <form class="form-group-sm margin-bottom" v-show="submitted && admin_mode == 'a'" v-on:submit.prevent>
@@ -213,29 +213,38 @@
                             <input type="submit" value="Submit" class="form-control btn btn-default" v-on:click="insertAnimeToList"/>
                         </form>
                     </div>
+                    <div class='col-md-1'></div>
+                    <transition enter-active-class='animated fadeInRight'>
+                        <grid-list v-if="submitted && admin_mode == 'a'" v-bind:grid_item="{title: title, description: description, url: url}"></grid-list>
+                    </transition>
+                    <div class='col-md-1'></div>
                 </div>
             </div>
             <!------------------------Grid View-------------------------------------->      
             <div class="container grid-view-container" v-show="grid_view">
                 <div class="row">
+                    <transition enter-active-class='animated fadeInUp'>
                     <ul v-if="item_list.animes.length >= 1" class="list-unstyled list-group">
                         <grid-list v-on:item_deleted="deleteAnime(index)" v-for="(item, index) in item_list.animes" v-bind:grid_item="item" v-bind:removeable="removeable" v-bind:key="item.title"></grid-list>
                     </ul>
                     <div v-else class="col-md-12 text-center">            
                         <h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>                   
                     </div>
+                    </transition>
                 </div>
             </div>
             <!----------------------------------------------------------------------->
             <!------------------------Title View------------------------------------->
             <div class="container title-view-container" v-show="!grid_view">
                 <div class="row">
+                    <transition enter-active-class='animated fadeInUp'>
                     <div v-if="item_list.animes.length >= 1">
                         <title-view-list v-on:item_deleted="deleteAnime(index)" v-for="(item, index) in item_list.animes" v-bind:title_view_item="item" v-bind:removeable="removeable" v-bind:key="item.title"></title-view-list>
                     </div>
                     <div v-else class="col-md-12 text-center">
                         <h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>
                     </div>
+                    </transition>
                 </div>
             </div>
             <!----------------------------------------------------------------------->
@@ -266,7 +275,7 @@
    
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <h2 style="margin-top: -10px;" v-show="admin_mode == 'a'"><button class="btn btn-primary" v-show="!submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-pencil"></span> Insert Game</button><button class="btn btn-warning" v-show="submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-chevron-left"></span> Never mind</button>&nbsp;<button class="btn btn-danger" v-show="!removeable && item_list.games.length >= 1" @click="removeable = true"><span class="glyphicon glyphicon-remove"></span> Remove</button><button class="btn btn-warning" v-show="removeable && item_list.games.length >= 1" @click="removeable = false"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button> <small class="animated infinite tada" v-show="removeable && item_list.games.length >= 1" style="display: inline-block;">&nbsp;&nbsp;&nbsp;Remove function implemented!!!</small></h2>
 
                         <form class="form-group-sm margin-bottom" v-show="submitted && admin_mode == 'a'" v-on:submit.prevent>
@@ -277,17 +286,24 @@
                             <input type="submit" value="Submit" class="form-control btn btn-default" v-on:click="insertGameToList"/>
                         </form>
                     </div>
+                    <div class='col-md-1'></div>
+                    <transition enter-active-class='animated fadeInRight'>
+                        <grid-list v-if="submitted && admin_mode == 'a'" v-bind:grid_item="{title: title, description: description, url: url}"></grid-list>
+                    </transition>
+                    <div class='col-md-1'></div>
                 </div>
             </div>
             <!------------------------Grid View-------------------------------------->      
             <div class="container grid-view-container" v-show="grid_view">
                 <div class="row">
+                    <transition enter-active-class='animated fadeInUp'>
                     <ul v-if="item_list.games.length >= 1" class="list-unstyled list-group">
                         <grid-list v-on:item_deleted="deleteGame(index)" v-for="(item, index) in item_list.games" v-bind:grid_item="item" v-bind:removeable="removeable" v-bind:key="item.title"></grid-list>
                     </ul>
                     <div v-else class="col-md-12 text-center">            
                         <h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>                   
                     </div>
+                    </transition>
                 </div>
                 <!--<notification-view v-bind:notification="notification"></notification-view>-->
             </div>
@@ -295,12 +311,14 @@
             <!------------------------Title View------------------------------------->
             <div class="container title-view-container" v-show="!grid_view">
                 <div class="row">
+                    <transition enter-active-class='animated fadeInUp'>
                     <div v-if="item_list.games.length >= 1">
                         <title-view-list v-on:item_deleted="deleteGame(index)" v-for="(item, index) in item_list.games" v-bind:title_view_item="item" v-bind:removeable="removeable" v-bind:key="item.title"></title-view-list>
                     </div>
                     <div v-else class="col-md-12 text-center">
                         <h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>
                     </div>
+                    </transition>
                 </div>
             </div>
             <!----------------------------------------------------------------------->
