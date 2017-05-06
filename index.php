@@ -13,7 +13,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div id="app" v-cloak>  
+        <div id="app" v-cloak v-bind:class="{'anime-bg': current_view == 'Anime','video-game-bg': current_view == 'Videogames','programming-bg': current_view == 'Programming'}">  
         <header class="jumbotron text-center" v-bind:style="headerStyle">
             <div class="container-fluid">
                 <h1 v-if="current_view == 'Home'">Informative App</h1>
@@ -65,7 +65,7 @@
             <div class="container">
                 <div class="row margin-bottom">
                     <div class="col-md-12">
-                        <h2 class="text-center">What does this "storage room" contain?</h2>
+                        <h1 class="text-center">What does this "storage room" contain?</h1>
                         <p>It contains mostly a bunch of lists, it could also contain some definitions or notes I prefer to save inside this website
                         for readability. The lists fall under these categories:</p>
                     </div>
@@ -252,7 +252,7 @@
         </template>
 
         <template id="videogame-view">
-            <div class="video-game-background">
+            <div>
             <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -339,7 +339,7 @@
 <!-------------------------------------------------------------------------------------------------------------------------------------------->
         <template id="grid-list">
             <div class="col-md-4 large-margin-bottom animated bounceInRight">
-                <li class="list-group-item" v-bind:class="{ 'removeable-item': removeable, 'item-container': !removeable }">
+                <li class="list-group-item" v-bind:class="{ 'removeable-item-grid': removeable, 'item-container': !removeable }">
                     <span class="close-icon-grid" v-show="removeable" v-bind:class="{'glyphicon': removeable, 'glyphicon-remove-sign': removeable}" @click="deleteItem"></span>
                     <div class="img-container-grid pull-left margin-right">
                         <img class="img-size-grid img-responsive img-rounded" v-bind:src="grid_item.url" alt="Image url needed">                        
@@ -351,7 +351,7 @@
         </template>
 
         <template id="title-view-list">
-            <div class="col-xs-12 margin-bottom animated lightSpeedIn" v-bind:class="{ 'removeable-item': removeable, 'title-view-content': !removeable }">
+            <div class="col-xs-12 margin-bottom animated lightSpeedIn" v-bind:class="{ 'removeable-item-title': removeable, 'title-view-content': !removeable }">
                 <h3><!--<div class="upvotes pull-left"><span style="display: block;margin-bottom:2px;font-size: 14px" class="glyphicon glyphicon-arrow-up"></span><span style="font-size: 14px" class="glyphicon glyphicon-arrow-down"></span></div>&nbsp;-->{{ title_view_item.title }} <span class="glyphicon glyphicon-chevron-down pull-right" v-show="!removeable && !show_content" v-on:click="show_content = !show_content"></span><span class="glyphicon glyphicon-chevron-up pull-right" v-show="!removeable && show_content" v-on:click="show_content = !show_content"></span><span class="close-icon-title" v-bind:class="{'hidden': !removeable, 'glyphicon': removeable, 'glyphicon-remove-sign': removeable}" @click="deleteItem"></span></h3>
                 <div v-show="show_content">
                     <img class="img-size-title img-thumbnail img-responsive margin-right pull-left margin-bottom" v-bind:src="title_view_item.url" alt="Image url needed">                        

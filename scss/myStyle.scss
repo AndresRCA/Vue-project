@@ -126,6 +126,7 @@ p{font-size: 15px;}
     }
 }
 .recipe-list-background{
+    padding-bottom: 20px;
     background-color:white;
     background-image: linear-gradient(90deg, rgba(200,0,0,.5) 50%, transparent 50%),
     linear-gradient(rgba(200,0,0,.5) 50%, transparent 50%);
@@ -135,7 +136,7 @@ p{font-size: 15px;}
     padding: 10px 49px;
     h1{
         font-family: "Whitney Cond A", "Whitney Cond B","Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
-        font-size: 5rem;
+        font-size: 6.8vmin;
         font-weight: 700;
         background-color: #EC8D1F;
         padding: 15px;
@@ -171,11 +172,8 @@ p{font-size: 15px;}
 }
 /*--------------------------------------------------------------*/
 /*----------------VideoGames and Anime--------------------------*/
-.video-game-background{
-    background: url('/Vue-keep/images/nice_snow.png') repeat;
-    min-height: 625px;
-    margin-bottom: -10px;
-}
+.anime-bg{background: url('/Vue-keep/images/ricepaper.png') repeat;}
+.video-game-bg{background: url('/Vue-keep/images/nice_snow.png') repeat;}
 .inline-block img{display: inline-block; margin: 0 4px;}
 .list-group-item{box-shadow: 0 2px 3px darkgrey;}
 .grid-view-container,.title-view-container{margin-bottom: 20px;}
@@ -191,13 +189,14 @@ p{font-size: 15px;}
 .title-view-content{border-bottom: 2px solid #555;}
 .img-size-title{
     height: 60px;
-    transition: height 1.2s ease-in-out;
+    transition: height 1.2s cubic-bezier(0.55,-0.35, 0.48, 1.41);
     &:hover{
         height: 270px;
     }
 }
 /*--------------------------------------------------------------*/
 /*-------------------Programming--------------------------------*/
+.programming-bg{background: url('/Vue-keep/images/stardust.png') repeat;}
 #program{
     background: url(/Vue-keep/images/program.jpg) no-repeat center;
     background-size: cover;
@@ -264,7 +263,10 @@ p{font-size: 15px;}
 .glyphicon-chevron-down:hover,.glyphicon-chevron-up:hover{color: black; cursor: pointer;}
 .break-words{word-wrap: break-word;}
 .list-group-item{min-height: 275px;}
-.removeable-item{border: 1px solid #c9302c; box-shadow: 1px 1px 6px 1px #d9534f}
+.list-group-item-heading{font-size: 4vmin; font-weight: 600;}
+.list-group-item-text{font-size: 3vmin;}
+.removeable-item-grid{border: 1px solid #c9302c; box-shadow: 1px 1px 6px 1px #d9534f}
+.removeable-item-title{border-bottom: 2px solid #c9302c; box-shadow: 0px 1px 2px #d9534f}
 .close-icon-title{color: #c9302c; float: right;}
 .close-icon-grid{
     color: #c9302c;
