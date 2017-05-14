@@ -223,6 +223,9 @@ new Vue({
         }
     },
     mounted: function(){
+        $('#cooking-sidebar a').hover(function(){
+            $(this+" span").css("transform", "rotate(360deg)");
+        });
         var that = this;
         var http = new XMLHttpRequest();
         http.onreadystatechange = function(){

@@ -149,9 +149,9 @@
                     <div class="col-md-2 hidden-xs hidden-sm">
                         <div id="cooking-sidebar">
                         <h4 class="text-center">Links of interest</h4>
-                        <ul>
+                        <ul class='list-unstyled'>
                             <li v-for="link in cooking_links">
-                                <a v-bind:href="link.link">{{link.description}}</a>
+                                <a v-bind:href="link.link"><span class="glyphicon glyphicon-cutlery"></span> {{link.description}}</a>
                             </li>
                         </ul>
                         </div>
@@ -341,9 +341,7 @@
             <div class="col-md-4 large-margin-bottom animated bounceInRight">
                 <li class="list-group-item" v-bind:class="{ 'removeable-item-grid': removeable, 'item-container': !removeable }">
                     <span class="close-icon-grid" v-show="removeable" v-bind:class="{'glyphicon': removeable, 'glyphicon-remove-sign': removeable}" @click="deleteItem"></span>
-                    <div class="img-container-grid pull-left margin-right">
-                        <img class="img-size-grid img-responsive img-rounded" v-bind:src="grid_item.url" alt="Image url needed">                        
-                    </div>
+                    <div class="img-container-grid pull-left margin-right" v-bind:style="{backgroundImage: 'url('+grid_item.url+')'}"></div>
                     <h2 class="break-words list-group-item-heading">{{ grid_item.title }}</h2>
                     <p class="break-words list-group-item-text">{{ grid_item.description }}</p>
                 </li>

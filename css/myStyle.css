@@ -93,12 +93,20 @@ p {
   border-right: 10px solid #d46313;
   border-bottom: 10px solid #d46313; }
   #cooking-sidebar ul > li {
-    padding: 5px 0px; }
+    background-color: #f8954f;
+    border-bottom: 5px double #d46313;
+    padding: 5px 5px; }
+    #cooking-sidebar ul > li:first-child {
+      border-top: 5px double #d46313; }
     #cooking-sidebar ul > li a {
       color: #0d80d7; }
       #cooking-sidebar ul > li a:hover {
         color: #6ebbf6;
         text-decoration: none; }
+      #cooking-sidebar ul > li a span {
+        transition: transform 1s cubic-bezier(0.93, 0.13, 0, 0.97); }
+        #cooking-sidebar ul > li a span:hover {
+          transform: rotate(360deg); }
 
 .recipe-list-background {
   padding-bottom: 20px;
@@ -159,12 +167,12 @@ p {
   margin-bottom: 20px; }
 
 .img-container-grid {
-  background-color: #e5e5e5;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 200px;
+  width: 170px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px; }
-  .img-container-grid .img-size-grid {
-    max-height: 210px;
-    max-width: 170px; }
 
 .title-view-content {
   border-bottom: 2px solid #555; }
