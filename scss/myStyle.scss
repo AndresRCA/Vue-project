@@ -30,15 +30,28 @@ footer {
 }
 p{font-size: 15px;}
 /*---------------------Nav and Header---------------------------*/
-.jumbotron{margin-bottom: 0;}
+#header{
+    font-family: 'Bangers', cursive; 
+    text-align: left;
+    padding: 0px 0px 0px 50px;
+    margin-bottom: 0px;
+    .jumbotron{
+        padding: 0px;
+    }
+    h1{
+        margin: 20px 0px 15px 0px;
+    }
+}
 #myNavbar {
     li {
         a {
             color: darken(white, 9%);
             transition: text-shadow 0.5s ease-out, color 0.3s ease-out;
-            &:hover {color: white; text-shadow: 0px 0px 5px white}
+            &:hover {color: white; text-shadow: 0px 0px 5px white};
+            span{transition: transform 0.16s cubic-bezier(0, 0, 0.2, 1);}
+            &:hover > span {transform: scale(1.2,1.2);}
         }
-        &:first-child a{
+        &:first-child a {
             color: lighten(black, 10%);
             &:hover {color: black; text-shadow: 0px 0px 2px grey;}
         }
@@ -127,11 +140,11 @@ p{font-size: 15px;}
                color: complement($cooking);
                text-decoration: none;
            }
-		   &:hover > span{
-			   transform: rotate(360deg);
-		   }
+           &:hover > span{
+                transform: rotate(360deg);
+           }
            span{
-               transition: transform 1s cubic-bezier(0.93, 0.13, 0, 0.97);
+               transition: transform 0.4s cubic-bezier(0.93, 0.13, 0, 0.97);
            }
         }
     }

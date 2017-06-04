@@ -21,8 +21,15 @@ p {
   font-size: 15px; }
 
 /*---------------------Nav and Header---------------------------*/
-.jumbotron {
-  margin-bottom: 0; }
+#header {
+  font-family: 'Bangers', cursive;
+  text-align: left;
+  padding: 0px 0px 0px 50px;
+  margin-bottom: 0px; }
+  #header .jumbotron {
+    padding: 0px; }
+  #header h1 {
+    margin: 20px 0px 15px 0px; }
 
 #myNavbar li a {
   color: #e8e8e8;
@@ -30,6 +37,10 @@ p {
   #myNavbar li a:hover {
     color: white;
     text-shadow: 0px 0px 5px white; }
+  #myNavbar li a span {
+    transition: transform 0.16s cubic-bezier(0, 0, 0.2, 1); }
+  #myNavbar li a:hover > span {
+    transform: scale(1.2, 1.2); }
 #myNavbar li:first-child a {
   color: #1a1a1a; }
   #myNavbar li:first-child a:hover {
@@ -103,9 +114,10 @@ p {
       #cooking-sidebar ul > li a:hover {
         color: #6ebbf6;
         text-decoration: none; }
+      #cooking-sidebar ul > li a:hover > span {
+        transform: rotate(360deg); }
       #cooking-sidebar ul > li a span {
-        transition: transform 1s cubic-bezier(0.93, 0.13, 0, 0.97); }
-        #cooking-sidebar ul > li a:hover > span{transform: rotate(360deg);}
+        transition: transform 0.4s cubic-bezier(0.93, 0.13, 0, 0.97); }
 
 .recipe-list-background {
   padding-bottom: 20px;

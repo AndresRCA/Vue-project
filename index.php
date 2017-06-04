@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Good vibes</title>
+        <title>Vue App</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <!--<link rel="stylesheet" href="./css/custom.css">-->
+        <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
         <link rel="stylesheet" href="./css/myStyle.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -14,10 +15,9 @@
     </head>
     <body>
         <div id="app" v-cloak v-bind:class="{'anime-bg': current_view == 'Anime','video-game-bg': current_view == 'Videogames','programming-bg': current_view == 'Programming'}">  
-        <header class="jumbotron text-center" v-bind:style="headerStyle">
+        <header id="header" class="jumbotron" v-bind:style="headerStyle">
             <div class="container-fluid">
-                <h1 v-if="current_view == 'Home'">Informative App</h1>
-                <h1 v-else>{{ current_view }}</h1>
+                <h1>Informative App</h1>
             </div>
         </header>
         <nav class="navbar navbar-default" v-bind:style="navStyle">
@@ -340,7 +340,7 @@
         <template id="grid-list">
             <div class="col-md-4 large-margin-bottom animated bounceInRight">
                 <li class="list-group-item" v-bind:class="{ 'removeable-item-grid': removeable, 'item-container': !removeable }">
-                    <span class="close-icon-grid" v-show="removeable" v-bind:class="{'glyphicon': removeable, 'glyphicon-remove-sign': removeable}" @click="deleteItem"></span>
+                    <span class="close-icon-grid" v-show="removeable" v-bind:class="{'glyphicon': removeable, 'glyphicon-remove': removeable}" @click="deleteItem"></span>
                     <div class="img-container-grid pull-left margin-right" v-bind:style="{backgroundImage: 'url('+grid_item.url+')'}"></div>
                     <h2 class="break-words list-group-item-heading">{{ grid_item.title }}</h2>
                     <p class="break-words list-group-item-text">{{ grid_item.description }}</p>
