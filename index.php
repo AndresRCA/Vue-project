@@ -14,7 +14,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div id="app" v-cloak v-bind:class="{'anime-bg': current_view == 'Anime','video-game-bg': current_view == 'Videogames','programming-bg': current_view == 'Programming'}">  
+        <div id="app" v-cloak v-bind:class="{'video-game-bg': current_view == 'Videogames','programming-bg': current_view == 'Programming'}">  
         <header id="header" class="jumbotron" v-bind:style="headerStyle">
             <div class="container-fluid">
                 <h1>Informative App</h1>
