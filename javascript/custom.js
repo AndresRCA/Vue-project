@@ -97,7 +97,6 @@ new Vue({
         current_view: "Home",
         item_list : {
             games: [],
-            animes: [],
             recipes: []
         },
         cooking_links: []
@@ -107,7 +106,6 @@ new Vue({
             switch(this.current_view){
                 case "Home": return {};
                 case "Cooking": return {backgroundColor: "#f6a96e"};
-                case "Anime": return {backgroundColor: "#ff8484"};
                 case "Videogames": return {backgroundColor: "#7aafe4"};
                 case "Programming": return{backgroundColor: "#baf286"};
             }
@@ -116,7 +114,6 @@ new Vue({
             switch(this.current_view){
                 case "Home": return {};
                 case "Cooking": return {marginBottom: 0, borderTop: "1px solid #f38d3e"};
-                case "Anime": return {marginBottom: 0, borderBottom: "none", borderTop: "1px solid #ff5151"};
                 case "Videogames": return {marginBottom: 0, borderBottom: "none", borderTop: "1px solid #5096db"};
                 case "Programming": return{marginBottom: 0, borderTop: "1px solid #a0ed58"};
             }
@@ -129,33 +126,6 @@ new Vue({
         Cooking: {
             template: "#cooking-view",
             props: ['item_list','cooking_links']
-        },
-        Anime: {
-            props: ['item_list'],
-            template: "#anime-view",
-            data: function(){
-                return {
-                    admin_mode: "",
-                    description: "",
-                    title: "",
-                    url: "",
-                    grid_view: true,
-                    submitted: false,
-                    removeable: false,
-                    eye_open: true
-                };
-            },
-            methods: {
-                insertAnimeToList: function(){
-                    this.item_list.animes.push({title: this.title, description: this.description, url: this.url});
-                    this.title = ""; this.description = ""; this.url = "";
-                    this.submitted = !this.submitted;
-                },
-                deleteAnime: function(index){
-                    console.log("deleting index: "+index);
-                    this.item_list.animes.splice(index,1);
-                }
-            }
         },
         Videogames: {
             props: ['item_list'],

@@ -52,18 +52,13 @@ p {
     color: white;
     background-color: #f38d3e; }
 #myNavbar li:nth-child(3) {
-  background-color: #ff8484; }
+  background-color: #7aafe4; }
   #myNavbar li:nth-child(3).active > a {
     color: white;
-    background-color: #ff5151; }
-#myNavbar li:nth-child(4) {
-  background-color: #7aafe4; }
-  #myNavbar li:nth-child(4).active > a {
-    color: white;
     background-color: #5096db; }
-#myNavbar li:nth-child(5) {
+#myNavbar li:nth-child(4) {
   background-color: #baf286; }
-  #myNavbar li:nth-child(5).active > a {
+  #myNavbar li:nth-child(4).active > a {
     color: white;
     background-color: #a0ed58; }
 
@@ -82,12 +77,9 @@ p {
     background-color: #f6a96e;
     border-color: #f49851; }
   #main-page article:nth-child(2) {
-    background-color: #ff8484;
-    border-color: #ff6565; }
-  #main-page article:nth-child(3) {
     background-color: #7aafe4;
     border-color: #61a0df; }
-  #main-page article:nth-child(4) {
+  #main-page article:nth-child(3) {
     background-color: #baf286;
     border-color: #aaef6a; }
 
@@ -161,9 +153,6 @@ p {
 
 /*--------------------------------------------------------------*/
 /*----------------VideoGames and Anime--------------------------*/
-.anime-bg {
-  background: url("/Vue-keep/images/ricepaper.png") repeat; }
-
 .video-game-bg {
   background: url("/Vue-keep/images/nice_snow.png") repeat; }
 
@@ -197,10 +186,10 @@ p {
 /*--------------------------------------------------------------*/
 /*-------------------Programming--------------------------------*/
 .programming-bg {
-  background: url("/Vue-keep/images/stardust.png") repeat; }
+  background: url("/Vue-project/images/stardust.png") repeat; }
 
 #program {
-  background: url(/Vue-keep/images/program.jpg) no-repeat center;
+  background: url(/Vue-project/images/program.jpg) no-repeat center;
   background-size: cover;
   height: 400px; }
 

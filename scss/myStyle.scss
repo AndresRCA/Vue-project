@@ -1,7 +1,5 @@
 $cooking: #f6a96e;
 $cooking_active: darken($cooking, 10%);
-$anime: #ff8484;
-$anime_active: darken($anime, 10%);
 $videogames: #7aafe4;
 $videogames_active: darken($videogames, 10%);
 $programming: #baf286;
@@ -63,20 +61,13 @@ p{font-size: 15px;}
             }
         }
         &:nth-child(3) {
-            background-color: $anime;
-            &.active > a {
-                color: white;
-                background-color: $anime_active;
-            }            
-        }
-        &:nth-child(4) {
             background-color: $videogames;
             &.active > a {
                 color: white;
                 background-color: $videogames_active;
             }
         }
-        &:nth-child(5) {
+        &:nth-child(4) {
             background-color: $programming;
             &.active > a {
                 color: white;
@@ -103,14 +94,10 @@ p{font-size: 15px;}
             border-color: lighten($cooking_active, 4%);
         }
         &:nth-child(2) {
-            background-color: $anime;
-            border-color: lighten($anime_active, 4%);
-        }
-        &:nth-child(3) {
             background-color: $videogames;
             border-color: lighten($videogames_active, 4%);
         }
-        &:nth-child(4) {
+        &:nth-child(3) {
             background-color: $programming;
             border-color: lighten($programming_active, 4%);
         }
@@ -196,7 +183,6 @@ p{font-size: 15px;}
 }
 /*--------------------------------------------------------------*/
 /*----------------VideoGames and Anime--------------------------*/
-.anime-bg{background: url('/Vue-keep/images/ricepaper.png') repeat;}
 .video-game-bg{background: url('/Vue-keep/images/nice_snow.png') repeat;}
 .inline-block img{display: inline-block; margin: 0 4px;}
 .list-group-item{box-shadow: 0 2px 3px darkgrey;}
@@ -219,9 +205,9 @@ p{font-size: 15px;}
 }
 /*--------------------------------------------------------------*/
 /*-------------------Programming--------------------------------*/
-.programming-bg{background: url('/Vue-keep/images/stardust.png') repeat;}
+.programming-bg{background: url('/Vue-project/images/stardust.png') repeat;}
 #program{
-    background: url(/Vue-keep/images/program.jpg) no-repeat center;
+    background: url(/Vue-project/images/program.jpg) no-repeat center;
     background-size: cover;
     height: 400px;
 }

@@ -34,7 +34,6 @@
                     <ul class="nav navbar-nav">
                         <li v-bind:class="{active: (current_view == 'Home')}" @click="current_view = 'Home'"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                         <li id="cooking" v-bind:class="{active: (current_view == 'Cooking')}" @click="current_view = 'Cooking'"><a href="#"><span class="glyphicon glyphicon-cutlery"></span> Cooking</a></li>
-                        <li id="anime" v-bind:class="{active: (current_view == 'Anime')}" @click="current_view = 'Anime'"><a href="#"><span class="glyphicon glyphicon-play-circle"></span> Anime</a></li>
                         <li id="video-games" v-bind:class="{active: (current_view == 'Videogames')}" @click="current_view = 'Videogames'"><a href="#"><span class="glyphicon glyphicon-cd"></span> Video Games</a></li>
                         <li id="programming" v-bind:class="{active: (current_view == 'Programming')}" @click="current_view = 'Programming'"><a href="#"><span class="glyphicon glyphicon-console"></span> Programming</a></li>
                     </ul>
@@ -79,7 +78,7 @@
                     <div class="col-sm-8">
                         <h2>Cooking</h2>
                         <p>Cooking has been a passion for me since I was 12, don't forget that, but due to laziness and the situation 
-                        of the country my ability to practice good gastronomy has been limited, still that has never stopped my 
+                        of the country my ability to practice good gastronomy has been limited, but still, that has never stopped my 
                         curiosity for it, when I had free time I liked to investigate the science behind cooking and recipes I could 
                         afford, they weren't many but they brought me happiness nonetheless.</p>
 
@@ -88,32 +87,13 @@
                     </div>
                 </article>
                 <article class="row" >
-                    <div class="col-sm-4 image-logo visible-xs">
-                        <img class="center-block img-responsive img-rounded" src="./images/nichijou.jpg" alt="anime" style="max-height: 220px;">
-                    </div>
-                    <div class="col-sm-8">
-                        <h2>Anime</h2>
-                        <p>I can't really pinpoint the time I started liking anime, but I do remember that the first anime I watched 
-                        on my own was Nichijou, it was great and it still is, after that I kept watching series, mostly the popular ones 
-                        that I encountered on forums and reddit. Nowadays I watch what is currently airing, but I wonder, has my mind or 
-                        tastes been numbed down? I say mind because if my tastes have changed and I accept anything that comes my way, 
-                        does that mean I'm no longer thinking?</p>
-
-                        <p>In this category I will post anime titles I think are worth mentioning.</p>
-                    </div>
-                    <div class="col-sm-4 image-logo hidden-xs">
-                        <img class="center-block img-responsive img-rounded" src="./images/nichijou.jpg" alt="anime" style="max-height: 220px;">
-                    </div>
-                </article>
-                <article class="row" >
                     <div class="col-sm-4 image-logo inline-block text-center">
-                        <img class="img-responsive img-rounded" src="./images/ssbm.png" alt="ssbm" style="max-height: 170px;"><img class="img-responsive" src="./images/osu.png" alt="osu" style="max-height: 100px;">
+                        <img class="img-responsive img-rounded" src="./images/ssbm.png" alt="ssbm" style="max-height: 190px;">
                     </div>
                     <div class="col-sm-8">
                         <h2>Video Games</h2>
-                        <p>This category doesn't need an explanation, video games have always been a big part of my life and it probably 
-                        still will be, except that lately I've been playing just 2 games, Super Smash Bros Melee and OSU, both games 
-                        require high skill for competitive play, which is probably the reason I play them. As a child I've always been 
+                        <p>This category doesn't need an explanation, lately I've been playing just one game, Super Smash Bros Melee, this game 
+                        requires high skill for competitive play, which is probably the reason I play it. As a child I've always been 
                         good with video games, so it was a matter of time until I found myself bored at "easy" games, so currently 
                         I mostly play games with a good history or high difficulty.</p>
 
@@ -176,79 +156,6 @@
                     </div>
                 </div>
             </div>    
-        </template>
-
-        <template id="anime-view">
-            <div>
-            <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle navbar-eye" data-toggle="collapse" data-target="#myNavbar2" @click="eye_open = !eye_open">
-                        <span class="glyphicon" v-bind:class="{'glyphicon-eye-open': eye_open, 'glyphicon-eye-close': !eye_open}"></span>                                    
-                    </button>
-                    <span class="navbar-brand">Viewing options:</span>
-                </div>        
-                <div class="collapse navbar-collapse" id="myNavbar2">
-                    <ul class="nav navbar-nav view-options">
-                        <li class="grid-view" v-bind:class="{active: grid_view}" @click="grid_view = true"><a href="#"><span class="glyphicon glyphicon-th"></span></a></li>
-                        <li class="title-view" v-bind:class="{active: !grid_view}" @click="grid_view = false"><a href="#"><span class="glyphicon glyphicon-list"></span></a></li>
-                    </ul>
-                    <div class="form-group navbar-form navbar-right">
-                        <label><span class="glyphicon glyphicon-user"></span> Admin mode</label>&nbsp;<input type="password" placeholder="password is 'a'" class="form-control" v-model="admin_mode"/>
-                    </div>    
-                </div>             
-            </div>
-            </nav>    
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h2 style="margin-top: -10px;" v-show="admin_mode == 'a'"><button class="btn btn-primary" v-show="!submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-pencil"></span> Insert Anime</button><button class="btn btn-warning" v-show="submitted" v-on:click="submitted = !submitted"><span class="glyphicon glyphicon-chevron-left"></span> Never mind</button>&nbsp;<button class="btn btn-danger" v-show="!removeable && item_list.animes.length >= 1" @click="removeable = true"><span class="glyphicon glyphicon-remove"></span> Remove</button><button class="btn btn-warning" v-show="removeable && item_list.animes.length >= 1" @click="removeable = false"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button> <small class="animated infinite tada" v-show="removeable && item_list.animes.length >= 1" style="display: inline-block;">&nbsp;&nbsp;&nbsp;Remove function implemented!!!</small></h2>
-
-                        <form class="form-group-sm margin-bottom" v-show="submitted && admin_mode == 'a'" v-on:submit.prevent>
-                            <label>Inside this you can enter everything:</label>
-                            <input class="form-control tiny-margin-bottom" placeholder="Image url" type="text" name="url" v-model="url"/>
-                            <input class="form-control tiny-margin-bottom"  placeholder="Title" type="text" name="title" v-model="title"/>
-                            <textarea class="form-control tiny-margin-bottom" placeholder="Enter what you think about the anime" name="description" v-model="description"></textarea>
-                            <input type="submit" value="Submit" class="form-control btn btn-default" v-on:click="insertAnimeToList"/>
-                        </form>
-                    </div>
-                    <div class='col-md-1'></div>
-                    <transition enter-active-class='animated fadeInRight'>
-                        <grid-list v-if="submitted && admin_mode == 'a'" v-bind:grid_item="{title: title, description: description, url: url}"></grid-list>
-                    </transition>
-                    <div class='col-md-1'></div>
-                </div>
-            </div>
-            <!------------------------Grid View-------------------------------------->      
-            <div class="container grid-view-container" v-show="grid_view">
-                <div class="row">
-                    <transition enter-active-class='animated fadeInUp'>
-                    <ul v-if="item_list.animes.length >= 1" class="list-unstyled list-group">
-                        <grid-list v-on:item_deleted="deleteAnime(index)" v-for="(item, index) in item_list.animes" v-bind:grid_item="item" v-bind:removeable="removeable" v-bind:key="item.title"></grid-list>
-                    </ul>
-                    <div v-else class="col-md-12 text-center">            
-                        <h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>                   
-                    </div>
-                    </transition>
-                </div>
-            </div>
-            <!----------------------------------------------------------------------->
-            <!------------------------Title View------------------------------------->
-            <div class="container title-view-container" v-show="!grid_view">
-                <div class="row">
-                    <transition enter-active-class='animated fadeInUp'>
-                    <div v-if="item_list.animes.length >= 1">
-                        <title-view-list v-on:item_deleted="deleteAnime(index)" v-for="(item, index) in item_list.animes" v-bind:title_view_item="item" v-bind:removeable="removeable" v-bind:key="item.title"></title-view-list>
-                    </div>
-                    <div v-else class="col-md-12 text-center">
-                        <h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>
-                    </div>
-                    </transition>
-                </div>
-            </div>
-            <!----------------------------------------------------------------------->
-            </div>
         </template>
 
         <template id="videogame-view">
@@ -330,7 +237,7 @@
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
-                        <h2 class="text-center">I wonder if the background will set</h2>
+                        <h2 class="text-center">Some content is missing here</h2>
                     </div>
                     <div class="col-md-2"></div>
                 </div>
