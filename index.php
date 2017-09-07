@@ -215,7 +215,7 @@
                 <!--<notification-view v-bind:notification="notification"></notification-view>-->
             </div>
             <!----------------------------------------------------------------------->
-            <!------------------------Title View------------------------------------->
+            <!------------------------Title View------------------------------------>
             <div class="container title-view-container" v-show="!grid_view">
                 <div class="row">
                     <transition enter-active-class='animated fadeInUp'>
@@ -228,18 +228,24 @@
                     </transition>
                 </div>
             </div>
-            <!----------------------------------------------------------------------->
+            <!---------------------------------------------------------------------->
             </div>
         </template>
 
         <template id="programming-view">
-            <div class="container animated fadeInUpBig" id="program">
+            <div class="container-fluid" id="program">
                 <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8">
+                    <div class="col-md-3 hidden-xs hidden-sm" id="programming-sidebar">
+                        <h2 class="glypphicon glyphicon-signal text-center"></h2>
+                        <ul class='list-unstyled'>
+                            <li>Laravel</li>
+                            <li>Lumen</li>
+                            <li>Bootstrap</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-9 animated fadeInUpBig">
                         <h2 class="text-center">Some content is missing here</h2>
                     </div>
-                    <div class="col-md-2"></div>
                 </div>
             </div>
         </template>

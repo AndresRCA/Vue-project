@@ -5,6 +5,8 @@ html, body {
   min-height: 100%;
   position: relative;
   padding-bottom: 40px; }
+  #app nav {
+    border-radius: 0px; }
 
 footer {
   font-family: monospace;
@@ -192,6 +194,36 @@ p {
   background: url(/Vue-project/images/program.jpg) no-repeat center;
   background-size: cover;
   height: 400px; }
+
+#programming-sidebar {
+  padding: 0px;
+  background: #2b3135;
+  /* Old browsers */
+  background: -moz-linear-gradient(left, #2b3135 50%, #1d2023 50%, #202426 50%, #17191b 50%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #2b3135 50%, #1d2023 50%, #202426 50%, #17191b 50%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #2b3135 50%, #1d2023 50%, #202426 50%, #17191b 50%);
+  height: 500px;
+  color: #E5EEEC;
+  font-size: 24px;
+  font-family: cursive; }
+  #programming-sidebar h2 {
+    font-size: 80px;
+    margin-top: 0px;
+    padding: 10px 20px;
+    font-family: cursive;
+    font-weight: bold;
+    background-color: #b6b6b6;
+    color: #262626;
+    border-bottom: 5px double darkgrey;
+    border-top: 5px double darkgrey; }
+  #programming-sidebar ul {
+    text-align: center;
+    padding: 5px 25px 25px 25px; }
+    #programming-sidebar ul li {
+      margin-top: 8px;
+      margin-bottom: 8px; }
 
 /*--------------------------------------------------------------*/
 /*.notification-wrapper{
