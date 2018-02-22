@@ -8505,63 +8505,44 @@ body {
   color: #e8e8e8;
   transition: text-shadow 0.5s ease-out, color 0.3s ease-out;
 }
-
 #myNavbar .navbar-start a:hover {
   color: white;
   text-shadow: 0px 0px 5px white;
   text-decoration: none;
 }
-
-#myNavbar .navbar-start a span {
-  transition: transform 0.16s cubic-bezier(0, 0, 0.2, 1);
-}
-
 #myNavbar .navbar-start a:hover > span {
   transform: scale(1.2, 1.2);
 }
-
+#myNavbar .navbar-start a span {
+  transition: transform 0.16s cubic-bezier(0, 0, 0.2, 1);
+}
 #myNavbar .navbar-start a:first-child {
   color: #1a1a1a;
 }
-
 #myNavbar .navbar-start a:first-child:hover {
   color: black;
   text-shadow: 0px 0px 2px grey;
 }
-
 #myNavbar .navbar-start a:nth-child(2) {
   background-color: #f6a96e;
 }
-
 #myNavbar .navbar-start a:nth-child(2).is-active {
   color: white;
   background-color: #f38d3e;
 }
-
 #myNavbar .navbar-start a:nth-child(3) {
   background-color: #7aafe4;
 }
-
 #myNavbar .navbar-start a:nth-child(3).is-active {
   color: white;
   background-color: #5096db;
 }
-
 #myNavbar .navbar-start a:nth-child(4) {
   background-color: #baf286;
 }
-
 #myNavbar .navbar-start a:nth-child(4).is-active {
   color: white;
   background-color: #a0ed58;
-}
-
-.navbar-eye {
-  border-radius: 30%;
-}
-
-.navbar-eye:hover {
-  color: black;
 }
 
 /*------------------------Home---------------------------------- */
@@ -8573,17 +8554,14 @@ body {
 #main-page article img {
   border-radius: 8%;
 }
-
 #main-page article:first-child {
   background-color: #f6a96e;
   border-color: #f49851;
 }
-
 #main-page article:nth-child(2) {
   background-color: #7aafe4;
   border-color: #61a0df;
 }
-
 #main-page article:nth-child(3) {
   background-color: #baf286;
   border-color: #aaef6a;
@@ -8603,35 +8581,29 @@ body {
   border-right: 10px solid #d46313;
   border-bottom: 10px solid #d46313;
 }
-#cooking-sidebar form {
-  padding: 5px;
-}
-
 #cooking-sidebar ul > li {
   background-color: #f8954f;
   border-bottom: 5px double #d46313;
   padding: 5px 5px;
 }
-
 #cooking-sidebar ul > li:first-child {
   border-top: 5px double #d46313;
 }
-
 #cooking-sidebar ul > li a {
   color: #0d80d7;
 }
-
 #cooking-sidebar ul > li a:hover {
   color: #6ebbf6;
   text-decoration: none;
 }
-
 #cooking-sidebar ul > li a:hover > span {
   transform: rotate(360deg);
 }
-
 #cooking-sidebar ul > li a span {
   transition: transform 0.4s cubic-bezier(0.93, 0.13, 0, 0.97);
+}
+#cooking-sidebar form {
+  padding: 5px;
 }
 
 .recipe-list-background {
@@ -8644,7 +8616,6 @@ body {
 .recipe-wrapper {
   padding: 10px 49px;
 }
-
 .recipe-wrapper h1 {
   font-family: "Whitney Cond A", "Whitney Cond B", "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
   font-size: 2.5rem;
@@ -8653,16 +8624,13 @@ body {
   padding: 15px;
   border-radius: 40px 40px 0px 0px;
 }
-
 .recipe-wrapper h1 a {
   color: inherit;
 }
-
 .recipe-wrapper h1 a:hover {
   color: #6ebbf6;
   text-decoration: none;
 }
-
 .recipe-wrapper hr {
   margin-top: 0;
   margin-bottom: 5px;
@@ -8727,7 +8695,6 @@ body {
   width: 120px;
   transition: width 1.2s cubic-bezier(0.55, -0.35, 0.48, 1.41);
 }
-
 .img-size-title:hover {
   width: 270px;
 }
@@ -8752,7 +8719,16 @@ body {
   min-height: 400px;
 }
 
-#programming-sidebar {
+#programming-sidebar header {
+  padding: 10px 20px;
+  background-color: #b6b6b6;
+  border-bottom: 5px double darkgrey;
+  border-top: 5px double darkgrey;
+}
+#programming-sidebar header h1 {
+  color: #262626;
+}
+#programming-sidebar main {
   background: #2b3135;
   /* Old browsers */
   background: -moz-linear-gradient(left, #2b3135 50%, #1d2023 50%, #202426 50%, #17191b 50%);
@@ -8760,19 +8736,18 @@ body {
   background: -webkit-linear-gradient(left, #2b3135 50%, #1d2023 50%, #202426 50%, #17191b 50%);
   /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to right, #2b3135 50%, #1d2023 50%, #202426 50%, #17191b 50%);
+}
+#programming-sidebar main li:last-child {
+  padding-bottom: 5px;
+}
+#programming-sidebar main li a {
   color: #E5EEEC;
 }
-
-#programming-sidebar h2 {
-  font-size: 80px;
-  margin-top: 0px;
-  padding: 10px 20px;
-  font-family: cursive;
-  font-weight: bold;
-  background-color: #b6b6b6;
-  color: #262626;
-  border-bottom: 5px double darkgrey;
-  border-top: 5px double darkgrey;
+#programming-sidebar main li a.is-active:hover {
+  color: #a0ed58;
+}
+#programming-sidebar main li a:hover {
+  color: #4a4a4a;
 }
 
 /*-------------------------------------------------------------- */
@@ -8789,12 +8764,10 @@ body {
 .box {
   min-height: 275px;
 }
-
 .box .box-heading {
   font-size: 20px;
   font-weight: 600;
 }
-
 .box .box-text {
   font-size: 12px;
 }

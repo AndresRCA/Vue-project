@@ -335,26 +335,30 @@
     <div style="margin-top: 12px">
       <div class="columns">
         <!-- **************************************** -->
-        <div class="column is-3 is-hidden-mobile menu">
-          <p class="menu-label">General <span class="icon"><i class="fa fa-wifi"></i></span></p>
-          <div id="programming-sidebar">
-            <ul class="menu-list">
-              <li>
-                <a href="#/">Laravel</a>
-                <ul>
-                  <li><a href="#/">Routing</a></li>
-                  <li><a href="#/">Requests</a></li>
-                </ul>
-              </li>
-              <li>
-                <a href="#/">ES6</a>
-                <ul>
-                  <li><a href="#">Let</a></li>
-                  <li><a href="#">Arrow function</a></li>
-                  <li><a href="#">Classes</a></li>
-                </ul>
-              </li>
-            </ul>
+        <div class="column is-3 is-hidden-mobile menu" style="padding-top: 0px; padding-right: 0px">
+          <div id="programming-sidebar" class="menu">
+            <header>
+              <h1 class="title is-5 menu-label">General <span class="icon"><i class="fa fa-wifi"></i></span></h1>
+            </header>
+            <main>
+              <ul class="menu-list">
+                <li>
+                  <a href="#/">Laravel</a>
+                  <ul>
+                    <li><a href="#/">Routing</a></li>
+                    <li><a href="#/">Requests</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#/">ES6</a>
+                  <ul>
+                    <li><a href="#">Let</a></li>
+                    <li><a href="#">Arrow function</a></li>
+                    <li><a href="#">Classes</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </main>
           </div>
         </div>
         <!-- **************************************** -->
