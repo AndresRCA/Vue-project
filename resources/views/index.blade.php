@@ -334,7 +334,6 @@
   <template id="programming-view">
     <div style="margin-top: 12px">
       <div class="columns">
-        <!-- **************************************** -->
         <div class="column is-3 is-hidden-mobile menu" style="padding-top: 0px; padding-right: 0px">
           <div id="programming-sidebar" class="menu">
             <header>
@@ -342,38 +341,33 @@
             </header>
             <main>
               <ul class="menu-list">
-                <li>
-                  <a href="#/">Laravel</a>
+                <li><!-- there should be a way to listen to children clicks and do my action here -->
+                  <a href="#laravel" @click="view = 'laravel'">Laravel</a>
                   <ul>
-                    <li><a href="#/">Routing</a></li>
-                    <li><a href="#/">Requests</a></li>
+                    <li><a href="#controllers" @click="view = 'laravel'">Controllers</a></li>
+                    <li>
+                      <a href="#databases" @click="view = 'laravel'">Databases</a>
+                      <ul>
+                        <li><a href="#settingUp" @click="view = 'laravel'">Setting up a database for Laravel</a></li>
+                        <li><a href="#migrations" @click="view = 'laravel'">Migrations</a></li>
+                      </ul>
+                    </li>
                   </ul>
                 </li>
                 <li>
-                  <a href="#/">ES6</a>
+                  <a href="#es6" @click="view = 'es6'">ES6</a>
                   <ul>
-                    <li><a href="#">Let</a></li>
-                    <li><a href="#">Arrow function</a></li>
-                    <li><a href="#">Classes</a></li>
+                    <li><a href="#let" @click="view = 'es6'">Let</a></li>
+                    <li><a href="#arrowFunction" @click="view = 'es6'">Arrow function</a></li>
+                    <li><a href="#classes" @click="view = 'es6'">Classes</a></li>
                   </ul>
                 </li>
               </ul>
             </main>
           </div>
         </div>
-        <!-- **************************************** -->
-        <!-- <div class="column is-3 is-hidden-mobile" id="programming-sidebar">
-          <h2 class="has-text-centered is-4">
-            <span class="icon"><i class="fa fa-wifi"></i></span>
-          </h2>
-          <ul>
-            <li>Laravel</li>
-            <li>Lumen</li>
-            <li>Bootstrap</li>
-          </ul>
-        </div> -->
         <div class="column content animated fadeInUpBig" id="program">
-          <h2 class="has-text-centered">Some content is missing here</h2>
+          <component v-bind:is="view"></component>
         </div>
       </div>
     </div>
@@ -410,6 +404,187 @@
     </div>
   </template>
   <!-------------------------------------------------------------------------------------------------------------------------------------------->
+  <template id="ES6">
+    <div>
+      <h2 id="es6">This content is about ES6:</h2>
+      <h3 id="let">Let:</h3>
+      <p>let declares a variable in the scope that it's declared, unlike var that goes outside a block.</p>
+      <div class="columns">
+        <div class="column">
+<pre><h2 class="is-marginless">ES5</h2><code>
+var name = "Andrew";
+if(true){
+  var name = "John";
+  console.log(name); //Outputs John
+}
+console.log(name); //Outputs John</code>
+</pre>
+        </div>
+        <div class="column">            
+<pre><h2>ES6</h2><code>
+let name = "Andrew";
+if(true){
+  let name = "John";
+  console.log(name); //Outputs John
+}
+console.log(name); //Outputs Andrew, despite declaring name = "John" in if</code>
+</pre>
+        </div>
+      </div>
+      <h3 id="arrowFunction">Arrow functions:</h3>
+      <p>A different way to declare a function that solves some scoping issues.</p>
+      <div class="columns">
+        <div class="column">          
+<pre><h2>ES5</h2><code>
+function func(x){
+  return x*2;
+}</code>
+</pre>
+        </div>
+        <div class="column">            
+<pre><h2>ES6</h2><code>
+let func = (x) => x*2; //returns x*2  
+
+  OR
+  
+let func = () => ({name: 'Andrew', age: 20}); //returning an object, there's also no parameters
+
+  OR
+  
+let func = (x, y) => {
+  /*body*/
+};</code>
+</pre>
+        </div>
+      </div>
+      <h3 id="classes">Classes:</h3>
+      <p>very similar to Java, very clean.</p>
+<pre><h2>ES6</h2><code>
+class Person{
+
+  construct(name, age){
+    this.name = name;
+    this.age = age;
+  }
+  
+  getAge(){
+    return this.age;
+  }
+  
+  saySomething(){
+    console.log("hello I am ");
+  }
+  
+}
+
+class Programmer extends Person{
+  
+  construct(name, age, language){
+    super(name, age);
+    this.language = language;
+  }
+  
+  saySomething(){
+    super.saySomething(); //calls parent method
+    console.log(this.name+" and my language is "+this.language);
+  }
+  
+  static shock(){
+    console.log("good pun");
+  }
+  
+}
+
+let hey = new Person('hey', 20);
+hey.saySomething(); //hello I am 
+
+Programmer.shock(); //good pun
+let andrew = new Programer('Andrew', 20, 'Java');
+andrew.saySomething(); //hello I am Andrew and my language is Java
+
+//NOTE: if I didn't call super.saySomething in the child, it would override the
+//parent method and would have just said console.log(this.name+" and my language is "+this.language);</code>
+</pre>
+    </div>
+  </template>
+  <template id="laravel">
+    <div>
+      <h2>This content is about the basics of Laravel</h2>
+      <h3 id="controllers">Controllers</h3>
+      <p>The controllers handle the logic behind the function in "Route::get('/', function(){});"</p>
+      <h4>Creating a controller</h4>
+      <ol>
+        <li>php artisan make:controller [name]</li>
+      </ol>
+      <h4>Using a controller</h4>
+      <p>
+        Route::get('/', 'controllerName@function');<br>
+        function is a public function inside the controller file that contains the logic that returns the view and fetches data from the database
+      </p>
+      <h5>Route Model Binding</h5>
+      <p>
+        it's not exclusive to controllers (I think), it's a way to fetch an specific object from a database through the URL
+      </p>
+<pre><code>
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Task;
+
+class TasksController extends Controller
+{
+
+    public function show(Task $task){ //Route model binding
+      /*
+        what happens here is that show() waits for a Task, the variable in the argument MUST
+      possess the same name as the wildcard in the URL ('/tasks/{task}') for this to work,
+      through Route Model Binding you can obtain an specific object with the id (primary key)
+      given by the wildcard, it's the same as $task = Task::find($id); 
+       */
+      return view('tasks.show', compact('task')); //first argument could also be 'tasks/show' as well
+
+    }
+}
+?></code>
+</pre>
+    <h3 id="databases">Creating a database</h3>
+    <ol>
+      <li>mysql -uroot -p</li>
+      <li>create database [name]</li>
+    </ol>
+    <h4 id="settingUp">Setting up a database for Laravel</h4>
+    <ol>
+      <li>rename .env.example to .env</li>
+      <li>generate a key with php artisan key:generate</li>
+      <li>set the database name DB_DATABASE=[name]</li>
+      <li>set DB_USERNAME=root</li>
+      <li>set DB_PASSWORD=[password]</li>
+    </ol>
+    <h5>A way to fill a database with Laravel</h5><!-- this will look like a notification -->
+    <ol>
+      <li>php artisan tinker</li>
+      <li>$task = App\Task; $task->body = 'hi'; $task->save(); //only works for first 2?</li>
+    </ol>
+    <h4 id="migrations">Migrations</h4>
+    <p>they are the blueprint for the database tables</p>
+    <h5>Making a migration table</h5>
+    <ol>
+      <li>php artisan make:migration [filename] --create=[title of table, basically]</li>
+      <li>Example: php artisan make:migration uhm --create=sales //date_uhm.php migration file created with sales as a table</li>
+      <li>convention: filename should be "create_[title of table]_table"</li>
+    </ol>
+    <h5>Migrating to the database</h5>
+    <ol>
+      <li>php artisan migrate</li>
+    </ol>
+    <h6>Notes:</h6><!-- should be a notification -->
+    <ul>
+      <li>php artisan migrate:refresh drops all tables and looks for changes made to the migrations files and migrates the new tables</li>
+      <li>php artisan migrate:fresh drops all tables</li>
+    </ul>
+  </div>
+  </template>
   
   <script src="/js/app.js" recipes="{{ $recipes }}" cooking_websites="{{ $cooking_websites }}" games="{{ $games }}"></script>
 </body>

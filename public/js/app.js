@@ -4,11 +4,11 @@ Vue.component('grid-list',{
     template: '#grid-list',
     methods: {
         deleteItem: function(){
-            $(this.$el).addClass("fadeOutLeft");
+            $(this.$el).addClass('fadeOutLeft');
             var that = this;
             setTimeout(function(){
                 //this emit should notify the parent to delete their item in the array
-                that.$emit("item_deleted");         
+                that.$emit('item_deleted');         
             }, 800);
         }
     }
@@ -24,10 +24,10 @@ Vue.component('title-view-list',{
     },
     methods: {
         deleteItem: function(){
-            $(this.$el).removeClass('lightSpeedIn').addClass("fadeOutRight");
+            $(this.$el).removeClass('lightSpeedIn').addClass('fadeOutRight');
             var that = this;
             setTimeout(function(){
-                that.$emit("item_deleted");
+                that.$emit('item_deleted');
             }, 900);
         },
         slide: function(){
@@ -39,7 +39,7 @@ Vue.component('title-view-list',{
 });
 
 Vue.component('recipes',{
-    props: ["recipe"],
+    props: ['recipe'],
     template: `<div class="column is-6 recipe-wrapper animated fadeInUpBig">
                     <h1><a v-bind:href="recipe.link">{{ recipe.title }}</a></h1>
                     <hr>
@@ -52,10 +52,18 @@ Vue.component('recipes',{
                </div>`
 });
 
+Vue.component('es6',{
+    template: '#ES6'
+});
+
+Vue.component('laravel',{
+    template: '#laravel'
+});
+
 var app = new Vue({
     el: '#app',
     data:{
-        current_view: "Home",
+        current_view: 'Home',
 				show_menu: false,
         item_list : {
             games: [],
@@ -66,32 +74,32 @@ var app = new Vue({
     computed: {
         headerStyle: function(){		      	      
             switch(this.current_view){
-                case "Home": return {};
-                case "Cooking": return {backgroundColor: "#f6a96e"};
-                case "Videogames": return {backgroundColor: "#7aafe4"};
-                case "Programming": return{backgroundColor: "#baf286"};
+                case 'Home': return {};
+                case 'Cooking': return { backgroundColor: '#f6a96e' };
+                case 'Videogames': return { backgroundColor: '#7aafe4' };
+                case 'Programming': return{ backgroundColor: '#baf286' };
             }
         },
         navStyle: function(){
             switch(this.current_view){
-                case "Home": return {};
-                case "Cooking": return {marginBottom: 0, borderTop: "1px solid #f38d3e"};
-                case "Videogames": return {marginBottom: 0, borderBottom: "none", borderTop: "1px solid #5096db"};
-                case "Programming": return{marginBottom: 0, borderTop: "1px solid #a0ed58"};
+                case 'Home': return {};
+                case 'Cooking': return { marginBottom: 0, borderTop: '1px solid #f38d3e' };
+                case 'Videogames': return { marginBottom: 0, borderBottom: 'none', borderTop: '1px solid #5096db' };
+                case 'Programming': return{ marginBottom: 0, borderTop: '1px solid #a0ed58' };
             }
         }
     },
     components: {
         Home: {
-            template: "#home-view"
+            template: '#home-view'
         },
         Cooking: {
-            template: "#cooking-view",
+            template: '#cooking-view',
             props: ['item_list','cooking_links'],
             methods: {
                 addWebsite: function(){
-                    var name_input = $("input[name = websiteName]");
-                    var link_input = $("input[name = websiteLink]");
+                    var name_input = $('input[name = websiteName]');
+                    var link_input = $('input[name = websiteLink]');
                     var name_parent = name_input.parent();
                     var link_parent = link_input.parent();
 
@@ -102,14 +110,14 @@ var app = new Vue({
                     $.ajax({
                         url: '/cooking',
                         type: 'post',
-                        data: {'name': name_input.val(), 'link': link_input.val()},
+                        data: { 'name': name_input.val(), 'link': link_input.val() },
                         success: function(_response){
                             name_parent.removeClass('is-loading');
                             link_parent.removeClass('is-loading');
                             console.log('it is done');
                             console.log(_response);
                             name_input.val(''); link_input.val('');
-                            that.cooking_links.push({name: _response.name, link: _response.link});
+                            that.cooking_links.push({ name: _response.name, link: _response.link });
                         },
                         error: function(_response){
                             name_parent.removeClass('is-loading');
@@ -123,13 +131,13 @@ var app = new Vue({
         },
         Videogames: {
             props: ['item_list'],
-            template: "#videogame-view",
+            template: '#videogame-view',
             data: function(){
                 return {
-                    admin_mode: "",
-                    description: "",
-                    title: "",
-                    link: "",
+                    admin_mode: '',
+                    description: '',
+                    title: '',
+                    link: '',
                     grid_view: true,
                     submitted: false,
                     removeable: false,
@@ -141,21 +149,21 @@ var app = new Vue({
                 insertGameToList: function(){    
                 	var that = this;
 
-                	var title = $("input[name=title]").val();
-                	var description = $("textarea[name=description]").val();
-                	var link = $("input[name=link]").val();
-                	//var _token = $("input[name=_token]").val();
+                	var title = $('input[name=title]').val();
+                	var description = $('textarea[name=description]').val();
+                	var link = $('input[name=link]').val();
+                	//var _token = $('input[name=_token]').val();
 
                 	this.submitted = !this.submitted;
 					$.ajax({
 						url: '/videogames',
 						type: 'post',
-						data: {'title': title, 'description': description, 'link': link},
+						data: { 'title': title, 'description': description, 'link': link },
 						success: function(_response){
 							console.log('it is done');
 							console.log(_response);
-							//that.item_list.games.push({id: _response.id, title: _response.title, description: _response.description, link: _response.link});
-		                    that.title = ""; that.description = ""; that.link = "";
+							that.item_list.games.push({ id: _response.id, title: _response.title, description: _response.description, link: _response.link} );
+		                    that.title = ''; that.description = ''; that.link = '';
 						},
 						error: function(_response){
 							console.log('error');
@@ -163,7 +171,7 @@ var app = new Vue({
 					});
                 },
                 deleteGame: function(index, id){
-                    console.log("deleting index: "+index+" with id of "+id);
+                    console.log('deleting index: '+index+' with id of '+id);
                     var that = this;
                     $.ajax({
                     	url: '/videogames/delete',
@@ -189,7 +197,12 @@ var app = new Vue({
             }
         },
         Programming: {
-            template: "#programming-view"
+            template: '#programming-view',
+            data: function(){
+                return {
+                    view: 'laravel'
+                };
+            }
         }
     },
     mounted: function(){
@@ -197,17 +210,17 @@ var app = new Vue({
 
         var cooking_websites = JSON.parse(document.currentScript.getAttribute('cooking_websites'));
 		cooking_websites.forEach(function(obj){
-			that.cooking_links.push({name: obj.name, link: obj.link});
+			that.cooking_links.push({ name: obj.name, link: obj.link });
 		});
 
 		var recipes = JSON.parse(document.currentScript.getAttribute('recipes'));
 		recipes.forEach(function(obj){
-			that.item_list.recipes.push({title: obj.title, description: obj.description, link: obj.link});
+			that.item_list.recipes.push({ title: obj.title, description: obj.description, link: obj.link });
 		});
 
 		var games = JSON.parse(document.currentScript.getAttribute('games'));
 		games.forEach(function(obj){
-			that.item_list.games.push({id: obj.id, title: obj.title, description: obj.description, link: obj.link});
+			that.item_list.games.push({ id: obj.id, title: obj.title, description: obj.description, link: obj.link });
 		});
     } 
 });

@@ -8714,9 +8714,10 @@ body {
 }
 
 #program {
-  background: url(/images/program.jpg) no-repeat center;
-  background-size: cover;
-  min-height: 400px;
+  color: #E5EEEC;
+}
+#program h3, #program h2 {
+  color: #E5EEEC;
 }
 
 #programming-sidebar header {
