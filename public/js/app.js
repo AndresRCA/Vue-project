@@ -171,18 +171,17 @@ var app = new Vue({
 					});
                 },
                 deleteGame: function(index, id){
-                    console.log('deleting index: '+index+' with id of '+id);
+                    console.log('deleting item with index of '+index+' and id of '+id);
                     var that = this;
                     $.ajax({
-                    	url: '/videogames/delete',
+                    	url: '/videogames/delete', //I could append the id here...
                     	type: 'delete',
-                    	data: {
+                    	data: { //maybe I could just send a number instead of an object, like data: id
                     		'id': id
                     	},
                     	success: function(_response){
                     		console.log('delete successful');
-	                    	that.item_list.games.splice(index,1);
-
+	                    	that.item_list.games.splice(index, 1);
                     	},
                     	error: function(_response){
                     		console.log('couldn\'t delete');
@@ -202,6 +201,11 @@ var app = new Vue({
                 return {
                     view: 'laravel'
                 };
+            },
+            methods: {
+                removeRWC: function(){
+                    //code that removes element with id of readWithCaution
+                }
             }
         }
     },

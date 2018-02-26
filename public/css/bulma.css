@@ -8716,8 +8716,12 @@ body {
 #program {
   color: #E5EEEC;
 }
-#program h3, #program h2 {
+#program h2, #program h3, #program h4, #program h5, #program h6 {
   color: #E5EEEC;
+}
+#program hr {
+  color: #88b2a8;
+  margin-top: 0px;
 }
 
 #programming-sidebar header {

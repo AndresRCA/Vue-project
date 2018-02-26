@@ -11,6 +11,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <style>
+    [v-cloak]{
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <div id="app" v-cloak v-bind:class="{'video-game-bg': current_view == 'Videogames','programming-bg': current_view == 'Programming'}">  
@@ -308,7 +313,7 @@
   						<grid-list  v-on:item_deleted="deleteGame(index, item_list.games[index].id)" v-for="(item, index) in item_list.games" v-bind:grid_item="item" v-bind:removeable="removeable" v-bind:key="item.id"></grid-list>
   					</div>
   					<div v-else class="content has-text-centered">            
-  						<h1 class="animated swing"><small class="has-text-muted">There doesn't seem to be anything here...</small></h1>                   
+  						<h1 class="animated swing"><small class="has-text-light">There doesn't seem to be anything here...</small></h1>                   
   					</div>
   				</transition>
         </div>
@@ -319,10 +324,10 @@
         <div class="container is-fluid title-view-container">
   				<transition enter-active-class='animated fadeInUp'>
   					<div v-if="item_list.games.length >= 1">
-  						<title-view-list v-on:item_deleted="deleteGame(index)" v-for="(item, index) in item_list.games" v-bind:title_view_item="item" v-bind:removeable="removeable" v-bind:key="item.title"></title-view-list>
+  						<title-view-list v-on:item_deleted="deleteGame(index, item.id)" v-for="(item, index) in item_list.games" v-bind:title_view_item="item" v-bind:removeable="removeable" v-bind:key="item.title"></title-view-list>
   					</div>
   					<div v-else class="content has-text-centered">
-  						<h1 class="animated swing"><small class="has-text-muted">There doesn't seem to be anything here...</small></h1>
+  						<h1 class="animated swing"><small class="has-text-light">There doesn't seem to be anything here...</small></h1>
   					</div>
   				</transition>
         </div>
@@ -367,6 +372,12 @@
           </div>
         </div>
         <div class="column content animated fadeInUpBig" id="program">
+          <div id="readWithCaution" class="message is-danger">
+            <div class="message-header">READ WITH CAUTION<span class="delete" @click="removeRWC"></span></div>
+            <div class="message-body">
+              Keep in mind the following concepts and instructions are written by me as the way I understand them, any innacurate statement or misunderstanding could be possible <small class="has-text-light">(there's a low chance of this happening, you don't need to worry too much)</small>, with this out of the way, please enjoy some of the things I have learned.
+            </div>
+          </div>
           <component v-bind:is="view"></component>
         </div>
       </div>
@@ -408,6 +419,7 @@
     <div>
       <h2 id="es6">This content is about ES6:</h2>
       <h3 id="let">Let:</h3>
+      <hr>
       <p>let declares a variable in the scope that it's declared, unlike var that goes outside a block.</p>
       <div class="columns">
         <div class="column">
@@ -432,6 +444,7 @@ console.log(name); //Outputs Andrew, despite declaring name = "John" in if</code
         </div>
       </div>
       <h3 id="arrowFunction">Arrow functions:</h3>
+      <hr>
       <p>A different way to declare a function that solves some scoping issues.</p>
       <div class="columns">
         <div class="column">          
@@ -511,6 +524,7 @@ andrew.saySomething(); //hello I am Andrew and my language is Java
     <div>
       <h2>This content is about the basics of Laravel</h2>
       <h3 id="controllers">Controllers</h3>
+      <hr>
       <p>The controllers handle the logic behind the function in "Route::get('/', function(){});"</p>
       <h4>Creating a controller</h4>
       <ol>
@@ -535,20 +549,21 @@ use App\Task;
 class TasksController extends Controller
 {
 
-    public function show(Task $task){ //Route model binding
-      /*
-        what happens here is that show() waits for a Task, the variable in the argument MUST
-      possess the same name as the wildcard in the URL ('/tasks/{task}') for this to work,
-      through Route Model Binding you can obtain an specific object with the id (primary key)
-      given by the wildcard, it's the same as $task = Task::find($id); 
-       */
-      return view('tasks.show', compact('task')); //first argument could also be 'tasks/show' as well
+  public function show(Task $task){ //Route model binding
+    /*
+      what happens here is that show() waits for a Task, the variable in the argument MUST
+    possess the same name as the wildcard in the URL ('/tasks/{task}') for this to work,
+    through Route Model Binding you can obtain an specific object with the id (primary key)
+    given by the wildcard, it's the same as $task = Task::find($id); 
+     */
+    return view('tasks.show', compact('task')); //first argument could also be 'tasks/show' as well
 
-    }
+  }
 }
 ?></code>
 </pre>
     <h3 id="databases">Creating a database</h3>
+    <hr>
     <ol>
       <li>mysql -uroot -p</li>
       <li>create database [name]</li>
@@ -561,11 +576,15 @@ class TasksController extends Controller
       <li>set DB_USERNAME=root</li>
       <li>set DB_PASSWORD=[password]</li>
     </ol>
-    <h5>A way to fill a database with Laravel</h5><!-- this will look like a notification -->
-    <ol>
-      <li>php artisan tinker</li>
-      <li>$task = App\Task; $task->body = 'hi'; $task->save(); //only works for first 2?</li>
-    </ol>
+    <div class="message">
+      <div class="message-header">A way to fill a database with Laravel</div>
+      <div class="message-body">
+        <ol>
+          <li>php artisan tinker</li>
+          <li>$task = App\Task; $task->body = 'hi'; $task->save(); //only works for first 2?</li>
+        </ol>
+      </div>
+    </div>
     <h4 id="migrations">Migrations</h4>
     <p>they are the blueprint for the database tables</p>
     <h5>Making a migration table</h5>
@@ -578,11 +597,15 @@ class TasksController extends Controller
     <ol>
       <li>php artisan migrate</li>
     </ol>
-    <h6>Notes:</h6><!-- should be a notification -->
-    <ul>
-      <li>php artisan migrate:refresh drops all tables and looks for changes made to the migrations files and migrates the new tables</li>
-      <li>php artisan migrate:fresh drops all tables</li>
-    </ul>
+    <div class="message">
+      <div class="message-header">Notes:</div>
+      <div class="message-body">
+        <ul>
+          <li>php artisan migrate:refresh drops all tables and looks for changes made to the migrations files and migrates the new tables</li>
+          <li>php artisan migrate:fresh drops all tables</li>
+        </ul>
+      </div>
+    </div>
   </div>
   </template>
   
