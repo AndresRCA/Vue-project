@@ -400,11 +400,13 @@
   <template id="title-view-list">
     <div class="box content is-clearfix is-radiusless margin-bottom animated lightSpeedIn" v-bind:class="{ 'removeable-item-title': removeable, 'title-view-content': !removeable }" style="min-height: 0">
       <h3>@{{ title_view_item.title }}
-        <span class="icon is-pulled-right" v-show="!removeable && !show_content" v-on:click="slide"><i class="fa fa-chevron-down"></i></span>
-
-        <span class="icon is-pulled-right" v-show="!removeable && show_content" v-on:click="slide"><i class="fa fa-chevron-up"></i></span>
-
-        <span class="close-icon-title is-pulled-right" v-show="removeable" v-on:click="deleteItem"><i class="fa fa-times"></i></span>
+        <div v-if="!removeable">
+          <span v-if="!show_content" class="icon is-pulled-right" v-on:click="slide"><i class="fa fa-chevron-down"></i></span>
+          <span v-else class="icon is-pulled-right" v-on:click="slide"><i class="fa fa-chevron-up"></i></span>
+        </div>
+        <div v-else>
+          <span class="close-icon-title is-pulled-right" v-on:click="deleteItem"><i class="fa fa-times"></i></span>
+        </div>
       </h3>
       <div class="slider" style="margin-top: 10px">
       	<div class="image img-size-title margin-right is-pulled-left margin-bottom">
