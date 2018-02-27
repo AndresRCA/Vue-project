@@ -347,24 +347,24 @@
             <main>
               <ul class="menu-list">
                 <li><!-- there should be a way to listen to children clicks and do my action here -->
-                  <a href="#laravel" @click="view = 'laravel'">Laravel</a>
+                  <a href="#laravel" @click="view = 'laravel'" v-bind:class="{'is-active': view == 'laravel'}">Laravel</a>
                   <ul>
-                    <li><a href="#controllers" @click="view = 'laravel'">Controllers</a></li>
+                    <li><a id="l1" href="#controllers" @click="view = 'laravel'">Controllers</a></li>
                     <li>
-                      <a href="#databases" @click="view = 'laravel'">Databases</a>
+                      <a id="l2" href="#databases" @click="view = 'laravel'">Databases</a>
                       <ul>
-                        <li><a href="#settingUp" @click="view = 'laravel'">Setting up a database for Laravel</a></li>
-                        <li><a href="#migrations" @click="view = 'laravel'">Migrations</a></li>
+                        <li><a id="l3" href="#settingUp" @click="view = 'laravel'">Setting up a database for Laravel</a></li>
+                        <li><a id="l4" href="#migrations" @click="view = 'laravel'">Migrations</a></li>
                       </ul>
                     </li>
                   </ul>
                 </li>
                 <li>
-                  <a href="#es6" @click="view = 'es6'">ES6</a>
+                  <a href="#es6" @click="view = 'es6'" v-bind:class="{'is-active': view == 'es6'}">ES6</a>
                   <ul>
-                    <li><a href="#let" @click="view = 'es6'">Let</a></li>
-                    <li><a href="#arrowFunction" @click="view = 'es6'">Arrow function</a></li>
-                    <li><a href="#classes" @click="view = 'es6'">Classes</a></li>
+                    <li><a id="e1" href="#let" @click="view = 'es6'">Let</a></li>
+                    <li><a id="e2" href="#arrowFunction" @click="view = 'es6'">Arrow function</a></li>
+                    <li><a id="e3" href="#classes" @click="view = 'es6'">Classes</a></li>
                   </ul>
                 </li>
               </ul>
@@ -372,13 +372,15 @@
           </div>
         </div>
         <div class="column content animated fadeInUpBig" id="program">
-          <div id="readWithCaution" class="message is-danger">
-            <div class="message-header">READ WITH CAUTION<span class="delete" @click="removeRWC"></span></div>
-            <div class="message-body">
-              Keep in mind the following concepts and instructions are written by me as the way I understand them, any innacurate statement or misunderstanding could be possible <small class="has-text-light">(there's a low chance of this happening, you don't need to worry too much)</small>, with this out of the way, please enjoy some of the things I have learned.
+          <section class="section">
+            <div id="readWithCaution" class="message is-danger">
+              <div class="message-header">READ WITH CAUTION<span class="delete" @click="removeRWC"></span></div>
+              <div class="message-body">
+                Keep in mind the following concepts and instructions are written by me as the way I understand them, any innacurate statement or misunderstanding could be possible <small>(there's a low chance of this happening, you don't need to worry too much)</small>, with this out of the way, please enjoy some of the things I have learned.
+              </div>
             </div>
-          </div>
-          <component v-bind:is="view"></component>
+            <component v-bind:is="view"></component>
+          </section>
         </div>
       </div>
     </div>
@@ -422,9 +424,7 @@
       <h2 id="es6">This content is about ES6:</h2>
       <h3 id="let">Let:</h3>
       <hr>
-      <p>let declares a variable in the scope that it's declared, unlike var that goes outside a block.</p>
-      <div class="columns">
-        <div class="column">
+      <p>let declares a variable in the scope that it's declared in, unlike var that goes outside a block.</p>
 <pre><h2 class="is-marginless">ES5</h2><code>
 var name = "Andrew";
 if(true){
@@ -432,32 +432,24 @@ if(true){
   console.log(name); //Outputs John
 }
 console.log(name); //Outputs John</code>
-</pre>
-        </div>
-        <div class="column">            
-<pre><h2>ES6</h2><code>
+</pre>          
+<pre><h2 class="is-marginless">ES6</h2><code>
 let name = "Andrew";
 if(true){
   let name = "John";
   console.log(name); //Outputs John
 }
-console.log(name); //Outputs Andrew, despite declaring name = "John" in if</code>
+console.log(name); //Outputs Andrew, despite declaring name = "John" inside the if</code>
 </pre>
-        </div>
-      </div>
       <h3 id="arrowFunction">Arrow functions:</h3>
       <hr>
-      <p>A different way to declare a function that solves some scoping issues.</p>
-      <div class="columns">
-        <div class="column">          
-<pre><h2>ES5</h2><code>
+      <p>A different way to declare a function that solves some scoping issues.</p>          
+<pre><h2 class="is-marginless">ES5</h2><code>
 function func(x){
   return x*2;
 }</code>
-</pre>
-        </div>
-        <div class="column">            
-<pre><h2>ES6</h2><code>
+</pre>           
+<pre><h2 class="is-marginless">ES6</h2><code>
 let func = (x) => x*2; //returns x*2  
 
   OR
@@ -470,11 +462,9 @@ let func = (x, y) => {
   /*body*/
 };</code>
 </pre>
-        </div>
-      </div>
       <h3 id="classes">Classes:</h3>
       <p>very similar to Java, very clean.</p>
-<pre><h2>ES6</h2><code>
+<pre><h2 class="is-marginless">ES6</h2><code>
 class Person{
 
   construct(name, age){
@@ -527,22 +517,22 @@ andrew.saySomething(); //hello I am Andrew and my language is Java
       <h2>This content is about the basics of Laravel</h2>
       <h3 id="controllers">Controllers</h3>
       <hr>
-      <p>The controllers handle the logic behind the function in "Route::get('/', function(){});"</p>
+      <p>The controllers handle the logic behind the function in <code>Route::get('/', function(){});</code></p>
       <h4>Creating a controller</h4>
       <ol>
-        <li>php artisan make:controller [name]</li>
+        <li><code>php artisan make:controller [name]</code></li>
       </ol>
       <h4>Using a controller</h4>
-      <p>
-        Route::get('/', 'controllerName@function');<br>
-        function is a public function inside the controller file that contains the logic that returns the view and fetches data from the database
-      </p>
+      <p><code>Route::get('/', 'controllerName@function');</code></p>
+	  <p>
+		  <code>function</code> is a public function inside the controller file that contains the logic that returns the view and fetches data from the database
+	  </p>
       <h5>Route Model Binding</h5>
       <p>
         it's not exclusive to controllers (I think), it's a way to fetch an specific object from a database through the URL
       </p>
 <pre><code>
-<?php
+&lt;?php
 
 namespace App\Http\Controllers;
 
@@ -562,13 +552,13 @@ class TasksController extends Controller
 
   }
 }
-?></code>
+?&gt;</code>
 </pre>
     <h3 id="databases">Creating a database</h3>
     <hr>
     <ol>
-      <li>mysql -uroot -p</li>
-      <li>create database [name]</li>
+      <li><code>mysql -uroot -p</code></li>
+      <li><code>create database [name]</code></li>
     </ol>
     <h4 id="settingUp">Setting up a database for Laravel</h4>
     <ol>
@@ -578,12 +568,12 @@ class TasksController extends Controller
       <li>set DB_USERNAME=root</li>
       <li>set DB_PASSWORD=[password]</li>
     </ol>
-    <div class="message">
+    <div class="message is-dark">
       <div class="message-header">A way to fill a database with Laravel</div>
       <div class="message-body">
         <ol>
-          <li>php artisan tinker</li>
-          <li>$task = App\Task; $task->body = 'hi'; $task->save(); //only works for first 2?</li>
+          <li><code>php artisan tinker</code></li>
+          <li><code>$task = App\Task; $task->body = 'hi'; $task->save();</code> //only works for first 2?</li>
         </ol>
       </div>
     </div>
@@ -591,20 +581,20 @@ class TasksController extends Controller
     <p>they are the blueprint for the database tables</p>
     <h5>Making a migration table</h5>
     <ol>
-      <li>php artisan make:migration [filename] --create=[title of table, basically]</li>
-      <li>Example: php artisan make:migration uhm --create=sales //date_uhm.php migration file created with sales as a table</li>
-      <li>convention: filename should be "create_[title of table]_table"</li>
+      <li><code>php artisan make:migration [filename] --create=[title of table, basically]</code></li>
+      <li>Example: <code>php artisan make:migration uhm --create=sales</code> //date_uhm.php migration file created with sales as a table</li>
+      <li>convention: filename should be <code>create_[title of table]_table</code></li>
     </ol>
     <h5>Migrating to the database</h5>
     <ol>
-      <li>php artisan migrate</li>
+      <li><code>php artisan migrate</code></li>
     </ol>
-    <div class="message">
+    <div class="message is-dark">
       <div class="message-header">Notes:</div>
       <div class="message-body">
         <ul>
-          <li>php artisan migrate:refresh drops all tables and looks for changes made to the migrations files and migrates the new tables</li>
-          <li>php artisan migrate:fresh drops all tables</li>
+          <li><code>php artisan migrate:refresh</code> drops all tables and looks for changes made to the migrations files and migrates the new tables</li>
+          <li><code>php artisan migrate:fresh</code> drops all tables</li>
         </ul>
       </div>
     </div>

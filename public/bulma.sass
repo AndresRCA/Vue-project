@@ -196,17 +196,18 @@ body
 	color: #E5EEEC
 	h2, h3, h4, h5, h6
 		color: #E5EEEC
-	hr
-		color: darken(#E5EEEC, 30%)//maybe find the invert or just get a lighter color of the bg 
+	p > code, li > code, .message code
+		color: #76c12f
+	hr 
 		margin-top: 0px
 	// .content figure
 	// 	text-align: left
 
 #programming-sidebar
-	padding-right: 25px
 	padding-top: 25px
+	position: fixed
+	width: 25%
 	header
-		border-top-right-radius: 15%
 		padding: 10px 20px
 		background-color: #b6b6b6
 		border-bottom: 5px double darkgrey
@@ -227,11 +228,16 @@ body
 				padding-bottom: 5px
 			a
 				color: #E5EEEC
+				&.is-active
+					background-color: $programming_active
 				&.is-active:hover
-					color: $programming_active
+					background-color: $programming_active
+					color: #E5EEEC
 				&:hover
 					color: $text
-
+				&.side-active
+					color: #4a4a4a
+					background-color: whitesmoke
 /*--------------------------------------------------------------*/
 /*---------------------------Misc-------------------------------*/
 .fa-chevron-down:hover, .fa-chevron-up:hover

@@ -8719,17 +8719,19 @@ body {
 #program h2, #program h3, #program h4, #program h5, #program h6 {
   color: #E5EEEC;
 }
+#program p > code, #program li > code, #program .message code {
+  color: #76c12f;
+}
 #program hr {
-  color: #88b2a8;
   margin-top: 0px;
 }
 
 #programming-sidebar {
-  padding-right: 25px;
   padding-top: 25px;
+  position: fixed;
+  width: 25%;
 }
 #programming-sidebar header {
-  border-top-right-radius: 15%;
   padding: 10px 20px;
   background-color: #b6b6b6;
   border-bottom: 5px double darkgrey;
@@ -8754,11 +8756,19 @@ body {
 #programming-sidebar main li a {
   color: #E5EEEC;
 }
+#programming-sidebar main li a.is-active {
+  background-color: #a0ed58;
+}
 #programming-sidebar main li a.is-active:hover {
-  color: #a0ed58;
+  background-color: #a0ed58;
+  color: #E5EEEC;
 }
 #programming-sidebar main li a:hover {
   color: #4a4a4a;
+}
+#programming-sidebar main li a.side-active {
+  color: #4a4a4a;
+  background-color: whitesmoke;
 }
 
 /*-------------------------------------------------------------- */

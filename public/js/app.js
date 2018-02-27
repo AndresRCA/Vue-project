@@ -205,9 +205,25 @@ var app = new Vue({
             },
             methods: {
                 removeRWC: function(){
-                    //code that removes element with id of readWithCaution
+                    document.getElementById('readWithCaution').remove();
                 }
-            }
+            }/*,
+			mounted: function(){
+				window.onscroll = function() {activate()};
+
+				function activate() {
+					console.log('I\'m happening');
+					if ((document.body.scrollTop > 450 || document.documentElement.scrollTop > 450) && (document.body.scrollTop < 1400 || document.documentElement.scrollTop < 1400)) {
+						document.getElementById("l1").className = "side-active";
+					else if((document.body.scrollTop > 1400 || document.documentElement.scrollTop > 1400) && (document.body.scrollTop < 1540 || document.documentElement.scrollTop < 1540)){
+					
+					}else if((document.body.scrollTop > 1540 || document.documentElement.scrollTop > 1540) && (document.body.scrollTop < 1880 || document.documentElement.scrollTop < 1880)){
+					
+					}else{
+					
+					}
+				}
+			}*/
         }
     },
     mounted: function(){
