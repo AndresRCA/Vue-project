@@ -64,7 +64,7 @@ var app = new Vue({
     el: '#app',
     data:{
         current_view: 'Home',
-				show_menu: false,
+		show_menu: false,
         item_list : {
             games: [],
             recipes: []
@@ -174,7 +174,8 @@ var app = new Vue({
                     console.log('deleting item with index of '+index+' and id of '+id);
                     var that = this;
                     $.ajax({
-                    	url: '/videogames/delete', //I could append the id here...
+                    	url: '/videogames/delete',
+                        //url: '/videogames/delete/'+id, //I could do this instead...
                     	type: 'delete',
                     	data: { //maybe I could just send a number instead of an object, like data: id
                     		'id': id
@@ -226,5 +227,35 @@ var app = new Vue({
 		games.forEach(function(obj){
 			that.item_list.games.push({ id: obj.id, title: obj.title, description: obj.description, link: obj.link });
 		});
-    } 
+        /*$.ajax({
+            url: '/',
+            type: 'get',
+            success: function(_response){ //the array should be like so [ [websites], [recipes], [games] ]
+                                          //or [ {'category': 'cooking_websites', 'objects': [ {} ] }, {...}, {...} ]
+                _response.forEach(function(mainObj){
+                    switch(mainObj.category){
+                        case 'cooking_websites':
+                            mainObj.objects.forEach(function(obj){
+                                that.cooking_links.push({ name: obj.name, link: obj.link });
+                            });
+                            break;
+
+                        case 'recipes':
+                            mainObj.objects.forEach(function(obj){
+                                that.item_list.recipes.push({ title: obj.title, description: obj.description, link: obj.link });
+                            });
+                            break;
+
+                        case 'games':
+                            mainObj.objects.forEach(function(obj){
+                                that.item_list.games.push({ id: obj.id, title: obj.title, description: obj.description, link: obj.link });
+                            });
+                    }
+                });
+            },
+            error: function(_response){
+                console.log('if this error does shows up, that means your database is fucked');
+            }
+        });*/
+    }
 });

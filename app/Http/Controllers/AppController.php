@@ -17,11 +17,26 @@ class AppController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::select('title', 'description', 'link')->get();
         $cooking_websites = CookingWebsite::select('name', 'link')->get();
+        $recipes = Recipe::select('title', 'description', 'link')->get();
         $games = Game::select('id', 'title', 'description', 'link')->get();
 
-        return view('index', compact('recipes', 'cooking_websites', 'games'));
+        /*$all = [ //if I understand PHP correctly, this should be the same as: [ {'category': 'cooking_websites', 'objects': [ {} ] }, {...}, {...} ]
+            [
+                'category' => 'cooking_websites',
+                'objects' => $cooking_websites
+            ],
+            [
+                'category' => 'recipes',
+                'objects' => $recipes
+            ],
+            [
+                'category' => 'games',
+                'objects' => $games
+            ]
+        ];*/
+
+        return view('index', compact('recipes', 'cooking_websites', 'games')/*compact('all')*/);
     }
 
     public function createWebsite()
@@ -31,9 +46,8 @@ class AppController extends Controller
             'link' => 'required'
         ]);*/
 
-        //$cookingWebsite = CookingWebsite::create(request(['name', 'link']));
-        $cookingWebsite = CookingWebsite::create(request(['name', 'link']));
-        return response()->json($cookingWebsite);
+        $cooking_website = CookingWebsite::create(request(['name', 'link']));
+        return response()->json($cooking_website);
     }
 
     public function createRecipe()
@@ -108,8 +122,8 @@ class AppController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroyGame(Request $request)
+    public function destroyGame(Request $request/*Game $id*/) //replace for what's commented
     {
-        Game::find($request->id)->delete();
+        Game::find($request->id/*$id*/)->delete();
     }
 }
