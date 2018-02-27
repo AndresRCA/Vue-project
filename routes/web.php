@@ -15,7 +15,7 @@ Route::get('/', 'AppController@index');
 
 Route::post('/videogames', 'AppController@createGame');
 
-Route::delete('/videogames/delete', 'AppController@destroyGame'); //add /{id} for Route Model Binding
+Route::delete('/videogames/delete', 'AppController@destroyGame'); //add /{id} for a different approach
 
 Route::post('/cooking', 'AppController@createWebsite');
 

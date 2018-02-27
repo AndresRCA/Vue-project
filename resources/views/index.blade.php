@@ -43,7 +43,7 @@
              <a href="#/" v-on:click="current_view = 'Programming'"  v-bind:class="{'is-active': (current_view == 'Programming')}" class="navbar-item"><span class="icon is-small"><i class="fa fa-code"></i></span>&nbsp;Programming</a>
            </div>
          </div> 
-      </div>    
+      </div>
     </nav> 
     <main>
       <keep-alive><component v-bind:is="current_view" v-bind:item_list="item_list" v-bind:cooking_links="cooking_links"></component></keep-alive>
@@ -57,8 +57,9 @@
           <div class="columns is-multiline has-text-centered-mobile">
             <div class="column is-6 content">
               <h1 class="has-text-centered">What is this?</h1>
-              <p>This is a website that contains things I probably like and things that are currently in my mind, this is also a way to 
-              record things I may forget, like a storage room.</p>
+              <p>
+                This is a website that contains things I probably like and things that are currently in my mind, this is also a way to record things I may forget in a way that pleases the eye, this website is basically a storage room.
+              </p>
             </div>
             <div class="column is-6 content">
               <h1 class="has-text-centered">Why make this?</h1>
@@ -66,25 +67,26 @@
             </div>
             <div class="column content">
               <h1 class="has-text-centered">What does this "storage room" contain?</h1>
-              <p>It contains mostly a bunch of lists, it could also contain some definitions or notes I prefer to save inside this website for readability. The lists fall under these categories:</p>
+              <p>
+                It contains mostly a bunch of lists, it could also contain some definitions or notes I prefer to save inside this website for readability. The lists fall under the following categories:
+              </p>
             </div>  
           </div>
         </div>
       </section>
-      <section class="" id="main-page">
+      <section class="" id="main-page"><!-- missing section class? -->
         <article class="columns level has-text-centered-mobile">
           <div class="column is-4 image-logo image is-16x9">
             <img src="/images/gastronomy.jpg" alt="food">
           </div>
           <div class="column content">
             <h2>Cooking</h2>
-            <p>Cooking has been a passion for me since I was 12, don't forget that, but due to laziness and the situation 
-              of the country my ability to practice good gastronomy has been limited, but still, that has never stopped my 
-              curiosity for it, when I had free time I liked to investigate the science behind cooking and recipes I could 
-            afford, they weren't many but they brought me happiness nonetheless.</p>
-
-            <p>In this category I will post recipes I like (some of which I might have created) or images containing
-            information about spice combinations, herb data, etc.</p>
+            <p>
+              Cooking has been a passion for me since I was 12, don't forget that, but due to laziness and the situation of the country my ability to practice good gastronomy has been limited, but still, that has never stopped my curiosity for it, when I had free time I liked to investigate the science behind cooking and recipes I could afford, they weren't many but they brought me happiness nonetheless.
+            </p>
+            <p>
+              In this category I will post recipes I like (some of which I might have created) or images containing information about spice combinations, herb data, etc.
+            </p>
           </div>
         </article>
         <article class="columns level has-text-centered-mobile" >
@@ -93,12 +95,12 @@
           </div>
           <div class="column content">
             <h2>Video Games</h2>
-            <p>This category doesn't need an explanation, lately I've been playing just one game, Super Smash Bros Melee, this game 
-              requires high skill for competitive play, which is probably the reason I play it. As a child I've always been 
-              good with video games, so it was a matter of time until I found myself bored at "easy" games, so currently 
-            I mostly play games with a good history or high difficulty.</p>
-
-            <p>In this category I will post video game titles I liked in the past, and probably my experience with them.</p>
+            <p>
+              This category doesn't need an explanation, lately I've been playing just one game, Super Smash Bros Melee, this game requires high skill for competitive play, which is probably the reason I play it. As a child I've always been good with video games, so it was a matter of time until I found myself bored at "easy" games, so currently I mostly play games with a good story or high difficulty.
+            </p>
+            <p>
+              In this category I will post video game titles I liked in the past and my experience with them.
+            </p>
           </div>
           <div class="column is-4 is-hidden-mobile">
             <img class="image image-logo" style="max-height: 230px; margin: 0 auto; display: block" src="/images/ssbm.png" alt="ssbm">
@@ -110,14 +112,12 @@
           </div>
           <div class="column content">
             <h2>Programming</h2>
-            <p>Programming is something I wish I knew how to do at a very young age, I have loved programming since 
-              I started seeing it on my first semester of Telecomunications and lately I found that I'm constantly improving 
-              step by step whenever I have free time, however I usually spend my time programming inside my comfort zone, 
-              what I mean with this is that on hobby projects I don't try to use new techniques but instead use old knowledge. 
-            This is a habit I'm trying to leave behind.</p>
-
-            <p>This category will be about strict learning, it could contain books about progamming, little tips about things 
-            one could forget between programming languages, web-development, etc.</p>
+            <p>
+              Programming is something I wish I knew how to do at a very young age, I have loved programming since I started seeing it on my first semester of Telecomunications and lately I found that I'm constantly improving step by step whenever I have free time, however I usually spend my time programming inside my comfort zone, what I mean with this is that on hobby projects I don't try to use new techniques but instead use old knowledge, basically trying to reinvent the wheel with what I know. This is a habit I'm trying to leave behind.
+            </p>
+            <p>
+              This category will be about strict learning, it could contain books about progamming, little tips about things one could forget between programming languages, web-development, etc.
+            </p>
           </div>
         </article>
       </section>
@@ -130,6 +130,7 @@
         <div class="column is-2 is-hidden-mobile" style="margin-bottom: -0.75rem; padding-bottom: 0px">
           <div id="cooking-sidebar">
             <h4 class="has-text-centered">Links of interest</h4>
+            <!-- I could make this section with only php, but I choose to stick with a single way to render a view -->
             <ul>
               <li v-for="item in cooking_links">
                 <a v-bind:href="item.link"><span class="icon is-small"><i class="fa fa-cutlery"></i></span> @{{item.name}}</a>
@@ -152,7 +153,7 @@
               </div>
               <div class="field">
                 <div class="control" style="margin: 0 auto">
-                  <input type="submit" value="Submit" class="button is-info is-small is-fullwidth">
+                  <input type="submit" value="Submit" class="button is-info is-small is-rounded is-fullwidth">
                 </div>
               </div>
             </form>
@@ -160,14 +161,12 @@
         </div>
         <div class="column content container section" style="padding-bottom: 0px">
 					<h2>Cooking stuff</h2>
-					<p>Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! 
-						In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero.
-						And most times they're friends, like you and me! I should've known way back when... 
-					You know why, David? Because of the kids. They called me Mr Glass. </p>
-					<p>Normally, both your asses would be dead as fucking fried chicken, but you happen to pull
-						this shit while I'm in a transitional period so I don't wanna kill you, I wanna help you. 
-						But I can't give you this case, it don't belong to me. Besides, I've already been through
-					too much shit this morning over this case to hand it over to your dumb ass.</p>
+					<p>
+            Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass.
+          </p>
+					<p>
+            Normally, both your asses would be dead as fucking fried chicken, but you happen to pull this shit while I'm in a transitional period so I don't wanna kill you, I wanna help you. But I can't give you this case, it don't belong to me. Besides, I've already been through too much shit this morning over this case to hand it over to your dumb ass.
+          </p>
           <div class="columns recipe-list-background" style="margin-top: 10px">
             <recipes v-for="recipe in item_list.recipes" v-bind:recipe="recipe" v-bind:key="recipe.title"></recipes>
           </div>
@@ -200,7 +199,6 @@
           <div class="navbar-menu" v-bind:class="{'is-active': !eye_open}">
          		<div class="navbar-end">
               <div class="navbar-item">
-                <!-- <label class="has-text-weight-semibold"><span class="icon"><i class="fa fa-user"></i></span>Admin mode&nbsp;</label> -->
                 <div class="field has-addons">
                   <div class="control">
                     <button class="button is-small is-static"><span class="icon"><i class="fa fa-user"></i></span>&nbsp;Admin mode</button>
@@ -405,7 +403,7 @@
   <template id="title-view-list">
     <div class="box content is-clearfix is-radiusless margin-bottom animated lightSpeedIn" v-bind:class="{ 'removeable-item-title': removeable, 'title-view-content': !removeable }" style="min-height: 0">
       <h3>@{{ title_view_item.title }}
-        <div v-if="!removeable">
+        <div v-if="!removeable"><!--I might want to change this to v-show, see differences for if and show-->
           <span v-if="!show_content" class="icon is-pulled-right" v-on:click="slide"><i class="fa fa-chevron-down"></i></span>
           <span v-else class="icon is-pulled-right" v-on:click="slide"><i class="fa fa-chevron-up"></i></span>
         </div>

@@ -122,8 +122,9 @@ class AppController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroyGame(Request $request/*Game $id*/) //replace for what's commented
+    public function destroyGame(Request $request/*$id*/) //replace for what's commented
     {
+
         Game::find($request->id/*$id*/)->delete();
     }
 }
