@@ -371,10 +371,12 @@
             </main>
           </div>
         </div>
-        <div class="column content animated fadeInUpBig" id="program">
+        <div class="column content animated fadeInUpBig" id="program"><!-- is-8 -->
           <section class="section">
             <div id="readWithCaution" class="message is-danger">
-              <div class="message-header">READ WITH CAUTION<span class="delete" @click="removeRWC"></span></div>
+              <div class="message-header">
+                READ WITH CAUTION<span class="delete" @click="removeRWC"></span>
+              </div>
               <div class="message-body">
                 Keep in mind the following concepts and instructions are written by me as the way I understand them, any innacurate statement or misunderstanding could be possible <small>(there's a low chance of this happening, you don't need to worry too much)</small>, with this out of the way, please enjoy some of the things I have learned.
               </div>
@@ -382,6 +384,7 @@
             <component v-bind:is="view"></component>
           </section>
         </div>
+        <!-- <div class="column is-1"></div> -->
       </div>
     </div>
   </template>
@@ -389,7 +392,7 @@
   <template id="grid-list">
     <div class="column is-4 large-margin-bottom animated bounceInRight">
     	<div class="box" v-bind:class="{ 'removeable-item-grid': removeable, 'item-container': !removeable }">
-				<!-- <span class="close-icon-grid" v-show="removeable" v-bind:class="{'glyphicon': removeable, 'glyphicon-remove': removeable}" @click="deleteItem"></span> --><span v-show="removeable" class="close-icon-grid icon"><i class="fa fa-times"></i></span>
+				<span v-show="removeable" class="close-icon-grid icon"><i class="fa fa-times" @click="deleteItem"></i></span>
 				<div class="image is-128x128 is-pulled-left" style="margin-bottom: 5px">
 					<img v-bind:src="grid_item.link" alt="image">
 				</div>
@@ -441,6 +444,28 @@ if(true){
 }
 console.log(name); //Outputs Andrew, despite declaring name = "John" inside the if</code>
 </pre>
+    <!-- <div class="columns">
+      <div class="column is-6">
+<pre><h2 class="is-marginless">ES5</h2><code>
+var name = "Andrew";
+if(true){
+  var name = "John";
+  console.log(name); //Outputs John
+}
+console.log(name); //Outputs John</code>
+</pre>
+      </div>
+      <div class="column is-6">
+<pre><h2 class="is-marginless">ES6</h2><code>
+let name = "Andrew";
+if(true){
+  let name = "John";
+  console.log(name); //Outputs John
+}
+console.log(name); //Outputs Andrew, despite declaring name = "John" inside the if</code>
+</pre>
+      </div>
+    </div> -->
       <h3 id="arrowFunction">Arrow functions:</h3>
       <hr>
       <p>A different way to declare a function that solves some scoping issues.</p>          

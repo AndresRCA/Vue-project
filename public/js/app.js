@@ -207,23 +207,47 @@ var app = new Vue({
                 removeRWC: function(){
                     document.getElementById('readWithCaution').remove();
                 }
-            }/*,
+            },
 			mounted: function(){
-				window.onscroll = function() {activate()};
+				window.onscroll = function() {activate();};
 
-				function activate() {
+				function activate() { //Don't judge me
 					console.log('I\'m happening');
-					if ((document.body.scrollTop > 450 || document.documentElement.scrollTop > 450) && (document.body.scrollTop < 1400 || document.documentElement.scrollTop < 1400)) {
-						document.getElementById("l1").className = "side-active";
-					else if((document.body.scrollTop > 1400 || document.documentElement.scrollTop > 1400) && (document.body.scrollTop < 1540 || document.documentElement.scrollTop < 1540)){
-					
-					}else if((document.body.scrollTop > 1540 || document.documentElement.scrollTop > 1540) && (document.body.scrollTop < 1880 || document.documentElement.scrollTop < 1880)){
-					
-					}else{
-					
-					}
+                    if(this.view == 'laravel'){
+                        if(document.body.scrollTop > 1880 || document.documentElement.scrollTop > 1880){
+                            document.getElementById('l4').className = 'side-active';
+                            document.getElementById('l3').className = '';
+                            document.getElementById('l2').className = '';
+                            document.getElementById('l1').className = '';
+                            return; // the use of return should save me from future unnecesary conditions
+                        }
+                        if(document.body.scrollTop > 1540 || document.documentElement.scrollTop > 1540){
+                            document.getElementById('l3').className = 'side-active';
+                            document.getElementById('l4').className = '';
+                            document.getElementById('l2').className = '';
+                            document.getElementById('l1').className = '';
+                            return;
+                        }
+                        if(document.body.scrollTop > 1400 || document.documentElement.scrollTop > 1400){
+                            document.getElementById('l2').className = 'side-active';
+                            document.getElementById('l4').className = '';
+                            document.getElementById('l3').className = '';
+                            document.getElementById('l1').className = '';
+                            return;
+                        }
+                        if(document.body.scrollTop > 450 || document.documentElement.scrollTop > 450){
+                            document.getElementById('l1').className = 'side-active';
+                            document.getElementById('l4').className = '';
+                            document.getElementById('l3').className = '';
+                            document.getElementById('l2').className = '';
+                        }else{
+                            document.getElementById('l1').className = ''; //when it's 450px from top to bottom, .side-active for l1 should be deactivated
+                        }
+                    }else{
+                        //breakpoints for ES6 content goes here
+                    }
 				}
-			}*/
+			}
         }
     },
     mounted: function(){
