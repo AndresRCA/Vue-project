@@ -214,32 +214,33 @@ var app = new Vue({
 				function activate() { //Don't judge me
 					console.log('I\'m happening');
                     if(this.view == 'laravel'){
+                        //for intuitive understanding, these conditions should be read from bottom to top, let me explain:
+                        //the event activates when the user has scrolled the page a certain amount of pixels but there's no
+                        //way to specify "heigths" for these events (for example, do "function" when the scroll bar is located
+                        //between 450px and 1400px), because of this I can only set conditions for when the scroll bar reaches
+                        //a certain point, but if I were to ask if document.body.scrollTop > 450 and I was 1550 pixels from the top
+                        //, then that condition would turn out to be true but it wouldn't do the function designated to where I am,
+                        //therefore I set up the order you see, to ensure that the condition I want returns true and nothing else 
                         if(document.body.scrollTop > 1880 || document.documentElement.scrollTop > 1880){
                             document.getElementById('l4').className = 'side-active';
                             document.getElementById('l3').className = '';
-                            document.getElementById('l2').className = '';
-                            document.getElementById('l1').className = '';
-                            return; // the use of return should save me from future unnecesary conditions
+                            return; // the use of return should save me from future conditions
                         }
                         if(document.body.scrollTop > 1540 || document.documentElement.scrollTop > 1540){
+                            document.getElementById('l4').className = ''; //if coming from the bottom
                             document.getElementById('l3').className = 'side-active';
-                            document.getElementById('l4').className = '';
-                            document.getElementById('l2').className = '';
-                            document.getElementById('l1').className = '';
+                            document.getElementById('l2').className = ''; //if coming from the top
                             return;
                         }
                         if(document.body.scrollTop > 1400 || document.documentElement.scrollTop > 1400){
+                            document.getElementById('l3').className = ''; //if coming from the bottom
                             document.getElementById('l2').className = 'side-active';
-                            document.getElementById('l4').className = '';
-                            document.getElementById('l3').className = '';
-                            document.getElementById('l1').className = '';
+                            document.getElementById('l1').className = ''; //if coming from the top
                             return;
                         }
                         if(document.body.scrollTop > 450 || document.documentElement.scrollTop > 450){
+                            document.getElementById('l2').className = ''; //if coming from the bottom
                             document.getElementById('l1').className = 'side-active';
-                            document.getElementById('l4').className = '';
-                            document.getElementById('l3').className = '';
-                            document.getElementById('l2').className = '';
                         }else{
                             document.getElementById('l1').className = ''; //when it's 450px from top to bottom, .side-active for l1 should be deactivated
                         }
