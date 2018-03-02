@@ -8721,6 +8721,7 @@ body {
 }
 #program p > code, #program li > code, #program .message code {
   color: #76c12f;
+  font-family: "monospace";
 }
 #program hr {
   margin-top: 0px;

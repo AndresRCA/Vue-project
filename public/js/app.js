@@ -57,7 +57,7 @@ Vue.component('es6',{
 });
 
 Vue.component('laravel',{
-    template: '#laravel'
+    template: '#LARAVEL'
 });
 
 var app = new Vue({
@@ -200,52 +200,88 @@ var app = new Vue({
             template: '#programming-view',
             data: function(){
                 return {
-                    view: 'laravel'
+                    view: 'laravel',
+					message_height: 0
                 };
             },
             methods: {
+				laravel: function(){
+					//remove any active link from the other section
+					document.getElementById('e1').className = '';
+					document.getElementById('e2').className = '';
+					document.getElementById('e3').className = '';
+					this.view = 'laravel';
+				},
+				es6: function(){
+					//remove any active link from the other section
+					document.getElementById('l1').className = '';
+					document.getElementById('l2').className = '';
+					document.getElementById('l3').className = '';
+					document.getElementById('l4').className = '';
+					this.view = 'es6';
+				},
                 removeRWC: function(){
                     document.getElementById('readWithCaution').remove();
+					this.message_height = 0;
                 }
             },
 			mounted: function(){
+				this.message_height = document.getElementById('danger').clientHeight;
+				var that = this;
 				window.onscroll = function() {activate();};
-
 				function activate() { //Don't judge me
-					console.log('I\'m happening');
-                    if(this.view == 'laravel'){
-                        //for intuitive understanding, these conditions should be read from bottom to top, let me explain:
-                        //the event activates when the user has scrolled the page a certain amount of pixels but there's no
-                        //way to specify "heigths" for these events (for example, do "function" when the scroll bar is located
-                        //between 450px and 1400px), because of this I can only set conditions for when the scroll bar reaches
-                        //a certain point, but if I were to ask if document.body.scrollTop > 450 and I was 1550 pixels from the top
-                        //, then that condition would turn out to be true but it wouldn't do the function designated to where I am,
-                        //therefore I set up the order you see, to ensure that the condition I want returns true and nothing else 
-                        if(document.body.scrollTop > 1880 || document.documentElement.scrollTop > 1880){
-                            document.getElementById('l4').className = 'side-active';
-                            document.getElementById('l3').className = '';
-                            return; // the use of return should save me from future conditions
-                        }
-                        if(document.body.scrollTop > 1540 || document.documentElement.scrollTop > 1540){
-                            document.getElementById('l4').className = ''; //if coming from the bottom
-                            document.getElementById('l3').className = 'side-active';
-                            document.getElementById('l2').className = ''; //if coming from the top
-                            return;
-                        }
-                        if(document.body.scrollTop > 1400 || document.documentElement.scrollTop > 1400){
-                            document.getElementById('l3').className = ''; //if coming from the bottom
-                            document.getElementById('l2').className = 'side-active';
-                            document.getElementById('l1').className = ''; //if coming from the top
-                            return;
-                        }
-                        if(document.body.scrollTop > 450 || document.documentElement.scrollTop > 450){
-                            document.getElementById('l2').className = ''; //if coming from the bottom
-                            document.getElementById('l1').className = 'side-active';
-                        }else{
-                            document.getElementById('l1').className = ''; //when it's 450px from top to bottom, .side-active for l1 should be deactivated
-                        }
+					
+					/*console.log('window scroll: '+window.pageYOffset);
+					console.log('window inner height: '+window.innerHeight);
+					console.log('body scrollHeight: '+document.body.scrollHeight);*/
+					
+                    if(that.view == 'laravel'){
+						if(window.pageYOffset >= 279 + that.message_height && window.pageYOffset < 1219 + that.message_height){
+							document.getElementById('l1').className = 'side-active';
+							document.getElementById('l2').className = ''; //if coming from the bottom
+							document.getElementById('l3').className = ''; //in case of a link being clicked
+							document.getElementById('l4').className = ''; //in case of a link being clicked
+						}else if(window.pageYOffset >= 1219 + that.message_height && window.pageYOffset < 1359 + that.message_height){
+							document.getElementById('l1').className = ''; //if coming from the top
+							document.getElementById('l2').className = 'side-active';
+							document.getElementById('l3').className = ''; //if coming from the bottom
+							document.getElementById('l4').className = ''; //in case of a link being clicked
+						}else if(window.pageYOffset >= 1359 + that.message_height && window.pageYOffset + window.innerHeight < document.body.scrollHeight){
+							document.getElementById('l1').className = ''; //in case of a link being clicked
+							document.getElementById('l2').className = ''; //if coming from the top
+                            document.getElementById('l3').className = 'side-active';                            
+							document.getElementById('l4').className = ''; //if coming from the bottom
+						}else if(window.pageYOffset + window.innerHeight >= document.body.scrollHeight){
+							document.getElementById('l1').className = ''; //in case of a link being clicked
+							document.getElementById('l2').className = ''; //in case of a link being clicked							
+							document.getElementById('l3').className = ''; //if coming from the top, which will always be the case
+							document.getElementById('l4').className = 'side-active';
+						}else{
+							document.getElementById('l1').className = '';
+							document.getElementById('l2').className = ''; //in case of a link being clicked, specifically #laravel	
+							document.getElementById('l3').className = ''; //in case of a link being clicked	
+							document.getElementById('l4').className = ''; //in case of a link being clicked	
+						}
                     }else{
-                        //breakpoints for ES6 content goes here
+						if(window.pageYOffset >= 279 + that.message_height && window.pageYOffset < 829 + that.message_height){
+							document.getElementById('e1').className = 'side-active';
+							document.getElementById('e2').className = ''; //if coming from the bottom
+							document.getElementById('e3').className = ''; //if es3 is activated and I click the link to es1, es3 would stay activated
+						}else if(window.pageYOffset >= 829 + that.message_height && window.pageYOffset < 1379 + that.message_height && window.pageYOffset + window.innerHeight < document.body.scrollHeight){
+							document.getElementById('e3').className = ''; //if coming from the bottom
+                            document.getElementById('e2').className = 'side-active';
+                            document.getElementById('e1').className = ''; //if coming from the top
+						}else if(window.pageYOffset >= 1379 + that.message_height || window.pageYOffset + window.innerHeight >= document.body.scrollHeight){
+							document.getElementById('e3').className = 'side-active';
+                            document.getElementById('e2').className = '';
+							document.getElementById('e1').className = ''; //if I'm in es1 and I click to es3
+							
+						}else{
+							document.getElementById('e1').className = '';
+							document.getElementById('e2').className = '';
+							document.getElementById('e3').className = '';
+							
+						}
                     }
 				}
 			}

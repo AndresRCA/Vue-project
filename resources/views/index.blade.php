@@ -344,33 +344,34 @@
             </header>
             <main>
               <ul class="menu-list">
-                <li><!-- there should be a way to listen to children clicks and do my action here -->
-                  <a href="#laravel" @click="view = 'laravel'" v-bind:class="{'is-active': view == 'laravel'}">Laravel</a>
+                <li>
+                  <a href="#laravel" @click="laravel" v-bind:class="{'is-active': view == 'laravel'}">Laravel</a>
                   <ul>
-                    <li><a id="l1" href="#controllers" @click="view = 'laravel'">Controllers</a></li>
+                    <li><a id="l1" href="#controllers" @click="laravel">Controllers</a></li>
                     <li>
-                      <a id="l2" href="#databases" @click="view = 'laravel'">Databases</a>
+                      <a id="l2" href="#databases" @click="laravel">Databases</a>
                       <ul>
-                        <li><a id="l3" href="#settingUp" @click="view = 'laravel'">Setting up a database for Laravel</a></li>
-                        <li><a id="l4" href="#migrations" @click="view = 'laravel'">Migrations</a></li>
+                        <li><a id="l3" href="#settingUp" @click="laravel">Setting up a database for Laravel</a></li>
+                        <li><a id="l4" href="#migrations" @click="laravel">Migrations</a></li>
                       </ul>
                     </li>
                   </ul>
                 </li>
                 <li>
-                  <a href="#es6" @click="view = 'es6'" v-bind:class="{'is-active': view == 'es6'}">ES6</a>
+                  <a href="#es6" @click="es6" v-bind:class="{'is-active': view == 'es6'}">ES6</a>
                   <ul>
-                    <li><a id="e1" href="#let" @click="view = 'es6'">Let</a></li>
-                    <li><a id="e2" href="#arrowFunction" @click="view = 'es6'">Arrow function</a></li>
-                    <li><a id="e3" href="#classes" @click="view = 'es6'">Classes</a></li>
+                    <li><a id="e1" href="#let" @click="es6">Let</a></li>
+                    <li><a id="e2" href="#arrowFunction" @click="es6">Arrow function</a></li>
+                    <li><a id="e3" href="#classes" @click="es6">Classes</a></li>
                   </ul>
                 </li>
               </ul>
             </main>
           </div>
         </div>
-        <div class="column content animated fadeInUpBig" id="program"><!-- is-8 -->
+        <div class="column content animated fadeInUpBig is-9" id="program">
           <section class="section">
+			<div id="danger" style="margin-bottom: 15px;">
             <div id="readWithCaution" class="message is-danger">
               <div class="message-header">
                 READ WITH CAUTION<span class="delete" @click="removeRWC"></span>
@@ -379,10 +380,12 @@
                 Keep in mind the following concepts and instructions are written by me as the way I understand them, any innacurate statement or misunderstanding could be possible <small>(there's a low chance of this happening, you don't need to worry too much)</small>, with this out of the way, please enjoy some of the things I have learned.
               </div>
             </div>
-            <component v-bind:is="view"></component>
+			</div>
+			<div id="programming-content">
+              <component v-bind:is="view"></component>
+			</div>
           </section>
         </div>
-        <!-- <div class="column is-1"></div> -->
       </div>
     </div>
   </template>
@@ -442,28 +445,6 @@ if(true){
 }
 console.log(name); //Outputs Andrew, despite declaring name = "John" inside the if</code>
 </pre>
-    <!-- <div class="columns">
-      <div class="column is-6">
-<pre><h2 class="is-marginless">ES5</h2><code>
-var name = "Andrew";
-if(true){
-  var name = "John";
-  console.log(name); //Outputs John
-}
-console.log(name); //Outputs John</code>
-</pre>
-      </div>
-      <div class="column is-6">
-<pre><h2 class="is-marginless">ES6</h2><code>
-let name = "Andrew";
-if(true){
-  let name = "John";
-  console.log(name); //Outputs John
-}
-console.log(name); //Outputs Andrew, despite declaring name = "John" inside the if</code>
-</pre>
-      </div>
-    </div> -->
       <h3 id="arrowFunction">Arrow functions:</h3>
       <hr>
       <p>A different way to declare a function that solves some scoping issues.</p>          
@@ -475,11 +456,11 @@ function func(x){
 <pre><h2 class="is-marginless">ES6</h2><code>
 let func = (x) => x*2; //returns x*2  
 
-  OR
+//OR
   
 let func = () => ({name: 'Andrew', age: 20}); //returning an object, there's also no parameters
 
-  OR
+//OR
   
 let func = (x, y) => {
   /*body*/
@@ -535,12 +516,14 @@ andrew.saySomething(); //hello I am Andrew and my language is Java
 </pre>
     </div>
   </template>
-  <template id="laravel">
+  <template id="LARAVEL">
     <div>
-      <h2>This content is about the basics of Laravel</h2>
+      <h2 id="laravel">This content is about the basics of Laravel</h2>
       <h3 id="controllers">Controllers</h3>
       <hr>
-      <p>The controllers handle the logic behind the function in <code>Route::get('/', function(){});</code></p>
+      <p>
+        The controllers handle the logic behind the function in <code>Route::get('/', function(){});</code>
+      </p>
       <h4>Creating a controller</h4>
       <ol>
         <li><code>php artisan make:controller [name]</code></li>
@@ -596,7 +579,9 @@ class TasksController extends Controller
       <div class="message-body">
         <ol>
           <li><code>php artisan tinker</code></li>
-          <li><code>$task = App\Task; $task->body = 'hi'; $task->save();</code> //only works for first 2?</li>
+          <li>
+            <code>$task = App\Task;<br>$task->body = 'hi';<br>$task->save();</code> //only works for first 2?
+          </li>
         </ol>
       </div>
     </div>
@@ -605,7 +590,9 @@ class TasksController extends Controller
     <h5>Making a migration table</h5>
     <ol>
       <li><code>php artisan make:migration [filename] --create=[title of table, basically]</code></li>
-      <li>Example: <code>php artisan make:migration uhm --create=sales</code> //date_uhm.php migration file created with sales as a table</li>
+      <li>
+        Example: <code>php artisan make:migration uhm --create=sales</code> //date_uhm.php migration file created with sales as a table
+      </li>
       <li>convention: filename should be <code>create_[title of table]_table</code></li>
     </ol>
     <h5>Migrating to the database</h5>
