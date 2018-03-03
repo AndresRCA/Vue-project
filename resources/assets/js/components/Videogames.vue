@@ -71,3 +71,74 @@
     <!---------------------------------------------------------------------->
   </div>
 </template>
+
+<script>
+  /*jshint esversion: 6*/
+  export default {
+    props: ['item_list'],
+    template: '#videogame-view',
+    data(){
+      return {
+        admin_mode: '',
+        description: '',
+        title: '',
+        link: '',
+        grid_view: true,
+        submitted: false,
+        removeable: false,
+        eye_open: true,
+        show_content: false
+      };
+    },
+    methods: {
+      insertGameToList(){    
+        var that = this;
+
+        var title = $('input[name=title]').val();
+        var description = $('textarea[name=description]').val();
+        var link = $('input[name=link]').val();
+        //var _token = $('input[name=_token]').val();
+
+        this.submitted = !this.submitted;
+        $.ajax({
+          url: '/videogames',
+          type: 'post',
+          data: { 'title': title, 'description': description, 'link': link },
+          success(_response){
+            console.log('it is done');
+            console.log(_response);
+            that.item_list.games.push({ id: _response.id, title: _response.title, description: _response.description, link: _response.link} );
+            that.title = ''; that.description = ''; that.link = '';
+          },
+          error(_response){
+            console.log('error');
+          }
+        });
+      },
+      deleteGame(index, id){
+        console.log('deleting item with index of '+index+' and id of '+id);
+        var that = this;
+        $.ajax({
+          url: '/videogames/delete',
+          //url: '/videogames/delete/'+id, //I could do this instead...
+          type: 'delete',
+          data: { //maybe I could just send a number instead of an object, like data: id
+            'id': id
+          },
+          success(_response){
+            console.log('delete successful');
+            that.item_list.games.splice(index, 1);
+          },
+          error(_response){
+            console.log('couldn\'t delete');
+          }
+        });
+      },
+      slideView(){
+        $('#slideView').slideToggle(200, () => {
+          this.show_content = !this.show_content;
+        });
+      }
+    } //I'd like to add a more interesting way to show the list of games, one after another with delays inbetween
+  };
+</script>

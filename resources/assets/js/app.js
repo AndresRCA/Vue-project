@@ -5,7 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+//require('./bootstrap');
 
 window.Vue = require('vue');
 
@@ -16,7 +16,14 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('Home', require('./components/Home.vue'));
+Vue.component('Cooking', require('./components/Cooking.vue'));
+Vue.component('Videogames', require('./components/Videogames.vue'));
+Vue.component('Programming', require('./components/Programming.vue'));
+Vue.component('laravel', require('./components/Laravel.vue'));
+Vue.component('es6', require('./components/ES6.vue'));
 
 const app = new Vue({
     el: '#app'
+    //I would implement routing and attach the corresponding components
 });

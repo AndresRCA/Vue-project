@@ -371,19 +371,19 @@
         </div>
         <div class="column content animated fadeInUpBig is-9" id="program">
           <section class="section">
-			<div id="danger" style="margin-bottom: 15px;">
-            <div id="readWithCaution" class="message is-danger">
-              <div class="message-header">
-                READ WITH CAUTION<span class="delete" @click="removeRWC"></span>
-              </div>
-              <div class="message-body">
-                Keep in mind the following concepts and instructions are written by me as the way I understand them, any innacurate statement or misunderstanding could be possible <small>(there's a low chance of this happening, you don't need to worry too much)</small>, with this out of the way, please enjoy some of the things I have learned.
-              </div>
-            </div>
-			</div>
-			<div id="programming-content">
-              <component v-bind:is="view"></component>
-			</div>
+			    	<div id="danger" style="margin-bottom: 15px;">
+	            <div id="readWithCaution" class="message is-danger">
+	              <div class="message-header">
+	                READ WITH CAUTION<span class="delete" @click="removeRWC"></span>
+	              </div>
+	              <div class="message-body">
+	                Keep in mind the following concepts and instructions are written by me as the way I understand them, any innacurate statement or misunderstanding could be possible <small>(there's a low chance of this happening, you don't need to worry too much)</small>, with this out of the way, please enjoy some of the things I have learned.
+	              </div>
+	            </div>
+			     	</div>
+      		 	<div id="programming-content">
+            	<component v-bind:is="view"></component>
+      		 	</div>
           </section>
         </div>
       </div>

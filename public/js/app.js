@@ -4,7 +4,7 @@ Vue.component('grid-list',{
     template: '#grid-list',
     methods: {
         deleteItem: function(){
-            $(this.$el).addClass('fadeOutLeft');
+            $(this.$el).addClass('fadeOutLeft'); //I'm thinking that $() may not be neccesary
             var that = this;
             setTimeout(function(){
                 //this emit should notify the parent to delete their item in the array
@@ -194,7 +194,7 @@ var app = new Vue({
                         this.show_content = !this.show_content;
                     });
                 }
-            }
+            } //I'd like to add a more interesting way to show the list of games, one after another with delays inbetween
         },
         Programming: {
             template: '#programming-view',
@@ -231,6 +231,8 @@ var app = new Vue({
 				window.onscroll = function() {activate();};
 				function activate() { //Don't judge me
 					
+					//add something like: if( that.$parent.current_view != 'Programming') return;
+					console.log(that);
 					/*console.log('window scroll: '+window.pageYOffset);
 					console.log('window inner height: '+window.innerHeight);
 					console.log('body scrollHeight: '+document.body.scrollHeight);*/
@@ -275,7 +277,6 @@ var app = new Vue({
 							document.getElementById('e3').className = 'side-active';
                             document.getElementById('e2').className = '';
 							document.getElementById('e1').className = ''; //if I'm in es1 and I click to es3
-							
 						}else{
 							document.getElementById('e1').className = '';
 							document.getElementById('e2').className = '';
