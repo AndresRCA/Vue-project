@@ -142,7 +142,8 @@ var app = new Vue({
                     submitted: false,
                     removeable: false,
                     eye_open: true,
-                    show_content: false
+                    show_content: false/*,
+                    games: []*/
                 };
             },
             methods: {
@@ -194,7 +195,29 @@ var app = new Vue({
                         this.show_content = !this.show_content;
                     });
                 }
-            } //I'd like to add a more interesting way to show the list of games, one after another with delays inbetween
+            }/*, //I'd like to add a more interesting way to show the list of games, one after another with delays inbetween
+            mounted: function(){ //maybe it should be created:, also this should only be called once, not multiple times
+                //maybe add a loading icon so that "looks like there's nothing here" doesn't appear yet, another
+                //thing, the only purpose of this is to add a nice animated entry for the games so... I may do this
+                //to only the videogames view, the rest doesn't need something like this                
+                var that = this;
+                $.ajax({
+                    url: '/videogames',
+                    type: 'get',
+                    success: function(_response){
+                        console.log('games fetched');
+                        setTimeout(function(){
+                            _response.forEach(function(game){
+                                that.games.push(game);
+                            });
+                        }, 200);
+                    },
+                    error: function(_response){
+                        console.log('couldn\'t fetch games');
+                    }
+                });
+            }*/
+
         },
         Programming: {
             template: '#programming-view',

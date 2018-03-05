@@ -39,6 +39,13 @@ class AppController extends Controller
         return view('index', compact('recipes', 'cooking_websites', 'games')/*compact('all')*/);
     }
 
+    //for a different approach for loading resources
+    /*public function getGames()
+    {
+        $games = Game::select('id', 'title', 'description', 'link')->get();
+        return response()->json($games); 
+    }*/
+
     public function createWebsite()
     {
         /*$this->validate(request(), [
