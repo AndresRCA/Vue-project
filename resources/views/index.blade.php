@@ -372,6 +372,10 @@
         <div class="column content animated fadeInUpBig is-9" id="program">
           <section class="section">
 			    	<div id="danger" style="margin-bottom: 15px;">
+              <div class="buttons has-addons is-centered is-hidden-tablet" style="justify-content: space-between;">
+                <button class="button is-danger" @click="view = 'laravel'">Laravel</button>
+                <button class="button is-info" @click="view = 'es6'">ES6</button>
+              </div>
 	            <div id="readWithCaution" class="message is-danger">
 	              <div class="message-header">
 	                READ WITH CAUTION<span class="delete" @click="removeRWC"></span>
