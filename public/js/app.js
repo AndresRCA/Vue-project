@@ -228,20 +228,30 @@ var app = new Vue({
                 };
             },
             methods: {
-				laravel: function(){
+				laravel: function(id){
 					//remove any active link from the other section
-					document.getElementById('e1').className = '';
-					document.getElementById('e2').className = '';
-					document.getElementById('e3').className = '';
-					this.view = 'laravel';
+                    if(this.view != 'laravel'){
+                        document.getElementById('e1').className = '';
+                        document.getElementById('e2').className = '';
+                        document.getElementById('e3').className = '';
+                        this.view = 'laravel';
+                        setTimeout(function(){
+                            document.getElementById(id).scrollIntoView(); //href doesn't bring me to the id because the view isn't loaded, this is just for the case when the active view is laravel
+                        }); //surprisingly, this is one of those times that if I don't do it this way, the code won't work, probably due to Vue rendering components
+                    }
 				},
-				es6: function(){
-					//remove any active link from the other section
-					document.getElementById('l1').className = '';
-					document.getElementById('l2').className = '';
-					document.getElementById('l3').className = '';
-					document.getElementById('l4').className = '';
-					this.view = 'es6';
+				es6: function(id){
+                    if(this.view != 'es6'){
+                        //remove any active link from the other section
+                        document.getElementById('l1').className = '';
+                        document.getElementById('l2').className = '';
+                        document.getElementById('l3').className = '';
+                        document.getElementById('l4').className = '';
+                        this.view = 'es6';
+                        setTimeout(function(){
+                            document.getElementById(id).scrollIntoView();
+                        });
+                    }
 				},
                 removeRWC: function(){
                     document.getElementById('readWithCaution').remove();
@@ -254,8 +264,7 @@ var app = new Vue({
 				window.onscroll = function() {activate();};
 				function activate() { //Don't judge me
 					
-					//add something like: if( that.$parent.current_view != 'Programming') return;
-					console.log(that);
+					if(that.$parent.current_view != 'Programming') return;
 					/*console.log('window scroll: '+window.pageYOffset);
 					console.log('window inner height: '+window.innerHeight);
 					console.log('body scrollHeight: '+document.body.scrollHeight);*/

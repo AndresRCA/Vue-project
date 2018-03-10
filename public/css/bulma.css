@@ -8615,6 +8615,7 @@ body {
 
 .recipe-wrapper {
   padding: 10px 49px;
+  margin-bottom: 10px;
 }
 .recipe-wrapper h1 {
   font-family: "Whitney Cond A", "Whitney Cond B", "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
@@ -8656,7 +8657,7 @@ body {
 }
 
 /*-------------------------------------------------------------- */
-/*----------------VideoGames and Anime-------------------------- */
+/*---------------------- VideoGames ---------------------------- */
 .video-game-bg {
   background: url("/images/nice_snow.png") repeat;
 }
@@ -8847,6 +8848,10 @@ body {
 
 .margin-right {
   margin-right: 10px;
+}
+
+.relative-pos {
+  position: relative;
 }
 
 .button {

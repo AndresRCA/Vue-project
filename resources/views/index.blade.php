@@ -243,7 +243,7 @@
             </button>
           </div>
           
-          <small class="animated infinite tada" v-show="removeable && item_list.games.length >= 1" style="display: inline-block;">&nbsp;&nbsp;&nbsp;Remove function implemented!!!</small>
+          <!-- <small class="animated infinite tada" v-show="removeable && item_list.games.length >= 1" style="display: inline-block;">&nbsp;&nbsp;&nbsp;Remove function implemented!!!</small> -->
         </div>
         <div class="columns">
           <div class="column is-6">
@@ -304,7 +304,7 @@
         </div>
       </section>
       <!------------------------Grid View-------------------------------------->      
-      <section class="section" v-show="grid_view">
+      <section class="section" style="padding-top: 1.5rem" v-show="grid_view">
         <div class="container is-fluid grid-view-container">
   				<transition enter-active-class='animated fadeInUp'>
   					<div class="columns is-multiline" v-if="item_list.games.length >= 1">
@@ -318,7 +318,7 @@
       </section>
       <!----------------------------------------------------------------------->
       <!------------------------Title View------------------------------------>
-      <section class="section" v-show="!grid_view">
+      <section class="section" style="padding-top: 1.5rem" v-show="!grid_view">
         <div class="container is-fluid title-view-container">
   				<transition enter-active-class='animated fadeInUp'>
   					<div v-if="item_list.games.length >= 1">
@@ -345,24 +345,24 @@
             <main>
               <ul class="menu-list">
                 <li>
-                  <a href="#laravel" @click="laravel" v-bind:class="{'is-active': view == 'laravel'}">Laravel</a>
+                  <a href="#laravel" @click="laravel('laravel')" v-bind:class="{'is-active': view == 'laravel'}">Laravel</a>
                   <ul>
-                    <li><a id="l1" href="#controllers" @click="laravel">Controllers</a></li>
+                    <li><a id="l1" href="#controllers" @click="laravel('controllers')">Controllers</a></li>
                     <li>
-                      <a id="l2" href="#databases" @click="laravel">Databases</a>
+                      <a id="l2" href="#databases" @click="laravel('databases')">Databases</a>
                       <ul>
-                        <li><a id="l3" href="#settingUp" @click="laravel">Setting up a database for Laravel</a></li>
-                        <li><a id="l4" href="#migrations" @click="laravel">Migrations</a></li>
+                        <li><a id="l3" href="#settingUp" @click="laravel('settingUp')">Setting up a database for Laravel</a></li>
+                        <li><a id="l4" href="#migrations" @click="laravel('migrations')">Migrations</a></li>
                       </ul>
                     </li>
                   </ul>
                 </li>
                 <li>
-                  <a href="#es6" @click="es6" v-bind:class="{'is-active': view == 'es6'}">ES6</a>
+                  <a href="#es6" @click="es6('es6')" v-bind:class="{'is-active': view == 'es6'}">ES6</a>
                   <ul>
-                    <li><a id="e1" href="#let" @click="es6">Let</a></li>
-                    <li><a id="e2" href="#arrowFunction" @click="es6">Arrow function</a></li>
-                    <li><a id="e3" href="#classes" @click="es6">Classes</a></li>
+                    <li><a id="e1" href="#let" @click="es6('let')">Let</a></li>
+                    <li><a id="e2" href="#arrowFunction" @click="es6('arrowFunction')">Arrow function</a></li>
+                    <li><a id="e3" href="#classes" @click="es6('classes')">Classes</a></li>
                   </ul>
                 </li>
               </ul>
@@ -391,7 +391,7 @@
   </template>
   <!-------------------------------------------------------------------------------------------------------------------------------------------->
   <template id="grid-list">
-    <div class="column is-4 large-margin-bottom animated bounceInRight">
+    <div class="column is-4 large-margin-bottom animated bounceInRight relative-pos">
     	<div class="box" v-bind:class="{ 'removeable-item-grid': removeable, 'item-container': !removeable }">
 				<span v-show="removeable" class="close-icon-grid icon"><i class="fa fa-times" @click="deleteItem"></i></span>
 				<div class="image is-128x128 is-pulled-left" style="margin-bottom: 5px">
