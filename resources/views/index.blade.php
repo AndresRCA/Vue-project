@@ -74,7 +74,7 @@
           </div>
         </div>
       </section>
-      <section class="" id="main-page"><!-- missing section class? -->
+      <section id="main-page">
         <article class="columns level has-text-centered-mobile">
           <div class="column is-4 image-logo image is-16x9">
             <img src="/images/gastronomy.jpg" alt="food">
@@ -167,7 +167,7 @@
 					<p>
             Normally, both your asses would be dead as fucking fried chicken, but you happen to pull this shit while I'm in a transitional period so I don't wanna kill you, I wanna help you. But I can't give you this case, it don't belong to me. Besides, I've already been through too much shit this morning over this case to hand it over to your dumb ass.
           </p>
-          <div class="columns recipe-list-background" style="margin-top: 10px">
+          <div class="columns recipe-list-background is-multiline" style="margin-top: 10px">
             <recipes v-for="recipe in item_list.recipes" v-bind:recipe="recipe" v-bind:key="recipe.title"></recipes>
           </div>
         </div>
@@ -233,7 +233,7 @@
             <button class="button is-danger" v-show="!removeable && item_list.games.length >= 1" @click="removeable = true">
               <span class="icon"><i class="fa fa-trash"></i></span>
               <span>Remove</span>
-          </button>
+          	</button>
           </div>
 
           <div class="control">
@@ -406,13 +406,9 @@
   <template id="title-view-list">
     <div class="box content is-clearfix is-radiusless margin-bottom animated lightSpeedIn" v-bind:class="{ 'removeable-item-title': removeable, 'title-view-content': !removeable }" style="min-height: 0">
       <h3>@{{ title_view_item.title }}
-        <div v-if="!removeable"><!--I might want to change this to v-show, see differences for if and show-->
-          <span v-if="!show_content" class="icon is-pulled-right" v-on:click="slide"><i class="fa fa-chevron-down"></i></span>
-          <span v-else class="icon is-pulled-right" v-on:click="slide"><i class="fa fa-chevron-up"></i></span>
-        </div>
-        <div v-else>
-          <span class="close-icon-title is-pulled-right" v-on:click="deleteItem"><i class="fa fa-times"></i></span>
-        </div>
+        <span v-show="!show_content && !removeable" class="icon is-pulled-right" v-on:click="slide"><i class="fa fa-chevron-down"></i></span>
+        <span v-show="show_content && !removeable" class="icon is-pulled-right" v-on:click="slide"><i class="fa fa-chevron-up"></i></span>
+        <span v-show="removeable" class="close-icon-title is-pulled-right" v-on:click="deleteItem"><i class="fa fa-times"></i></span>
       </h3>
       <div class="slider" style="margin-top: 10px">
       	<div class="image img-size-title margin-right is-pulled-left margin-bottom">
@@ -425,8 +421,8 @@
   <!-------------------------------------------------------------------------------------------------------------------------------------------->
   <template id="ES6">
     <div>
-      <h2 id="es6">This content is about ES6:</h2>
-      <h3 id="let">Let:</h3>
+      <h1 id="es6">This content is about ES6</h1><!-- if you reach this, stop -->
+      <h2 id="let">Let:</h2>
       <hr>
       <p>let declares a variable in the scope that it's declared in, unlike var that goes outside a block.</p>
 <pre><h2 class="is-marginless">ES5</h2><code>
@@ -445,7 +441,7 @@ if(true){
 }
 console.log(name); //Outputs Andrew, despite declaring name = "John" inside the if</code>
 </pre>
-      <h3 id="arrowFunction">Arrow functions:</h3>
+      <h2 id="arrowFunction">Arrow functions:</h2>
       <hr>
       <p>A different way to declare a function that solves some scoping issues.</p>          
 <pre><h2 class="is-marginless">ES5</h2><code>
@@ -466,7 +462,7 @@ let func = (x, y) => {
   /*body*/
 };</code>
 </pre>
-      <h3 id="classes">Classes:</h3>
+      <h2 id="classes">Classes:</h2>
       <p>very similar to Java, very clean.</p>
 <pre><h2 class="is-marginless">ES6</h2><code>
 class Person{
@@ -518,8 +514,8 @@ andrew.saySomething(); //hello I am Andrew and my language is Java
   </template>
   <template id="LARAVEL">
     <div>
-      <h2 id="laravel">This content is about the basics of Laravel</h2>
-      <h3 id="controllers">Controllers</h3>
+      <h1 id="laravel">This content is about the basics of Laravel</h1>
+      <h2 id="controllers">Controllers</h2>
       <hr>
       <p>
         The controllers handle the logic behind the function in <code>Route::get('/', function(){});</code>
@@ -560,7 +556,7 @@ class TasksController extends Controller
 }
 ?&gt;</code>
 </pre>
-    <h3 id="databases">Creating a database</h3>
+    <h2 id="databases">Creating a database</h2>
     <hr>
     <ol>
       <li><code>mysql -uroot -p</code></li>
@@ -585,9 +581,9 @@ class TasksController extends Controller
         </ol>
       </div>
     </div>
-    <h4 id="migrations">Migrations</h4>
+    <h3 id="migrations">Migrations</h3>
     <p>they are the blueprint for the database tables</p>
-    <h5>Making a migration table</h5>
+    <h4>Making a migration table</h4>
     <ol>
       <li><code>php artisan make:migration [filename] --create=[title of table, basically]</code></li>
       <li>
@@ -595,7 +591,7 @@ class TasksController extends Controller
       </li>
       <li>convention: filename should be <code>create_[title of table]_table</code></li>
     </ol>
-    <h5>Migrating to the database</h5>
+    <h4>Migrating to the database</h4>
     <ol>
       <li><code>php artisan migrate</code></li>
     </ol>

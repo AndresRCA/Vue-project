@@ -8716,7 +8716,7 @@ body {
 #program {
   color: #E5EEEC;
 }
-#program h2, #program h3, #program h4, #program h5, #program h6 {
+#program h1, #program h2, #program h3, #program h4, #program h5, #program h6 {
   color: #E5EEEC;
 }
 #program p > code, #program li > code, #program .message code {
@@ -8742,7 +8742,7 @@ body {
   color: #262626;
 }
 #programming-sidebar main {
-  border-bottom-right-radius: 15%;
+  border-bottom-right-radius: 10%;
   background: #2b3135;
   /* Old browsers */
   background: -moz-linear-gradient(left, #2b3135 50%, #1d2023 50%, #202426 50%, #17191b 50%);
@@ -8802,6 +8802,9 @@ body {
 .removeable-item-title {
   border-bottom: 2px solid #c9302c;
   box-shadow: 0px 1px 2px #d9534f;
+}
+.removeable-item-title h3 {
+  margin-bottom: 0px;
 }
 
 .close-icon-title {
