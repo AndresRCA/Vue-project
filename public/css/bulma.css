@@ -8721,6 +8721,24 @@ body {
 #program {
   color: #E5EEEC;
 }
+#program #danger button.is-laravel {
+  background-color: #e74430;
+  border-color: transparent;
+  color: #fff;
+}
+#program #danger button.is-laravel:hover {
+  background-color: #e63e29;
+}
+#program #danger button.is-laravel.is-outlined {
+  background-color: transparent;
+  border-color: #e74430;
+  color: #e74430;
+}
+#program #danger button.is-laravel.is-outlined:hover {
+  background-color: #e74430;
+  border-color: #e74430;
+  color: #fff;
+}
 #program h1, #program h2, #program h3, #program h4, #program h5, #program h6 {
   color: #E5EEEC;
 }

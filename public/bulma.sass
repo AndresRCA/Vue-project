@@ -198,6 +198,22 @@ body
 
 #program
 	color: #E5EEEC
+	#danger
+		button
+			&.is-laravel
+				background-color: #e74430
+				border-color: transparent
+				color: #fff
+				&:hover
+					background-color: darken(#e74430, 1.5%)
+				&.is-outlined
+					background-color: transparent
+					border-color: #e74430
+					color: #e74430
+					&:hover
+						background-color: #e74430
+						border-color: #e74430
+						color: #fff
 	h1, h2, h3, h4, h5, h6
 		color: #E5EEEC
 	p > code, li > code, .message code

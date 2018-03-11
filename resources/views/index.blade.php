@@ -373,7 +373,7 @@
           <section class="section">
 			    	<div id="danger" style="margin-bottom: 15px;">
               <div class="buttons has-addons is-centered is-hidden-tablet" style="justify-content: space-between;">
-                <button class="button is-danger" v-bind:class="{'is-outlined': view != 'laravel'}" @click="view = 'laravel'">Laravel</button>
+                <button class="button is-laravel" v-bind:class="{'is-outlined': view != 'laravel'}" @click="view = 'laravel'">Laravel</button>
                 <button class="button is-info" v-bind:class="{'is-outlined': view != 'es6'}" @click="view = 'es6'">ES6</button>
               </div>
 	            <div id="readWithCaution" class="message is-danger">
