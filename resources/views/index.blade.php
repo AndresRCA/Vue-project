@@ -7,7 +7,7 @@
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
-  <link rel="stylesheet" href="/css/bulma.css">
+  <link rel="stylesheet" href="./css/bulma.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -76,8 +76,8 @@
       </section>
       <section id="main-page">
         <article class="columns level has-text-centered-mobile">
-          <div class="column is-4 image-logo image is-16x9">
-            <img src="/images/gastronomy.jpg" alt="food">
+          <div class="column is-4 image-logo">
+            <img class="image" src="./images/gastronomy.jpg" alt="food">
           </div>
           <div class="column content">
             <h2>Cooking</h2>
@@ -90,8 +90,8 @@
           </div>
         </article>
         <article class="columns level has-text-centered-mobile" >
-          <div class="column is-4 is-hidden-tablet">
-            <img class="image image-logo" src="/images/ssbm.png" alt="ssbm" style="max-height: 230px; margin: 0 auto; display: block">
+          <div class="column is-4 is-hidden-tablet image-logo">
+            <img class="image" src="./images/ssbm.png" alt="ssbm" style="max-height: 230px; margin: 0 auto; display: block">
           </div>
           <div class="column content">
             <h2>Video Games</h2>
@@ -102,13 +102,13 @@
               In this category I will post video game titles I liked in the past and my experience with them.
             </p>
           </div>
-          <div class="column is-4 is-hidden-mobile">
-            <img class="image image-logo" style="max-height: 230px; margin: 0 auto; display: block" src="/images/ssbm.png" alt="ssbm">
+          <div class="column is-4 is-hidden-mobile image-logo">
+            <img class="image" style="max-height: 230px; margin: 0 auto; display: block" src="./images/ssbm.png" alt="ssbm">
           </div>
         </article>
         <article class="columns level has-text-centered-mobile">
-          <div class="column is-4 image-logo image is-16x9">
-            <img src="/images/programming.jpg" alt="programming" style="max-height: 360px;">
+          <div class="column is-4 image-logo">
+            <img class="image" src="./images/programming.jpg" alt="programming" style="max-height: 360px;">
           </div>
           <div class="column content">
             <h2>Programming</h2>
@@ -373,8 +373,8 @@
           <section class="section">
 			    	<div id="danger" style="margin-bottom: 15px;">
               <div class="buttons has-addons is-centered is-hidden-tablet" style="justify-content: space-between;">
-                <button class="button is-danger" @click="view = 'laravel'">Laravel</button>
-                <button class="button is-info" @click="view = 'es6'">ES6</button>
+                <button class="button is-danger" v-bind:class="{'is-outlined': view != 'laravel'}" @click="view = 'laravel'">Laravel</button>
+                <button class="button is-info" v-bind:class="{'is-outlined': view != 'es6'}" @click="view = 'es6'">ES6</button>
               </div>
 	            <div id="readWithCaution" class="message is-danger">
 	              <div class="message-header">
@@ -425,7 +425,7 @@
   <!-------------------------------------------------------------------------------------------------------------------------------------------->
   <template id="ES6">
     <div>
-      <h1 id="es6">This content is about ES6</h1><!-- if you reach this, stop -->
+      <h1 id="es6">This content is about ES6</h1>
       <h2 id="let">Let:</h2>
       <hr>
       <p>let declares a variable in the scope that it's declared in, unlike var that goes outside a block.</p>
@@ -519,7 +519,7 @@ andrew.saySomething(); //hello I am Andrew and my language is Java
   <template id="LARAVEL">
     <div>
       <h1 id="laravel">This content is about the basics of Laravel</h1>
-      <h2 id="controllers">Controllers</h2>
+      <h2 id="controllers">Controllers:</h2>
       <hr>
       <p>
         The controllers handle the logic behind the function in <code>Route::get('/', function(){});</code>
@@ -560,13 +560,13 @@ class TasksController extends Controller
 }
 ?&gt;</code>
 </pre>
-    <h2 id="databases">Creating a database</h2>
+    <h2 id="databases">Creating a database:</h2>
     <hr>
     <ol>
       <li><code>mysql -uroot -p</code></li>
       <li><code>create database [name]</code></li>
     </ol>
-    <h4 id="settingUp">Setting up a database for Laravel</h4>
+    <h3 id="settingUp">Setting up a database for Laravel</h3>
     <ol>
       <li>rename .env.example to .env</li>
       <li>generate a key with php artisan key:generate</li>
@@ -611,6 +611,6 @@ class TasksController extends Controller
   </div>
   </template>
   
-  <script src="/js/app.js" recipes="{{ $recipes }}" cooking_websites="{{ $cooking_websites }}" games="{{ $games }}"></script>
+  <script src="./js/app.js" recipes="{{ $recipes }}" cooking_websites="{{ $cooking_websites }}" games="{{ $games }}"></script>
 </body>
 </html>

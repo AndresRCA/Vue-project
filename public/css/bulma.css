@@ -8502,7 +8502,7 @@ body {
 }
 
 #myNavbar .navbar-start a {
-  color: #e8e8e8;
+  color: #e8e8eb;
   transition: text-shadow 0.5s ease-out, color 0.3s ease-out;
 }
 #myNavbar .navbar-start a:hover {
@@ -8550,6 +8550,10 @@ body {
   padding: 40px;
   border-top: 5px solid #e5e5e5;
   border-bottom: 5px solid #e5e5e5;
+}
+#main-page article .image-logo {
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
 }
 #main-page article img {
   border-radius: 8%;
@@ -8659,7 +8663,7 @@ body {
 /*-------------------------------------------------------------- */
 /*---------------------- VideoGames ---------------------------- */
 .video-game-bg {
-  background: url("/images/nice_snow.png") repeat;
+  background: url("../images/nice_snow.png") repeat;
 }
 
 .inline-block img {
@@ -8711,7 +8715,7 @@ body {
 /*-------------------------------------------------------------- */
 /*-------------------Programming-------------------------------- */
 .programming-bg {
-  background: url("/images/stardust.png") repeat;
+  background: url("../images/stardust.png") repeat;
 }
 
 #program {
