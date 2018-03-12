@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
   <link rel="stylesheet" href="./css/bulma.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -21,7 +21,7 @@
   <div id="app" v-cloak v-bind:class="{'video-game-bg': current_view == 'Videogames','programming-bg': current_view == 'Programming'}">  
     <header id="header" class="hero" v-bind:style="headerStyle">
       <div class="container is-fluid hero-body">
-        <h1 class="title is-1">Informative App</h1>
+        <h1 class="title is-1" style="color: #17191c">My app - {{ current_view }}</h1>
       </div>
     </header>
     <nav id="myNavbar" class="navbar is-light" v-bind:style="navStyle">
