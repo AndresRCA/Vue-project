@@ -133,7 +133,7 @@
             <!-- I could make this section with only php, but I choose to stick with a single way to render a view -->
             <ul>
               <li v-for="item in cooking_links">
-                <a v-bind:href="item.link"><span class="icon is-small"><i class="fa fa-cutlery"></i></span> @{{item.name}}</a>
+                <a v-bind:href="item.link"><span class="icon is-small"><i class="fa fa-cutlery"></i></span> {{item.name}}</a>
               </li>
             </ul>
 
@@ -223,7 +223,7 @@
           </div>
 
           <div class="control">
-            <button class="button is-warning" v-show="submitted" v-on:click="submitted = !submitted">
+            <button class="button is-primary is-outlined" v-show="submitted" v-on:click="submitted = !submitted">
               <span class="icon"><i class="fa fa-chevron-left"></i></span>
               <span>Never mind</span>
             </button>
@@ -237,7 +237,7 @@
           </div>
 
           <div class="control">
-            <button class="button is-warning" v-show="removeable && item_list.games.length >= 1" @click="removeable = false">
+            <button class="button is-danger is-outlined" v-show="removeable && item_list.games.length >= 1" @click="removeable = false">
               <span class="icon"><i class="fa fa-chevron-left"></i></span>
               <span>Cancel</span>
             </button>
@@ -279,8 +279,8 @@
                 <div class="image is-128x128 is-pulled-left" style="margin-bottom: 5px">
                   <img v-bind:src="link" alt="image">
                 </div>
-                <h2 class="break-words title is-6">@{{ title }}</h2>
-                <p class="break-words is-small">@{{ description }}</p>
+                <h2 class="break-words title is-6">{{ title }}</h2>
+                <p class="break-words is-small">{{ description }}</p>
               </div>
             </div>
           </transition>
@@ -288,7 +288,7 @@
           <transition enter-active-class="animated fadeInRight">
             <div v-show="submitted && admin_mode == 'a' && !grid_view" class="column">
               <div class="box content is-clearfix is-radiusless title-view-content" style="min-height: 0">
-                <h3>@{{ title }}
+                <h3>{{ title }}
                   <span class="icon is-pulled-right" v-if="!show_content" v-on:click="slideView"><i class="fa fa-chevron-down"></i></span>
                   <span class="icon is-pulled-right" v-else v-on:click="slideView"><i class="fa fa-chevron-up"></i></span>
                 </h3>
@@ -296,7 +296,7 @@
                   <div class="image img-size-title margin-right is-pulled-left margin-bottom">
                     <img v-bind:src="link" alt="Image url needed">
                   </div>
-                  <p class="break-words" style="padding: 15px 10px;">@{{ description }}</p>
+                  <p class="break-words" style="padding: 15px 10px;">{{ description }}</p>
                 </div>
               </div>
             </div>  
@@ -401,15 +401,15 @@
 				<div class="image is-128x128 is-pulled-left" style="margin-bottom: 5px">
 					<img v-bind:src="grid_item.link" alt="image">
 				</div>
-				<h2 class="break-words title is-6">@{{ grid_item.title }}</h2>
-				<p class="break-words is-small">@{{ grid_item.description }}</p>
+				<h2 class="break-words title is-6">{{ grid_item.title }}</h2>
+				<p class="break-words is-small">{{ grid_item.description }}</p>
 			</div>
     </div>            
   </template>
 
   <template id="title-view-list">
     <div class="box content is-clearfix is-radiusless margin-bottom animated lightSpeedIn" v-bind:class="{ 'removeable-item-title': removeable, 'title-view-content': !removeable }" style="min-height: 0">
-      <h3>@{{ title_view_item.title }}
+      <h3>{{ title_view_item.title }}
         <span v-show="!show_content && !removeable" class="icon is-pulled-right" v-on:click="slide"><i class="fa fa-chevron-down"></i></span>
         <span v-show="show_content && !removeable" class="icon is-pulled-right" v-on:click="slide"><i class="fa fa-chevron-up"></i></span>
         <span v-show="removeable" class="close-icon-title is-pulled-right" v-on:click="deleteItem"><i class="fa fa-times"></i></span>
@@ -418,7 +418,7 @@
       	<div class="image img-size-title margin-right is-pulled-left margin-bottom">
       		<img v-bind:src="title_view_item.link" alt="Image url needed">
       	</div>                        
-        <p class="break-words" style="padding: 15px 10px;">@{{ title_view_item.description }}</p>
+        <p class="break-words" style="padding: 15px 10px;">{{ title_view_item.description }}</p>
       </div>
     </div>
   </template>
@@ -611,6 +611,6 @@ class TasksController extends Controller
   </div>
   </template>
   
-  <script src="./js/app.js" recipes="{{ $recipes }}" cooking_websites="{{ $cooking_websites }}" games="{{ $games }}"></script>
+  <script src="./js/app.js"></script>
 </body>
 </html>

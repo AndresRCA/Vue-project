@@ -1,5 +1,5 @@
 # Vue-project
-What could become a desktop app, for myself.
+What could become a desktop app, for myself. To see how it works without the hassle of setting up a database, check out the Vue-project-presentation folder
 
 This is a project containing the following frameworks/libraries:
 
