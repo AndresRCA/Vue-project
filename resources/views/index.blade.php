@@ -21,7 +21,7 @@
   <div id="app" v-cloak v-bind:class="{'video-game-bg': current_view == 'Videogames','programming-bg': current_view == 'Programming'}">  
     <header id="header" class="hero" v-bind:style="headerStyle">
       <div class="container is-fluid hero-body">
-        <h1 class="title is-1" style="color: #17191c">My app - {{ current_view }}</h1>
+        <h1 class="title is-1" style="color: #17191c">My app - @{{ current_view }}</h1>
       </div>
     </header>
     <nav id="myNavbar" class="navbar is-light" v-bind:style="navStyle">
