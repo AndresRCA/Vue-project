@@ -1,5 +1,5 @@
 # Vue-project
-What could become a desktop app, for myself. To see how it works without the hassle of setting up a database + laravel, check out the Vue-Project-Presentation-X folder. 
+What could become a desktop app, for myself. To see how it works without the hassle of setting up a database + laravel, check out the Vue-Project-Presentation-X folder that can be seen in the presentation branch. 
 
 To see the project itself you just have to install json-server with npm like so `npm install -g json-server` and run `json-server --watch db.json` inside the JSON_DB folder located inside dist to get the json database working, the resources should be located on localhost:3000, also remember to create a local server inside the dist folder like so `php -S localhost:8000`. After these small steps are done, just head to the url localhost:8000 in your browswer and you should see the working app.
 
