@@ -14,3 +14,26 @@ npm-debug.log
 yarn-error.log
 .env
 /nbproject/private/
+/Vue-Project-Presentation-X/node_modules
+/Vue-Project-Presentation-X/DB_ORIGINAL_COPY
+/Vue-Project-Presentation-X/db.json
+
+/Vue-Project-Presentation-X/.DS_Store
+
+# local env files
+/Vue-Project-Presentation-X/.env.local
+/Vue-Project-Presentation-X/.env.*.local
+
+# Log files
+/Vue-Project-Presentation-X/npm-debug.log*
+/Vue-Project-Presentation-X/yarn-debug.log*
+/Vue-Project-Presentation-X/yarn-error.log*
+
+# Editor directories and files
+/Vue-Project-Presentation-X/.idea
+/Vue-Project-Presentation-X/.vscode
+/Vue-Project-Presentation-X/*.suo
+/Vue-Project-Presentation-X/*.ntvs*
+/Vue-Project-Presentation-X/*.njsproj
+/Vue-Project-Presentation-X/*.sln
+/Vue-Project-Presentation-X/*.sw*
