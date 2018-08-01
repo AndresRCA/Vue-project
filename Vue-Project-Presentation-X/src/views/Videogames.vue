@@ -36,14 +36,14 @@
     <section class="section" style="padding: 0 1.5rem">
       <div class="field is-grouped" style="margin-bottom: 15px;" v-show="admin_mode == 'a'">
         <div class="control">
-          <button class="button is-primary" v-show="!submitted" v-on:click="submitted = !submitted">
+          <button class="button is-primary" v-show="!isEditing" v-on:click="switchIsEditing">
             <span class="icon"><i class="fa fa-pencil"></i></span>
             <span>Insert Game</span>
           </button>
         </div>
 
         <div class="control">
-          <button class="button is-primary is-outlined" v-show="submitted" v-on:click="submitted = !submitted">
+          <button class="button is-primary is-outlined" v-show="isEditing" v-on:click="switchIsEditing">
             <span class="icon"><i class="fa fa-chevron-left"></i></span>
             <span>Never mind</span>
           </button>
@@ -65,9 +65,14 @@
       </div>
       <div class="columns">
         <div class="column is-6">
-          <form v-on:submit.prevent="insertGameToList" v-show="submitted && admin_mode == 'a'">
+          <form v-on:submit.prevent="insertGameToList" v-show="isEditing && admin_mode == 'a'">
             <!--{{ csrf_field() }}-->
             <label>Inside this you can enter everything:</label>
+            <div class="field">
+							<div class="control">
+								<input class="input" placeholder="header background image url" type="text" name="header_background" v-model="header_background"/>
+							</div>
+            </div>
             <div class="field">
 							<div class="control">
 								<input class="input" placeholder="Image url" type="text" name="link" v-model="link"/>
@@ -92,7 +97,7 @@
         </div>
         <!-- for grid view -->
         <transition enter-active-class='animated fadeInRight'>
-          <div v-show="submitted && admin_mode == 'a' && grid_view" class="column is-4 is-offset-1 large-margin-bottom">
+          <div v-show="isEditing && admin_mode == 'a' && grid_view" class="column is-4 is-offset-1 large-margin-bottom">
             <div class="box item-container">
               <div class="image is-128x128 is-pulled-left" style="margin-bottom: 5px">
                 <img v-bind:src="link" alt="image">
@@ -104,7 +109,7 @@
         </transition>
         <!-- for title view -->
         <transition enter-active-class="animated fadeInRight">
-          <div v-show="submitted && admin_mode == 'a' && !grid_view" class="column">
+          <div v-show="isEditing && admin_mode == 'a' && !grid_view" class="column">
             <div class="box content is-clearfix is-radiusless title-view-content" style="min-height: 0">
               <h3>{{ title }}
                 <span class="icon is-pulled-right" v-if="!show_content" v-on:click="slideView"><i class="fa fa-chevron-down"></i></span>
@@ -126,7 +131,7 @@
       <div class="container is-fluid grid-view-container">
 				<transition enter-active-class='animated fadeInUp'>
 					<div class="columns is-multiline" v-if="games.length >= 1">
-					  <gridList class="list-complete-item" v-for="(item, index) in games" v-bind:grid_item="item" v-bind:removeable="removeable" v-bind:key="item.id"></gridList>
+					  <gridList class="list-complete-item" v-for="item in games" v-bind:grid_item="item" v-bind:removeable="removeable" v-bind:key="item.id"></gridList>
 					</div>
 					<div v-else class="content has-text-centered">            
 						<h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>
@@ -140,7 +145,7 @@
       <div class="container is-fluid title-view-container">
 				<transition enter-active-class='animated fadeInUp'>
 					<div v-if="games.length >= 1">
-						<titleViewList v-for="(item, index) in games" v-bind:title_view_item="item" v-bind:removeable="removeable" v-bind:key="item.title"></titleViewList>
+						<titleViewList v-for="item in games" v-bind:title_view_item="item" v-bind:removeable="removeable" v-bind:key="item.title"></titleViewList>
 					</div>
 					<div v-else class="content has-text-centered">
 						<h1 class="animated swing"><small>There doesn't seem to be anything here...</small></h1>
@@ -165,26 +170,31 @@ export default {
   		title: '',
   		link: '',
   		grid_view: true,
-  		submitted: false,
   		removeable: false,
   		eye_open: true,
   		show_content: false
   	}
   },
   computed: {
-    games(){
+    games() {
       return this.$store.state.videogames.games;
-    }/*,
-    isEditing() {
+    },
+    header_background: {
       get() {
-        return this.$store.state.header.isEditing;
+        return this.$store.state.header.header_background;
       },
-      set() {
-        this.$store.commit['header/switchIsEditing'];
+      set(value) {
+        this.$store.commit('header/updateHeaderBackground', value);
       }
-    }*/
+    },
+    isEditing() { 
+      return this.$store.state.header.isEditing;
+    }
   },
   methods: {
+    switchIsEditing() {
+      this.$store.commit('header/switchIsEditing');
+    },
   	insertGameToList() {
       let title = $('input[name=title]').val();
       let description = $('textarea[name=description]').val();
@@ -197,7 +207,7 @@ export default {
       this.$store.dispatch('videogames/addGame', game).
       then((response) => {
         console.log(response);
-        this.submitted = !this.submitted;
+        this.$store.commit('header/switchIsEditing');
         this.title = ''; this.description = ''; this.link = '';
       }).
       catch((error) => {

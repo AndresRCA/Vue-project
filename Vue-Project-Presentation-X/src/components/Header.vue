@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header id="header" class="hero"  v-bind:style="headerStyle">
+    <header id="header" class="hero" v-bind:class="{'is-medium': isEditingGame}" v-bind:style="[headerStyle, gameEditing]">
       <div class="container is-fluid hero-body">
         <h1 class="title is-1" style="color: #17191c">My app - {{ $route.name }}</h1>
       </div>
@@ -53,20 +53,28 @@ export default {
         case 'Programming': return{ backgroundColor: '#baf286' };
       }
     },
-    /*isEditingGame() {
+    isEditingGame() {
       return this.$store.state.header.isEditing && this.$route.name == 'Videogames' && this.$store.state.header.header_background != '';
     },
     gameEditing() {
-      if(isEditingGame){
+      /*this.$store.dispatch('header/isResourceValid').
+      then((response) => {
+        console.log(response);
+      }).
+      catch((error) => {
+        console.log(error);
+      });*/
+      if(this.isEditingGame){
         return {
-          backgroundImage: url(this.$store.state.header.header_background),
+          backgroundImage: `url(${this.$store.state.header.header_background})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center'
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
         }
       }else{
         return {};
       }
-    },*/
+    },
     navStyle() {
       switch(this.$route.name){
         case 'Home': return {};
@@ -82,7 +90,9 @@ export default {
 <style lang="css">
 .hero {
   font-family: "Josefin Sans", sans-serif;
-  transition: height 1s;
+}
+.hero > .hero-body {
+  transition: padding 0.5s;
 }
 
 #myNavbar .navbar-start a {
