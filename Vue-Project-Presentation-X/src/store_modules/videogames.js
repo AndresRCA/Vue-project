@@ -65,10 +65,8 @@ export default {
       try {
         /*----------------------- Not neccesary if back end has a DB --------------------------*/
         await dispatch('getNextId');
-        console.log('Id get');
         /*-------------------------------------------------------------------------------------*/
         let response = await axios.get('http://localhost:3000/games');
-        console.log('games get');
         commit('setGames', response.data);
         return;
       }catch(e) {

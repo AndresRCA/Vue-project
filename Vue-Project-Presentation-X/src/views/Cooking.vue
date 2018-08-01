@@ -5,7 +5,7 @@
 				<div id="cooking-sidebar">
 					<h4 class="has-text-centered">Links of interest</h4>
 					<ul>
-						<li v-for="item in cooking_links">
+						<li v-for="item in cooking_links" v-bind:key="item.name">
 							<a v-bind:href="item.link"><span class="icon is-small"><i class="fa fa-cutlery"></i></span> {{item.name}}</a>
 						</li>
 					</ul>
